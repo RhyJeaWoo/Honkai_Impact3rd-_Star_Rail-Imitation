@@ -28,7 +28,7 @@ public class PlayerIdleState : PlayerState
 
         if (player.isMyTurn)
         {
-            player.stateMachine.ChangeState(player.selectState);
+            player.stateMachine.ChangeState(player.attackWaitState);
         }
 
     }
