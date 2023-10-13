@@ -13,7 +13,7 @@ public class PlayerIdleState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        // Debug.Log(player.name + "idle 상태가 실행되었음");
+        Debug.Log(player.name + "idle 상태가 실행되었음");
     }
 
     public override void Exit()

@@ -29,9 +29,9 @@ public class PlayerState
 
     public virtual void Enter()
     {
-        //player.anim.SetBool(animBoolName, true);
+        player.anim.SetBool(animBoolName, true);
         //rb = player.rb;
-        triggerCalled = false;
+      //  triggerCalled = false;
     }
 
     public virtual void Update()
@@ -45,11 +45,11 @@ public class PlayerState
 
     public virtual void Exit()
     {
-        // player.anim.SetBool(animBoolName, false);
+        player.anim.SetBool(animBoolName, false);
     }
 
     public virtual void AnimationFinishTrigger()
     {
-        triggerCalled = true;
+      //  triggerCalled = true;
     }
 }
