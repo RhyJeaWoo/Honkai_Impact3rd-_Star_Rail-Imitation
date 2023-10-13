@@ -11,6 +11,7 @@ public class PlayerSkillState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.time = 2;
     }
 
     public override void Exit()
@@ -21,5 +22,11 @@ public class PlayerSkillState : PlayerState
     public override void Update()
     {
         base.Update();
+        if (player.time < 0)
+        {
+            player.stateMachine.ChangeState(player.idleState);
+            player.isMyTurn = false;
+            TurnManager.Instance.TurnEnd();
+        }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerState
 {
+    //턴이 되기 전까지 대기하는 상태
     public PlayerIdleState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
 
@@ -12,6 +13,7 @@ public class PlayerIdleState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        // Debug.Log(player.name + "idle 상태가 실행되었음");
     }
 
     public override void Exit()
@@ -22,6 +24,13 @@ public class PlayerIdleState : PlayerState
     public override void Update()
     {
         base.Update();
+        //Debug.Log(player.name + "Idle 중");
+
+        if (player.isMyTurn)
+        {
+            player.stateMachine.ChangeState(player.selectState);
+        }
+
     }
 
 }

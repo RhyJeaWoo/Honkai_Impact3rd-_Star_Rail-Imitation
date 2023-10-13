@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackState : PlayerState
+public class LumineStrAtkState : EnemyState
 {
-    public PlayerAttackState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    private EnemyLumine lumine;
+    public LumineStrAtkState(EnemyAIController _enemyBase, EnemyStateMachine2 _stateMachine, string _animBoolName, EnemyLumine lumine) : base(_enemyBase, _stateMachine, _animBoolName)
     {
+        this.lumine = lumine;
     }
 
     public override void Enter()
@@ -16,15 +18,12 @@ public class PlayerAttackState : PlayerState
     public override void Exit()
     {
         base.Exit();
-
-        player.isTurnOn = false;
-
-
-
     }
 
     public override void Update()
     {
         base.Update();
     }
+
+    
 }

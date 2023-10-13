@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTurnState : PlayerState
+public class LumineStrAtk2State : EnemyState
 {
-    public PlayerTurnState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    private EnemyLumine lumine;
+    public LumineStrAtk2State(EnemyAIController _enemyBase, EnemyStateMachine2 _stateMachine, string _animBoolName, EnemyLumine lumine) : base(_enemyBase, _stateMachine, _animBoolName)
     {
+        this.lumine = lumine;
     }
 
     public override void Enter()
