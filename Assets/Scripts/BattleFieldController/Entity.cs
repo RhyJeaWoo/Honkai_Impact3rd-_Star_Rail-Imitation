@@ -45,6 +45,7 @@ public class Entity : MonoBehaviour
         currentSpeed = finalSpeed;
         currentTurnSpeed = baseTurnSpeed;
 
+        curhp = maxhp;
 
     }
 

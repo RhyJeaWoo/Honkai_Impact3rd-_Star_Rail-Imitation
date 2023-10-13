@@ -23,11 +23,11 @@ public class LumineIdleState : EnemyState
     public override void Update()
     {
         base.Update();
-        /*
+        
         if (enemy.isMyTurn)
         {
             stateMachine.ChangeState(lumine.selectState);
-        }*/
+        }
     }
 
     

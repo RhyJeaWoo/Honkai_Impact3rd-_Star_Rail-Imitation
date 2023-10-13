@@ -23,5 +23,12 @@ public class LumineNorAtkState : EnemyState
     public override void Update()
     {
         base.Update();
+
+        if (enemy.time < 0)
+        {
+            enemy.stateMachine.ChangeState(lumine.idleState);
+            lumine.isMyTurn = false;
+            TurnManager.Instance.TurnEnd();
+        }
     }
 }
