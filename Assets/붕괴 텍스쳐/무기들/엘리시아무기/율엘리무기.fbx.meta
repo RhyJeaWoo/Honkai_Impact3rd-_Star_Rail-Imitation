@@ -1,0 +1,279 @@
+fileFormatVersion: 2
+guid: 76fcf973a3670844dbc40cb43ae3cd85
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: "\uC728\uC5D8\uB9AC\uBB34\uAE30(Clone)"
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: "\u6CD5\u6756"
+      parentName: "\uC728\uC5D8\uB9AC\uBB34\uAE30(Clone)"
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: "\u6CD5\u6756_arm"
+      parentName: "\u6CD5\u6756"
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip001 Prop1
+      parentName: "\u6CD5\u6756_arm"
+      position: {x: -4.6566128e-14, y: -9.5367436e-11, z: 0.013895975}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Bone_Mace_T_02
+      parentName: Bip001 Prop1
+      position: {x: -4.3368086e-21, y: 0.008629034, z: 4.440892e-18}
+      rotation: {x: 0.000000008514917, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: _dummy_Bone_Mace_T_02
+      parentName: Bone_Mace_T_02
+      position: {x: -0, y: 0.0000000023841857, z: -4.440892e-18}
+      rotation: {x: -1.7763568e-15, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _dummy_Bone_Mace_T_02_end
+      parentName: _dummy_Bone_Mace_T_02
+      position: {x: -0, y: 0.0007999992, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dummy_Mace_T_01
+      parentName: Bip001 Prop1
+      position: {x: 0.000027317457, y: 0.009560467, z: 1.5862143e-11}
+      rotation: {x: 0.000000008514917, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: _dummy_Dummy_Mace_T_01
+      parentName: Dummy_Mace_T_01
+      position: {x: -0, y: 4.440892e-18, z: -4.440892e-18}
+      rotation: {x: -1.7763568e-15, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _dummy_Dummy_Mace_T_01_end
+      parentName: _dummy_Dummy_Mace_T_01
+      position: {x: -0, y: 0.0007999992, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dummy_Mace_D_01
+      parentName: Bip001 Prop1
+      position: {x: 0.000001811477, y: -0.0127645135, z: -3.7815978e-10}
+      rotation: {x: 0.00000000851491, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: _dummy_Dummy_Mace_D_01
+      parentName: Dummy_Mace_D_01
+      position: {x: -0, y: -6.705522e-10, z: -2.4310133e-17}
+      rotation: {x: 6.2172494e-15, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _dummy_Dummy_Mace_D_01_end
+      parentName: _dummy_Dummy_Mace_D_01
+      position: {x: -0, y: 0.00080000004, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dummy_Mace_D_02
+      parentName: Bip001 Prop1
+      position: {x: 0.000018093599, y: -0.011507933, z: 0.00005913651}
+      rotation: {x: 0.000000008731157, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: _dummy_Dummy_Mace_D_02
+      parentName: Dummy_Mace_D_02
+      position: {x: -0, y: -6.0206345e-10, z: -1.0327819e-12}
+      rotation: {x: -2.1624169e-10, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _dummy_Dummy_Mace_D_02_end
+      parentName: _dummy_Dummy_Mace_D_02
+      position: {x: -0, y: 0.00080000027, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bone_Mace_T_03
+      parentName: Bip001 Prop1
+      position: {x: -1.3010426e-20, y: 0.005190815, z: -5.855234e-11}
+      rotation: {x: 0.000000008514917, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: _dummy_Bone_Mace_T_03
+      parentName: Bone_Mace_T_03
+      position: {x: -0, y: 0.0000000011920929, z: -4.440892e-18}
+      rotation: {x: -1.7763568e-15, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _dummy_Bone_Mace_T_03_end
+      parentName: _dummy_Bone_Mace_T_03
+      position: {x: -0, y: 0.0008000016, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: "\u65B0\u898F\u30DC\u30FC\u30F31"
+      parentName: Bip001 Prop1
+      position: {x: 4.656612e-14, y: 0.012332798, z: 1.14658005e-10}
+      rotation: {x: 0.000000008514914, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: "\u65B0\u898F\u30DC\u30FC\u30F31_end"
+      parentName: "\u65B0\u898F\u30DC\u30FC\u30F31"
+      position: {x: -0, y: 0.0007999992, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: "\u65B0\u898F\u30DC\u30FC\u30F32"
+      parentName: Bip001 Prop1
+      position: {x: 4.656612e-14, y: -0.013895974, z: -3.3201358e-10}
+      rotation: {x: 0.000000008514927, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: "\u65B0\u898F\u30DC\u30FC\u30F32_end"
+      parentName: "\u65B0\u898F\u30DC\u30FC\u30F32"
+      position: {x: -0, y: 0.0008, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _shadow_Bone_Mace_T_02
+      parentName: Bip001 Prop1
+      position: {x: -4.3368086e-21, y: 0.008629034, z: 4.440892e-18}
+      rotation: {x: 0.000000008514917, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: _shadow_Bone_Mace_T_02_end
+      parentName: _shadow_Bone_Mace_T_02
+      position: {x: -0, y: 0.0007999992, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _shadow_Dummy_Mace_T_01
+      parentName: Bip001 Prop1
+      position: {x: 0.000027317457, y: 0.009560467, z: 1.5862143e-11}
+      rotation: {x: 0.000000008514917, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: _shadow_Dummy_Mace_T_01_end
+      parentName: _shadow_Dummy_Mace_T_01
+      position: {x: -0, y: 0.0007999992, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _shadow_Dummy_Mace_D_01
+      parentName: Bip001 Prop1
+      position: {x: 0.000001811477, y: -0.012764514, z: -3.7815984e-10}
+      rotation: {x: 0.000000008514917, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: _shadow_Dummy_Mace_D_01_end
+      parentName: _shadow_Dummy_Mace_D_01
+      position: {x: -0, y: 0.00080000004, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _shadow_Dummy_Mace_D_02
+      parentName: Bip001 Prop1
+      position: {x: 0.000018093599, y: -0.011507934, z: 0.00005913651}
+      rotation: {x: 0.000000008514917, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
+    - name: _shadow_Dummy_Mace_D_02_end
+      parentName: _shadow_Dummy_Mace_D_02
+      position: {x: -0, y: 0.00080000027, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: _shadow_Bone_Mace_T_03
+      parentName: Bip001 Prop1
+      position: {x: -1.3010426e-20, y: 0.005190815, z: -5.855234e-11}
+      rotation: {x: 0.000000008514917, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
+    - name: _shadow_Bone_Mace_T_03_end
+      parentName: _shadow_Bone_Mace_T_03
+      position: {x: -0, y: 0.0008000016, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: "\u6CD5\u6756_mesh"
+      parentName: "\uC728\uC5D8\uB9AC\uBB34\uAE30(Clone)"
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
