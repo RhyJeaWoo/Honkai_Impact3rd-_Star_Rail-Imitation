@@ -11,7 +11,7 @@ public class PlayerAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        player.time = 2;
+        player.time = 1;
     }
 
     public override void Exit()

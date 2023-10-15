@@ -14,19 +14,7 @@ public class PlayerAttackWaitState : PlayerState
     {
         base.Enter();
         Debug.Log(player.name + "턴 선택(일반공격) 상태임");
-        TurnManager.Instance.target_simbol.SetActive(true);
-        //여기서 기본공격 준비 애니메이션 실행
-        //player.vircam.transform.position = player.transform.position + new Vector3(0,-0.3f,-9.7f);
-        player.virCamPos = player.vircam.transform.position; //먼저 버츄얼 카메라 초기 위치 좌표를 저장함
-        player.virCamRot = player.vircam.transform.rotation; //카메라 회전 값을 저장
-
-        player.ObjPos = player.transform.position;
-
-
-        //여기서 카메라 조정을 다시 해야될 거 같음. 버그가 있음.
-        //그리고 일단 캐릭터들 완성부터 해야될거 같음.
-
-       //player.vircam
+       
 
 
     }
@@ -34,16 +22,17 @@ public class PlayerAttackWaitState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        
+
+
+
     }
 
     public override void Update()
     {
         base.Update();
 
-        player.vircam.transform.position = player.virCamPos + new Vector3(player.ObjPos.x, 0,0);
-        player.vircam.transform.rotation = player.virCamRot;
-
-       //TurnManager.Instance.WhoisTurn(player.gameObject);
+    
 
         if (Input.GetKeyDown(KeyCode.Q))
         {

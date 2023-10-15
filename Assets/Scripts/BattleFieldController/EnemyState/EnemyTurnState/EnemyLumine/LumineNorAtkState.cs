@@ -13,6 +13,7 @@ public class LumineNorAtkState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        enemy.time = 3f;
     }
 
     public override void Exit()

@@ -9,11 +9,12 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
 
-    public Vector3 ObjPos;//각 오브젝트가 가질 좌표
+    public GameObject ObjPos;//각 오브젝트가 가질 좌표
 
     public CinemachineVirtualCamera vircam;
+
     public Vector3 virCamPos; //카메라 좌표 원점
-    public Vector3 moveCamPos;//
+    public Vector3 moveCamPos;//카메라가 이동할 좌표
 
     public Quaternion virCamRot;//카메라 회전 좌표값
     //여따가 카메라 좌표 원점 저장시켜놓고.

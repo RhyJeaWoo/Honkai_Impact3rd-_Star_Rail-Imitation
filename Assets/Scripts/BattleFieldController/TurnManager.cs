@@ -183,30 +183,33 @@ public class TurnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             curIndex--;
-            if (curIndex < 0)
-            {
-                curIndex = 0;
-
-
-
-            }
+          
 
             Debug.Log("키 입력은 됬음");
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             curIndex++;
-            if (curIndex > enemys.Count)
-            {
-                curIndex = enemys.Count - 1;
-
-
-            }
+          
             Debug.Log("키 입력은 됬음");
 
         }
 
-        if( Input.GetKeyUp(KeyCode.D)|| Input.GetKeyUp(KeyCode.A))
+        if (curIndex < 0)
+        {
+            curIndex = 0;
+
+
+
+        }
+        else if (curIndex == enemys.Count)
+        {
+            curIndex = enemys.Count - 1;
+
+
+        }
+
+        if ( Input.GetKeyUp(KeyCode.D)|| Input.GetKeyUp(KeyCode.A))
         {
             target_simbol.transform.eulerAngles = ResetTargetRot;
         }

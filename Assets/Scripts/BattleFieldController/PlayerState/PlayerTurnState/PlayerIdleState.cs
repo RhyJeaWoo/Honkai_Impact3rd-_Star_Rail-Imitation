@@ -14,11 +14,15 @@ public class PlayerIdleState : PlayerState
     {
         base.Enter();
         Debug.Log(player.name + "idle 상태가 실행되었음");
+     
+     
+
     }
 
     public override void Exit()
     {
         base.Exit();
+        
     }
 
     public override void Update()
@@ -26,9 +30,13 @@ public class PlayerIdleState : PlayerState
         base.Update();
         //Debug.Log(player.name + "Idle 중");
 
+     
+
+        //TurnManager.Instance.WhoisTurn(player.gameObject);
+
         if (player.isMyTurn)
         {
-            player.stateMachine.ChangeState(player.attackWaitState);
+            player.stateMachine.ChangeState(player.turnGetState);
         }
 
     }
