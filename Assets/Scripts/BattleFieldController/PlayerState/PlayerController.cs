@@ -6,10 +6,7 @@ using UnityEngine;
 public class PlayerController : Entity
 {
 
-    public CinemachineVirtualCamera vircam;
-    Vector3 virCamPos;
-    //여따가 카메라 좌표 원점 저장시켜놓고.
-    //그리고 플레어의 턴일때 마다 걔의 좌표로 이동 시킬거임.
+   
 
     #region States
     public PlayerStateMachine stateMachine { get; private set; }//스테이트 머신

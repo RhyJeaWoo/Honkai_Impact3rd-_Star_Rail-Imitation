@@ -391,7 +391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &35216732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +404,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f444b5d4cd2bef449e1db8835a1d7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjPos: {x: 0, y: 0, z: 0}
+  vircam: {fileID: 0}
+  virCamPos: {x: 0, y: 0, z: 0}
+  moveCamPos: {x: 0, y: 0, z: 0}
+  virCamRot: {x: 0, y: 0, z: 0, w: 0}
   maxhp: 0
   curhp: 0
   atk: 0
@@ -498,7 +503,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35216731}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 1, z: 1}
+  m_LocalPosition: {x: -2, y: 1, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3031,7 +3036,7 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: 5381998387571817027, guid: 36737dc2bc4d08a4da9175fa29747221, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 30580145}
   - key: {fileID: 3278415084037972141, guid: 36737dc2bc4d08a4da9175fa29747221, type: 2}
     value: {fileID: 728644941}
   - key: {fileID: -5598589637653680218, guid: 36737dc2bc4d08a4da9175fa29747221, type: 2}
@@ -7225,6 +7230,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a934419144a7abe4880e800636d8e509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjPos: {x: 0, y: 0, z: 0}
+  vircam: {fileID: 2083497154}
+  virCamPos: {x: 0, y: 0, z: 0}
+  moveCamPos: {x: 0, y: 0, z: 0}
+  virCamRot: {x: 0, y: 0, z: 0, w: 0}
   maxhp: 0
   curhp: 0
   atk: 0
@@ -7240,7 +7250,6 @@ MonoBehaviour:
   currentTurnSpeed: 0
   isMyTurn: 0
   canAct: 0
-  vircam: {fileID: 2083497154}
 --- !u!4 &743735076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5814471206898693398, guid: db3db71bc73bde24193687647106f5b2, type: 3}
@@ -8571,8 +8580,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2083497153}
   - {fileID: 201178003}
+  - {fileID: 2083497153}
   - {fileID: 248408500}
   m_Father: {fileID: 0}
   m_RootOrder: 18
@@ -8592,7 +8601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1236002716
 Transform:
   m_ObjectHideFlags: 0
@@ -8624,7 +8633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1254200969
 Transform:
   m_ObjectHideFlags: 0
@@ -8736,7 +8745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1306991617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8749,6 +8758,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f444b5d4cd2bef449e1db8835a1d7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjPos: {x: 0, y: 0, z: 0}
+  vircam: {fileID: 0}
+  virCamPos: {x: 0, y: 0, z: 0}
+  moveCamPos: {x: 0, y: 0, z: 0}
+  virCamRot: {x: 0, y: 0, z: 0, w: 0}
   maxhp: 0
   curhp: 0
   atk: 0
@@ -8843,7 +8857,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306991616}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 1, z: 1}
+  m_LocalPosition: {x: -1, y: 1, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9261,6 +9275,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a934419144a7abe4880e800636d8e509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjPos: {x: 0, y: 0, z: 0}
+  vircam: {fileID: 2083497154}
+  virCamPos: {x: 0, y: 0, z: 0}
+  moveCamPos: {x: 0, y: 0, z: 0}
+  virCamRot: {x: 0, y: 0, z: 0, w: 0}
   maxhp: 0
   curhp: 0
   atk: 0
@@ -9276,7 +9295,6 @@ MonoBehaviour:
   currentTurnSpeed: 0
   isMyTurn: 0
   canAct: 0
-  vircam: {fileID: 0}
 --- !u!1 &1638222033 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a197325c15a33734aaa6a7d742ee78af, type: 3}
@@ -9294,6 +9312,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a934419144a7abe4880e800636d8e509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjPos: {x: 0, y: 0, z: 0}
+  vircam: {fileID: 2083497154}
+  virCamPos: {x: 0, y: 0, z: 0}
+  moveCamPos: {x: 0, y: 0, z: 0}
+  virCamRot: {x: 0, y: 0, z: 0, w: 0}
   maxhp: 0
   curhp: 0
   atk: 0
@@ -9309,7 +9332,6 @@ MonoBehaviour:
   currentTurnSpeed: 0
   isMyTurn: 0
   canAct: 0
-  vircam: {fileID: 0}
 --- !u!1 &1643507035
 GameObject:
   m_ObjectHideFlags: 0
@@ -10093,6 +10115,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad52299bd979cd4ab4118320c8431ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjPos: {x: 0, y: 0, z: 0}
+  vircam: {fileID: 248408501}
+  virCamPos: {x: 0, y: 0, z: 0}
+  moveCamPos: {x: 0, y: 0, z: 0}
+  virCamRot: {x: 0, y: 0, z: 0, w: 0}
   maxhp: 200
   curhp: 0
   atk: 0
@@ -10625,6 +10652,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a934419144a7abe4880e800636d8e509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjPos: {x: 0, y: 0, z: 0}
+  vircam: {fileID: 2083497154}
+  virCamPos: {x: 0, y: 0, z: 0}
+  moveCamPos: {x: 0, y: 0, z: 0}
+  virCamRot: {x: 0, y: 0, z: 0, w: 0}
   maxhp: 0
   curhp: 0
   atk: 0
@@ -10640,7 +10672,6 @@ MonoBehaviour:
   currentTurnSpeed: 0
   isMyTurn: 0
   canAct: 0
-  vircam: {fileID: 2083497154}
 --- !u!1 &1985538245
 GameObject:
   m_ObjectHideFlags: 0
