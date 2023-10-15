@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,6 +8,16 @@ public class Entity : MonoBehaviour
 {
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
+
+    public Vector3 ObjPos;//각 오브젝트가 가질 좌표
+
+    public CinemachineVirtualCamera vircam;
+    public Vector3 virCamPos; //카메라 좌표 원점
+    public Vector3 moveCamPos;//
+
+    public Quaternion virCamRot;//카메라 회전 좌표값
+    //여따가 카메라 좌표 원점 저장시켜놓고.
+    //그리고 플레어의 턴일때 마다 걔의 좌표로 이동 시킬거임.
 
     public float maxhp;//최대 체력
     public float curhp;//현재 체력
