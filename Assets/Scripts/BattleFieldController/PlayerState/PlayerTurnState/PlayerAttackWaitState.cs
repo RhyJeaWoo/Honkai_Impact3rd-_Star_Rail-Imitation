@@ -14,7 +14,9 @@ public class PlayerAttackWaitState : PlayerState
     {
         base.Enter();
         Debug.Log(player.name + "턴 선택(일반공격) 상태임");
+        TurnManager.Instance.target_simbol.SetActive(true);
         //여기서 기본공격 준비 애니메이션 실행
+        //player.vircam = 
     }
 
     public override void Exit()
@@ -25,6 +27,8 @@ public class PlayerAttackWaitState : PlayerState
     public override void Update()
     {
         base.Update();
+
+       //TurnManager.Instance.WhoisTurn(player.gameObject);
 
         if (Input.GetKeyDown(KeyCode.Q))
         {

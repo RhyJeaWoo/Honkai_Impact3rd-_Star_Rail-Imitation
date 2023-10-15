@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class PlayerState
 {
     protected PlayerStateMachine stateMachine;
     protected PlayerController player;
+
+    
 
 
     protected Rigidbody2D rb;

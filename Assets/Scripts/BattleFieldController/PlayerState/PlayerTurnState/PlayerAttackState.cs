@@ -18,6 +18,7 @@ public class PlayerAttackState : PlayerState
     {
         base.Exit();
 
+
     }
 
     public override void Update()
@@ -28,6 +29,7 @@ public class PlayerAttackState : PlayerState
             player.stateMachine.ChangeState(player.idleState);
             player.isMyTurn = false;
             TurnManager.Instance.TurnEnd();
+            TurnManager.Instance.target_simbol.SetActive(false);
         }
     }
 }

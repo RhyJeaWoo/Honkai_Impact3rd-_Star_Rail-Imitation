@@ -30,7 +30,8 @@ public class Entity : MonoBehaviour
 
     public bool isMyTurn; // 내 턴인지
 
-    public bool canAct = false; //현재 행동 수치가 0 이하인지 여부
+    public bool canAct = true; //HP가 0이 되어서 활동할 수 있는지 체크
+
 
     // Start 함수에서 초기화를 수행합니다.
     protected virtual void Start()
@@ -61,6 +62,7 @@ public class Entity : MonoBehaviour
     }
 
 
+    /*
 
 
     // 다른 이벤트나 조건에 따라 턴을 시작할 때 호출합니다.
@@ -77,5 +79,5 @@ public class Entity : MonoBehaviour
         currentTurnSpeed = baseTurnSpeed; // 기초 행동 수치로 초기화
         canAct = false;
         //Debug.Log(name + "'s turn ended.");
-    }
+    }*/
 }
