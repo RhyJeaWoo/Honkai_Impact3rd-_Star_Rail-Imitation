@@ -13,7 +13,8 @@ public class LumineNorAtkState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemy.time = 3f;
+       
+     
     }
 
     public override void Exit()
@@ -25,11 +26,22 @@ public class LumineNorAtkState : EnemyState
     {
         base.Update();
 
-        if (enemy.time < 0)
+
+     
+           
+        if (lumine.anim.GetCurrentAnimatorStateInfo(0).IsName("NorAtk") && lumine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
-            enemy.stateMachine.ChangeState(lumine.idleState);
+            Debug.Log("루미네 NorAtk 이 조건문은 실행되었음");
             lumine.isMyTurn = false;
             TurnManager.Instance.TurnEnd();
+
+            stateMachine.ChangeState(lumine.idleState);
         }
+        else
+        {
+            Debug.Log("루미네 NorAtk 이 조건문은 실행되지않았음");
+        }
+          
+     
     }
 }

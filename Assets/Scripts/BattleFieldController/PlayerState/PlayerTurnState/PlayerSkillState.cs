@@ -11,6 +11,7 @@ public class PlayerSkillState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.ExecuteSkill(this.player);//전략 패턴 실행.
         player.isSkillOn = true;
         
     }

@@ -11,9 +11,11 @@ public class PlayerTurnGetState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.skin[1].enabled = true;
+        player.skin[0].enabled = true;
 
         TurnManager.Instance.target_simbol.SetActive(true);
-        Debug.Log("턴을 획득 하였음.");
+        //Debug.Log("턴을 획득 하였음.");
         //여기서 기본공격 준비 애니메이션 실행
         //player.vircam.transform.position = player.transform.position + new Vector3(0,-0.3f,-9.7f);
 

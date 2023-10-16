@@ -15,13 +15,14 @@ public class LumineSelectState : EnemyState
     public LumineSelectState(EnemyAIController _enemyBase, EnemyStateMachine2 _stateMachine, string _animBoolName, EnemyLumine lumine) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         this.lumine = lumine;
-        enemy.time = 2;
-        enemy.vircam.MoveToTopOfPrioritySubqueue();
+       
+     
     }
 
     public override void Enter()
     {
         base.Enter();
+        lumine.vircam.MoveToTopOfPrioritySubqueue();
     }
 
     public override void Exit()
@@ -33,17 +34,16 @@ public class LumineSelectState : EnemyState
     {
         base.Update();
 
-        if (enemy.time < 0)
-        {
+     
             if(lumine.curhp < lumine.maxhp/2 )
             { }
             else
             {
-                enemy.stateMachine.ChangeState(lumine.norAtkState);
+                stateMachine.ChangeState(lumine.norAtkState);
             }
           
-        
-        }
+       
+      
 
 
 

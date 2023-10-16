@@ -7,6 +7,10 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
+    private PlayerSkillStrategy currentSkill; //전략 인터페이스 할당
+
+
+
     public GameObject target_simbol;
 
     private static TurnManager instance = null;
@@ -78,10 +82,36 @@ public class TurnManager : MonoBehaviour
     {
         all_obj.AddRange(FindObjectsOfType<Entity>());
         enemys.AddRange(FindObjectsOfType<EnemyAIController>());
+
         playable.AddRange(FindObjectsOfType<PlayerController>());
 
         target_simbol.transform.position = new Vector3(enemys[0].transform.position.x,target_simbol.transform.position.y, target_simbol.transform.position.z);
         ResetTargetRot = target_simbol.transform.eulerAngles;
+
+
+        //이 필드에 존재하는 플레이어들에게 전략 할당
+        foreach (PlayerController player in playable)
+        {
+            PlayerSkillStrategy skillStrategy = null;
+
+            if (player.CompareTag("Mei"))
+            {
+                skillStrategy = new MeiSkill();
+            }
+            else if (player.CompareTag("Kiana"))
+            {
+                skillStrategy = new KianaSkill();
+            }
+            else if (player.CompareTag("Elysia"))
+            {
+                skillStrategy = new ElysiaSkill();
+            }
+
+            if (skillStrategy != null)
+            {
+                player.SetSkillStrategy(skillStrategy);
+            }
+        }
 
 
         //enemys.AddRange(FindObjectsOfType<BaseEnemy>());
@@ -110,21 +140,13 @@ public class TurnManager : MonoBehaviour
 
 
     }
-
-    public void InputKey()
-    {
-
-    }
-
-    public void PlayerAttack()
-    {
-        //EndPlayerTurn(players[currentPlayerIndex]);   
-    }
-
     public void PlayerSkill()
     {
-        //EndPlayerTurn(players[currentPlayerIndex]);
+        // 현재 플레이어의 스킬 실행
+        PlayerController currentPlayer = playable[curIndex];
+        currentPlayer.ExecuteSkill(currentPlayer);
     }
+
 
    
 
@@ -221,12 +243,12 @@ public class TurnManager : MonoBehaviour
 
     public void ChangeTarget()
     {
-        target_simbol.transform.position = new Vector3(enemys[curIndex].transform.position.x+0.1f, target_simbol.transform.position.y, target_simbol.transform.position.z);
+        target_simbol.transform.position = new Vector3(enemys[curIndex].transform.position.x+0.0f, target_simbol.transform.position.y, target_simbol.transform.position.z);
 
         TargetEnemyTranform = target_simbol.transform.position; //공격할 적 위치 저장
         //여기에다가 플레이어 위치도 같이 저장할지 고민중.
 
-        Debug.Log("ChangeTarget은 실행 되었음.");
+        //Debug.Log("ChangeTarget은 실행 되었음.");
     }
 
 

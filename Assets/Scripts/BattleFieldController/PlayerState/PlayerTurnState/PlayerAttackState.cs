@@ -25,12 +25,14 @@ public class PlayerAttackState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (player.isSkillOn && player.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")
+        if (player.isAtackOn && player.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")
             && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             player.isMyTurn = false;
             TurnManager.Instance.TurnEnd();
             TurnManager.Instance.target_simbol.SetActive(false);
+
+
             player.stateMachine.ChangeState(player.idleState);
          
         }

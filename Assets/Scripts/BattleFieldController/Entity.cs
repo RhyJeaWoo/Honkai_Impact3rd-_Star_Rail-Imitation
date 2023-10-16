@@ -9,6 +9,8 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
 
+    public SkinnedMeshRenderer[] skin;
+
    // public GameObject ObjPos;//각 오브젝트가 가질 좌표
 
     public CinemachineVirtualCamera vircam;
@@ -50,6 +52,8 @@ public class Entity : MonoBehaviour
     // Start 함수에서 초기화를 수행합니다.
     protected virtual void Start()
     {
+        skin = GetComponentsInChildren<SkinnedMeshRenderer>();
+
         // 최종 속도 계산
         float finalSpeed = baseSpeed * (1 + buffSpeed / 100) + flatSpeed;
 

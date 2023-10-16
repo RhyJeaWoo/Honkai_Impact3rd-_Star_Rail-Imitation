@@ -13,9 +13,11 @@ public class PlayerIdleState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log(player.name + "idle 상태가 실행되었음");
-     
-     
+        //Debug.Log(player.name + "idle 상태가 실행되었음");
+        player.skin[1].enabled = false;
+        player.skin[0].enabled = false;
+
+
 
     }
 

@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class PlayerController : Entity
 {
+    // 다른 PlayerController 멤버 변수
 
-   
+    private PlayerSkillStrategy skillStrategy;
+
+
 
     #region States
     public PlayerStateMachine stateMachine { get; private set; }//스테이트 머신
@@ -89,7 +92,20 @@ public class PlayerController : Entity
 
 
 
+    // 스킬 전략 설정
+    public void SetSkillStrategy(PlayerSkillStrategy strategy)
+    {
+        skillStrategy = strategy;
+    }
 
+    // 스킬 실행
+    public void ExecuteSkill(PlayerController player)
+    {
+        if (skillStrategy != null)
+        {
+            skillStrategy.ExcuteSkill(player);
+        }
+    }
 
 
 }
