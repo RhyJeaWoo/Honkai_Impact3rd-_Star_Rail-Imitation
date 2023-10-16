@@ -16,6 +16,7 @@ public class LumineSelectState : EnemyState
     {
         this.lumine = lumine;
         enemy.time = 2;
+        enemy.vircam.MoveToTopOfPrioritySubqueue();
     }
 
     public override void Enter()

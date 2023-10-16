@@ -11,22 +11,27 @@ public class PlayerSkillState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        player.time = 1;
+        player.isSkillOn = true;
+        
     }
 
     public override void Exit()
     {
         base.Exit();
+        player.isSkillOn = false;
     }
 
     public override void Update()
     {
         base.Update();
-        if (player.time < 0)
+        if (player.isSkillOn && player.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill")
+            && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
-            player.stateMachine.ChangeState(player.idleState);
             player.isMyTurn = false;
             TurnManager.Instance.TurnEnd();
+            TurnManager.Instance.target_simbol.SetActive(false);
+            player.stateMachine.ChangeState(player.idleState);
+           
         }
     }
 }

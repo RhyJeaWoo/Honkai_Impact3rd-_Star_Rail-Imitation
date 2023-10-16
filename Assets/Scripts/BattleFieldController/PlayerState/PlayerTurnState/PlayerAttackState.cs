@@ -11,12 +11,13 @@ public class PlayerAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        player.time = 1;
+        player.isAtackOn = true;
     }
 
     public override void Exit()
     {
         base.Exit();
+        player.isAtackOn = false;
 
 
     }
@@ -24,12 +25,14 @@ public class PlayerAttackState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (player.time < 0)
+        if (player.isSkillOn && player.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")
+            && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
-            player.stateMachine.ChangeState(player.idleState);
             player.isMyTurn = false;
             TurnManager.Instance.TurnEnd();
             TurnManager.Instance.target_simbol.SetActive(false);
+            player.stateMachine.ChangeState(player.idleState);
+         
         }
     }
 }

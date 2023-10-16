@@ -14,6 +14,8 @@ public class PlayerAttackWaitState : PlayerState
     {
         base.Enter();
         Debug.Log(player.name + "턴 선택(일반공격) 상태임");
+
+
        
 
 
@@ -39,6 +41,7 @@ public class PlayerAttackWaitState : PlayerState
             //여기서 공격 모션 준비 idle 실행
             //확정으로 키 입력시 작동
             player.stateMachine.ChangeState(player.attackState);
+          
             //Debug.Log("Q가 눌렸음");
         }
         if (Input.GetKeyDown(KeyCode.E))

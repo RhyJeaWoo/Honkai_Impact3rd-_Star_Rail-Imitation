@@ -9,14 +9,14 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
 
-    public GameObject ObjPos;//각 오브젝트가 가질 좌표
+   // public GameObject ObjPos;//각 오브젝트가 가질 좌표
 
     public CinemachineVirtualCamera vircam;
 
-    public Vector3 virCamPos; //카메라 좌표 원점
-    public Vector3 moveCamPos;//카메라가 이동할 좌표
+   // public Vector3 virCamPos; //카메라 좌표 원점
+   // public Vector3 moveCamPos;//카메라가 이동할 좌표
 
-    public Quaternion virCamRot;//카메라 회전 좌표값
+    //public Quaternion virCamRot;//카메라 회전 좌표값
     //여따가 카메라 좌표 원점 저장시켜놓고.
     //그리고 플레어의 턴일때 마다 걔의 좌표로 이동 시킬거임.
 
@@ -32,7 +32,7 @@ public class Entity : MonoBehaviour
     public float time;//특정 스테이트에서 바로 빠져나가기 위한 쿨타임.
 
 
-    public float baseSpeed; // 기초 속도
+    public float baseSpeed; // 기초 속도x
     public float buffSpeed; // 버프로 증가할 수 있는 속도
     public float flatSpeed; // 장비로 받을 수 있는 속도
     public float currentSpeed; // 현재 속도
@@ -41,6 +41,8 @@ public class Entity : MonoBehaviour
     public float currentTurnSpeed; // 현재 행동 수치
 
     public bool isMyTurn; // 내 턴인지
+    public bool isAtackOn = false; //내가 공격 준비 상태에서 공격할 준비가 되었는지
+    public bool isSkillOn = false; //내가 스킬 준비 상태에서 스킬을 사용할 준비가 되었는지 체크하고 넘어가는걸로
 
     public bool canAct = true; //HP가 0이 되어서 활동할 수 있는지 체크
 
@@ -59,6 +61,7 @@ public class Entity : MonoBehaviour
         currentTurnSpeed = baseTurnSpeed;
 
         curhp = maxhp;
+
 
     }
 

@@ -10,7 +10,7 @@ public class TurnManager : MonoBehaviour
     public GameObject target_simbol;
 
     private static TurnManager instance = null;
-    bool StopTurn;
+    public bool StopTurn;
     bool isPlayerTurn;
 
     [SerializeField] private List<Entity> all_obj = new List<Entity>();

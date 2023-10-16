@@ -22,6 +22,7 @@ public class PlayerSkillWaitState : PlayerState
     public override void Update()
     {
         base.Update();
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //여기서 공격 모션 준비 idle 실행
