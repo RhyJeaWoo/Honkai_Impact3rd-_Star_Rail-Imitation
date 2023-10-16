@@ -33,6 +33,12 @@ public class Entity : MonoBehaviour
 
     public float time;//특정 스테이트에서 바로 빠져나가기 위한 쿨타임.
 
+    public float curCrt;//현재 치명타 수치
+
+    public float crtPower;//크리티컬 데미지 증가 배율 
+    public float atkPower;//가하는 피해량 증가 배율
+    
+
 
     public float baseSpeed; // 기초 속도x
     public float buffSpeed; // 버프로 증가할 수 있는 속도
