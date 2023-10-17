@@ -6,39 +6,31 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+
+  
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
 
     public SkinnedMeshRenderer[] skin;
 
-   // public GameObject ObjPos;//각 오브젝트가 가질 좌표
-
     public CinemachineVirtualCamera vircam;
 
-   // public Vector3 virCamPos; //카메라 좌표 원점
-   // public Vector3 moveCamPos;//카메라가 이동할 좌표
+    public Vector3 toEnemyPos = Vector3.zero; //적의 위치
 
-    //public Quaternion virCamRot;//카메라 회전 좌표값
-    //여따가 카메라 좌표 원점 저장시켜놓고.
-    //그리고 플레어의 턴일때 마다 걔의 좌표로 이동 시킬거임.
+    public Vector3 toPlayerPos = Vector3.zero;//내 원래 위치
 
+    [Header("플레이어의 스테이터스")]
     public float maxhp;//최대 체력
     public float curhp;//현재 체력
 
     public float atk;//현재 공격력
     public float def;//현재 방어력
-
+   
     public float cureng;//현재 에너지
     public float maxeng;//최대 에너지
 
-    public float time;//특정 스테이트에서 바로 빠져나가기 위한 쿨타임.
-
     public float curCrt;//현재 치명타 수치
-
-    public float crtPower;//크리티컬 데미지 증가 배율 
-    public float atkPower;//가하는 피해량 증가 배율
-    
-
+    public float criticalPower;//크리티컬 데미지 증가 배율 
 
     public float baseSpeed; // 기초 속도x
     public float buffSpeed; // 버프로 증가할 수 있는 속도
@@ -47,6 +39,24 @@ public class Entity : MonoBehaviour
 
     public float baseTurnSpeed; // 기초 행동 수치
     public float currentTurnSpeed; // 현재 행동 수치
+
+
+
+
+    [Header("플레이어의 데미지 관련 정리")]
+    public float defaultDamage;//크리티컬 판정 전으로 가하는 데미지
+
+    public float norAtkDamage;
+
+    public float criticalDamage;
+
+    public float skillDamage;//스킬계수데미지
+
+    public float increasedDamage;//가하는 피해량 증가 데미지
+
+    [Header("잡다한거")]
+
+    public float time;//특정 스테이트에서 바로 빠져나가기 위한 쿨타임.
 
     public bool isMyTurn; // 내 턴인지
     public bool isAtackOn = false; //내가 공격 준비 상태에서 공격할 준비가 되었는지
@@ -60,7 +70,7 @@ public class Entity : MonoBehaviour
     {
         skin = GetComponentsInChildren<SkinnedMeshRenderer>();
 
-        // 최종 속도 계산
+        // 최종 속도 계산    
         float finalSpeed = baseSpeed * (1 + buffSpeed / 100) + flatSpeed;
 
         // 기초 행동 수치 계산
@@ -72,6 +82,9 @@ public class Entity : MonoBehaviour
 
         curhp = maxhp;
 
+        //크리티컬 적용전 데미지   (공격력 * 스킬 계수) * (1 + 피해 증가 배수) 
+
+        defaultDamage = (atk ) * (1 + increasedDamage);
 
     }
 

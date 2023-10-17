@@ -12,6 +12,8 @@ public class PlayerSkillWaitState : PlayerState
         base.Enter();
         //여기서 스킬 준비 애니메이션 실행
         Debug.Log(player.name + "턴 스킬 선택 상태임");
+
+        //player.toPlayerPos = TurnManager.Instance.PlayerTranfrom;
     }
 
     public override void Exit()
@@ -34,7 +36,9 @@ public class PlayerSkillWaitState : PlayerState
         if (Input.GetKeyDown(KeyCode.E))
         {
             //확정 키 버튼 입력시 작동
-            player.stateMachine.ChangeState(player.skillState);
+            player.stateMachine.ChangeState(player.targetMoveState);
+
+            //player.stateMachine.ChangeState(player.giveBuffState);
         }
     }
 }

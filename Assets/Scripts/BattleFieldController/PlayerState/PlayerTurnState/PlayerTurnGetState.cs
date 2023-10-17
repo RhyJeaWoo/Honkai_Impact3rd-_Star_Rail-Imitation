@@ -15,6 +15,16 @@ public class PlayerTurnGetState : PlayerState
         player.skin[0].enabled = true;
 
         TurnManager.Instance.target_simbol.SetActive(true);
+
+
+        player.vircam.MoveToTopOfPrioritySubqueue();
+
+        player.toPlayerPos = player.transform.position;
+
+
+        //player.toPlayerPos = TurnManager.Instance.PlayerTranfrom;
+
+
         //Debug.Log("턴을 획득 하였음.");
         //여기서 기본공격 준비 애니메이션 실행
         //player.vircam.transform.position = player.transform.position + new Vector3(0,-0.3f,-9.7f);
@@ -32,7 +42,6 @@ public class PlayerTurnGetState : PlayerState
 
         //player.vircam
 
-        player.vircam.MoveToTopOfPrioritySubqueue();
 
 
     }

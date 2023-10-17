@@ -48,6 +48,8 @@ public class EnemyLumine : EnemyAIController
     {
         base.Start();
         stateMachine.Initialize(idleState);
+
+        SubscribeToPlayerDamageEvent();
     }
 
     protected override void Update()

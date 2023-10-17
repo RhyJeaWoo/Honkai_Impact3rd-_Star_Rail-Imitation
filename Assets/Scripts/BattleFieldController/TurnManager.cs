@@ -8,6 +8,7 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     private PlayerSkillStrategy currentSkill; //전략 인터페이스 할당
+    private PlayerAttackStrategy currentAttack;
 
 
 
@@ -15,12 +16,18 @@ public class TurnManager : MonoBehaviour
 
     private static TurnManager instance = null;
     public bool StopTurn;
-    bool isPlayerTurn;
+
+
+
+
+    //bool isPlayerTurn; 쓰이지도 안흔ㄴ거 일단 보류
+
+
 
     [SerializeField] private List<Entity> all_obj = new List<Entity>();
     //현제 게임내에 존재하는 오브젝트 전체의 리스트
 
-    [SerializeField] private List<EnemyAIController> enemys = new List<EnemyAIController>();
+    [SerializeField] public List<EnemyAIController> enemys = new List<EnemyAIController>();
     //적들만 구분하기 위해 다시 저장하는 리스트
 
     [SerializeField] private List<PlayerController> playable = new List<PlayerController>();
@@ -29,12 +36,16 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private int curIndex = 0;
 
 
-    Vector3 TargetEnemyTranform; //내가 지정한 적의 위치 앞에 이동하기 위해 저의 좌표를 저장할 벡터3 좌표 변수임
+    public Vector3 TargetEnemyTranform; //내가 지정한 적의 위치 앞에 이동하기 위해 저의 좌표를 저장할 벡터3 좌표 변수임
                                  //턴이 끝나면 초기화 시킬거임.
 
-    Vector3 PlayerTranfrom; //내가 공겨한 이후 내 원래 위치로 다시 돌아기 위한 벡터3 좌표임.
+
+
+  //  public Vector3 PlayerTranfrom; //내가 공겨한 이후 내 원래 위치로 다시 돌아기 위한 벡터3 좌표임.
                             //공격 시전 전에 내 위치를 먼저 저장하고 적 위치앞으로 이동한 다음 공격이 끝나면
-                            //내 자리로 다시 돌아오게 그리고 이 값을 초기화 해서 돌려 쓸거임.
+                            //내 자리로 다시 돌아오게 그리고 이 값을 초기화 해서 돌려 쓸거임.   <--- 써봤는데, 존나 나쁜 방법임. Entity에서 직접 쓰자 뭔가 꼬임.
+                            
+    
 
     Vector3 ResetTargetRot;
 
@@ -86,6 +97,7 @@ public class TurnManager : MonoBehaviour
         playable.AddRange(FindObjectsOfType<PlayerController>());
 
         target_simbol.transform.position = new Vector3(enemys[0].transform.position.x,target_simbol.transform.position.y, target_simbol.transform.position.z);
+
         ResetTargetRot = target_simbol.transform.eulerAngles;
 
 
@@ -93,23 +105,33 @@ public class TurnManager : MonoBehaviour
         foreach (PlayerController player in playable)
         {
             PlayerSkillStrategy skillStrategy = null;
+            PlayerAttackStrategy attackStrategy = null;
+
+           
 
             if (player.CompareTag("Mei"))
             {
                 skillStrategy = new MeiSkill();
+                attackStrategy = new MeiAttack();
+                
             }
             else if (player.CompareTag("Kiana"))
             {
                 skillStrategy = new KianaSkill();
+                attackStrategy = new KianaAttack();
+               
             }
             else if (player.CompareTag("Elysia"))
             {
                 skillStrategy = new ElysiaSkill();
+                attackStrategy = new ElysiaAttack();
+               
             }
 
             if (skillStrategy != null)
             {
                 player.SetSkillStrategy(skillStrategy);
+                player.SetAttackStrategy(attackStrategy);
             }
         }
 
@@ -147,6 +169,13 @@ public class TurnManager : MonoBehaviour
         currentPlayer.ExecuteSkill(currentPlayer);
     }
 
+    public void PlayerAttack() 
+    {
+        // 현재 플레이어의 공격 실행
+        PlayerController currentPlayer = playable[curIndex];
+        currentPlayer.ExecuteAttack(currentPlayer);
+    
+    }
 
    
 
@@ -217,6 +246,7 @@ public class TurnManager : MonoBehaviour
 
         }
 
+        /*
         if (curIndex < 0)
         {
             curIndex = 0;
@@ -229,7 +259,10 @@ public class TurnManager : MonoBehaviour
             curIndex = enemys.Count - 1;
 
 
-        }
+        }*/
+
+        // curIndex 범위 검사
+        curIndex = Mathf.Clamp(curIndex, 0, enemys.Count - 1);
 
         if ( Input.GetKeyUp(KeyCode.D)|| Input.GetKeyUp(KeyCode.A))
         {
@@ -237,20 +270,22 @@ public class TurnManager : MonoBehaviour
         }
 
 
-        ChangeTarget();
+        // 이제는 ChangeTarget 함수를 호출하지 않고 선택된 적 캐릭터의 Transform을 PlayerController의 target 변수에 할당합니다
+        if (curIndex >= 0 && curIndex < enemys.Count)
+        {
+            PlayerController playerController = FindObjectOfType<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.target = enemys[curIndex].transform;
 
+                TargetEnemyTranform = enemys[curIndex].transform.position;
+
+               // PlayerTranfrom = playerController.transform.position;
+
+            }
+        }
+        //ChangeTarget();
     }
-
-    public void ChangeTarget()
-    {
-        target_simbol.transform.position = new Vector3(enemys[curIndex].transform.position.x+0.0f, target_simbol.transform.position.y, target_simbol.transform.position.z);
-
-        TargetEnemyTranform = target_simbol.transform.position; //공격할 적 위치 저장
-        //여기에다가 플레이어 위치도 같이 저장할지 고민중.
-
-        //Debug.Log("ChangeTarget은 실행 되었음.");
-    }
-
 
     IEnumerator ReSizeBox()
     {
@@ -287,6 +322,22 @@ public class TurnManager : MonoBehaviour
         }
 
     }
+
+
+
+
+    //일단 사용 보류
+    public void ChangeTarget()
+    {
+        target_simbol.transform.position = new Vector3(enemys[curIndex].transform.position.x+0.0f, target_simbol.transform.position.y, target_simbol.transform.position.z);
+
+        TargetEnemyTranform = target_simbol.transform.position; //공격할 적 위치 저장
+        //여기에다가 플레이어 위치도 같이 저장할지 고민중.
+
+        //Debug.Log("ChangeTarget은 실행 되었음.");
+    }
+
+
 
 
 

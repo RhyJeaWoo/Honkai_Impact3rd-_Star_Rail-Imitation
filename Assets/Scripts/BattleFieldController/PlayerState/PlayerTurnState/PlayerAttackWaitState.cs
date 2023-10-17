@@ -47,7 +47,7 @@ public class PlayerAttackWaitState : PlayerState
         if (Input.GetKeyDown(KeyCode.E))
         {
             //키변경시 스킬 준비 모션으로 이동
-            player.stateMachine.ChangeState(player.skillwaitState);
+            player.stateMachine.ChangeState(player.skillWaitState);
             //Debug.Log("E가 눌렸음");
         }
 

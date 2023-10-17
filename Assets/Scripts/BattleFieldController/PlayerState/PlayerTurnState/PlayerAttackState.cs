@@ -11,6 +11,7 @@ public class PlayerAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.ExecuteAttack(this.player);//전략 패턴 실행.
         player.isAtackOn = true;
     }
 
@@ -38,6 +39,7 @@ public class PlayerAttackState : PlayerState
                 
                 // normal hit
             }
+            player.cureng += 20;
 
             player.isMyTurn = false;
             TurnManager.Instance.TurnEnd();
