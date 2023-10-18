@@ -26,8 +26,7 @@ public class MeiAttack : PlayerAttackStrategy
             Debug.Log("메이 논 크리티컬 평타 데미지는 : " + player.defaultDamage);
         }
 
-        // 데미지 이벤트를 호출하여 데미지 값을 전달
-        //player.OnDamageDealt?.Invoke(player.defaultDamage);
+      
 
     }
 

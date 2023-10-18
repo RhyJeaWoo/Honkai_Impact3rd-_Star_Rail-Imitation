@@ -15,6 +15,9 @@ public class TurnManager : MonoBehaviour
     public GameObject target_simbol;
 
     private static TurnManager instance = null;
+
+    [SerializeField] private int SkillStack = 3;
+
     public bool StopTurn;
 
 

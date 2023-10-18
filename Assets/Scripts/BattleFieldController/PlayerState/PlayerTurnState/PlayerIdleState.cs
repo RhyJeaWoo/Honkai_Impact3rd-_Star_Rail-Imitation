@@ -41,6 +41,9 @@ public class PlayerIdleState : PlayerState
             player.stateMachine.ChangeState(player.turnGetState);
         }
 
+        //여기서 만약에 내가 상태이상 상태라면은 데미지를 받고 시작하게 만들면된다/
+        // ex)if(player.isMyTurn && player.isStatusEffect)로 검사를 해서, PlayerStatusEffectState머신 만들고, 그쪽에서 데미지를 받고 넘어가면 될듯.
+
     }
 
 }

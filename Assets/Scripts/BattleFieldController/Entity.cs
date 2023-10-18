@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
 
+    public AnimPlay anims;
+     
     public SkinnedMeshRenderer[] skin;
 
     public CinemachineVirtualCamera vircam;
@@ -20,12 +23,17 @@ public class Entity : MonoBehaviour
     public Vector3 toPlayerPos = Vector3.zero;//내 원래 위치
 
     [Header("플레이어의 스테이터스")]
+    public float curLevel;//현재 레벨
+    public float maxLevel;//최대 레벨
+
     public float maxhp;//최대 체력
     public float curhp;//현재 체력
 
     public float atk;//현재 공격력
     public float def;//현재 방어력
    
+
+
     public float cureng;//현재 에너지
     public float maxeng;//최대 에너지
 
@@ -53,6 +61,12 @@ public class Entity : MonoBehaviour
     public float skillDamage;//스킬계수데미지
 
     public float increasedDamage;//가하는 피해량 증가 데미지
+
+    public float SumDamage;//내가 받은 총 데미지의 합.
+    public float defenseCoefficient;//방어 계수
+    public float liciveOpponentLevel;//전달 받은 상대 레벨 계수
+    public float ignoredDefense;//방어 무시 받는 계수
+   
 
     [Header("잡다한거")]
 
@@ -86,6 +100,8 @@ public class Entity : MonoBehaviour
 
         defaultDamage = (atk ) * (1 + increasedDamage);
 
+
+      
     }
 
     protected virtual void Awake()
@@ -100,22 +116,5 @@ public class Entity : MonoBehaviour
     }
 
 
-    /*
-
-
-    // 다른 이벤트나 조건에 따라 턴을 시작할 때 호출합니다.
-    public void StartTurn()
-    {
-        isMyTurn = true;
-        Debug.Log(name + "'s turn started.");
-    }
-
-    // 현재 행동을 마친 후 호출합니다.
-    public void EndTurn()
-    {
-        isMyTurn = false;
-        currentTurnSpeed = baseTurnSpeed; // 기초 행동 수치로 초기화
-        canAct = false;
-        //Debug.Log(name + "'s turn ended.");
-    }*/
+   
 }

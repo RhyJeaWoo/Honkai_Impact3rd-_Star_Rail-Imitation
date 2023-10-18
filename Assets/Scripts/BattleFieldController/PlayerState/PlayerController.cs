@@ -5,16 +5,20 @@ using UnityEngine;
 
 public class PlayerController : Entity
 {
-    // 다른 PlayerController 멤버 변수
 
+    #region Digine
     private PlayerSkillStrategy skillStrategy;
     private PlayerAttackStrategy attackStrategy;
 
     public Transform target; // 데미지를 주어야 하는 대상
 
-    public delegate void DamageDealtHandler(float damage); //델리게이트로 선언
+    public delegate void DamageDealtHandler(float damage); //데미지에 관한 델리게이트로 선언
     public event DamageDealtHandler OnDamageDealt;//델리게이트
 
+    public delegate void LevelDealtHandler(float level); //레벨에 관한 델리게이트
+    public event LevelDealtHandler OnLevelDealt;
+
+    #endregion
 
 
 
@@ -94,6 +98,9 @@ public class PlayerController : Entity
         
 
     }
+    // 참고로 스타레일 내 방어력 계수는
+    // 1 - (내 방어력 / 내 방어력 + 200 + 10 * 적 레벨) 이다. 
+
 
     protected override void Start()
     {
@@ -149,11 +156,12 @@ public class PlayerController : Entity
         if (skillStrategy != null)
         {
             //skillStrategy.SkillToTarget(target);
-             float skillDamage = skillStrategy.ExcuteSkill(this);
-
+             float skillDamage = skillStrategy.ExcuteSkill(this); //델리게이트에 전략에서 받아온 정보값을 지역 변수에 저장
+             float PlayerCurLevel = curLevel;
 
             // 데미지 이벤트 발생
             OnDamageDealt?.Invoke(skillDamage);
+
 
         }
     }
@@ -168,5 +176,13 @@ public class PlayerController : Entity
             //OnDamageDealt?.Invoke(attackDamage);
         }
     }
+
+    public void DeligateLevel()
+    {
+        OnLevelDealt?.Invoke(curLevel);
+    }
+
+
+
 
 }
