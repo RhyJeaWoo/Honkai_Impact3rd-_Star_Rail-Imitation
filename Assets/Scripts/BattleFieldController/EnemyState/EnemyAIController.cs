@@ -12,11 +12,13 @@ public class EnemyAIController : Entity
     // 그것에 대한 정보가 없기 때문이고, 동시에 처리하면, 첫 데이터에는 누락하는 현상이 발생해서, 호출 순서를 주었음.
     public void HandleDamageDealt(float damage)//
     {
-         SumDamage = damage*defenseCoefficient;
+         SumDamage = damage * defenseCoefficient;
 
-        curhp = curhp - SumDamage;
-    
+         curhp = curhp - SumDamage;
+
         // 이 메서드에서 데미지 값을 받아 처리
+        Debug.Log("데미지를 전달 받았습니다!" + damage);
+        Debug.Log("현재 방어율 계수 : " + defenseCoefficient);
         Debug.Log("데미지를 받았습니다: " + SumDamage);
         Debug.Log("현재 hp : " + curhp);
  

@@ -14,10 +14,10 @@ public class KianaSkill : PlayerSkillStrategy
         if (skillCount == 0)
         {
             //여기서 공격 타입을 정할지 생각중.
-         
+            skillCount = 1;
             if (Random.Range(0f, 100f) < player.curCrt)
             {
-                skillCount = 1;
+              
                 //데미지 공식도 여기서 생각하자.
 
                 player.criticalDamage = player.defaultDamage * (1 + player.criticalPower) * meiSkillDamage1;
@@ -30,7 +30,6 @@ public class KianaSkill : PlayerSkillStrategy
             }
             else
             {
-                skillCount = 1;
                 player.norAtkDamage = player.defaultDamage * meiSkillDamage1;
 
                 // normal hit
@@ -44,10 +43,10 @@ public class KianaSkill : PlayerSkillStrategy
         else if (skillCount == 1)
         {
             //여기서 공격 타입을 정할지 생각중.
-          
+            skillCount = 2;
             if (Random.Range(0f, 100f) < player.curCrt)
             {
-                skillCount = 2;
+               
                 //데미지 공식도 여기서 생각하자.
 
                 player.criticalDamage = player.defaultDamage * (1 + player.criticalPower) * meiSkillDamage2;
@@ -60,7 +59,7 @@ public class KianaSkill : PlayerSkillStrategy
             }
             else
             {
-                skillCount = 2;
+                
                 player.norAtkDamage = player.defaultDamage * meiSkillDamage2;
                 // normal hit
                 Debug.Log("키아나 논 크리티컬 스킬 데미지는 : " + player.norAtkDamage);
@@ -71,7 +70,7 @@ public class KianaSkill : PlayerSkillStrategy
         else if (skillCount == 2)
         {
             //여기서 공격 타입을 정할지 생각중.
-
+            skillCount = 0;
             if (Random.Range(0f, 100f) < player.curCrt)
             {
 
@@ -83,7 +82,7 @@ public class KianaSkill : PlayerSkillStrategy
 
                 Debug.Log("키아나 크리티컬 스킬 데미지는 : " + player.criticalDamage);
 
-                skillCount = 0;
+             
 
                 return player.criticalDamage;
             }
@@ -93,7 +92,7 @@ public class KianaSkill : PlayerSkillStrategy
                 // normal hit
                 Debug.Log("키아나 논 크리티컬 스킬 데미지는 : " + player.norAtkDamage);
 
-                skillCount = 0;
+              
                 return player.norAtkDamage;
             }
 

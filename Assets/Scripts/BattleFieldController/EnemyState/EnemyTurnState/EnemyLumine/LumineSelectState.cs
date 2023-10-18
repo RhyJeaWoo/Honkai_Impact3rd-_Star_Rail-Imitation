@@ -34,19 +34,15 @@ public class LumineSelectState : EnemyState
     {
         base.Update();
 
-     
-            if(lumine.curhp < lumine.maxhp/2 )
-            { }
-            else
-            {
-                stateMachine.ChangeState(lumine.norAtkState);
-            }
+        if(lumine.stateMachine.currentState is LumineSelectState)
+        {
+            stateMachine.ChangeState(lumine.norAtkState);
+        }
+
+
+        Debug.Log(lumine.stateMachine.currentState);
+            
           
-       
-      
-
-
-
     }
 
    

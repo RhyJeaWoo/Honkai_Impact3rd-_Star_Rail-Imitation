@@ -11,14 +11,16 @@ public class PlayerAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.transform.LookAt(player.toEnemyPos);
+
         player.ExecuteAttack(this.player);//전략 패턴 실행.
-        player.isAtackOn = true;
+        //player.isAtackOn = true;
     }
 
     public override void Exit()
     {
         base.Exit();
-        player.isAtackOn = false;
+        //player.isAtackOn = false;
 
 
     }
@@ -26,27 +28,16 @@ public class PlayerAttackState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (player.isAtackOn && player.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")
-            && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (/*player.isAtackOn &&*/ player.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
 
-            if (Random.Range(0f, 100f) < player.curCrt)
-            {
-                // critical hit!
-            }
-            else
-            {
-                
-                // normal hit
-            }
+          
             player.cureng += 20;
 
             player.isMyTurn = false;
             TurnManager.Instance.TurnEnd();
             TurnManager.Instance.target_simbol.SetActive(false);
-
-
-            player.stateMachine.ChangeState(player.idleState);
+            player.stateMachine.ChangeState(player.comeBackState);
          
         }
     }

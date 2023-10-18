@@ -3,7 +3,7 @@
 
 public interface PlayerAttackStrategy
 {
-    void ExcuteAttack(PlayerController player);
+    float ExcuteAttack(PlayerController player);
     void PlayAnimation(PlayerController player);
     void SkillToTarget(Transform target);
 }

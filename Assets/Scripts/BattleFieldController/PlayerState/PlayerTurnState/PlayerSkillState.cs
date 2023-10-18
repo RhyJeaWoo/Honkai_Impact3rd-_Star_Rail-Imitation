@@ -18,7 +18,7 @@ public class PlayerSkillState : PlayerState
         player.transform.LookAt(player.toEnemyPos);
 
         player.ExecuteSkill(this.player);//전략 패턴 실행.
-        player.isSkillOn = true;
+        //player.isSkillOn = true;
         
     }
 
@@ -31,8 +31,7 @@ public class PlayerSkillState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (player.isSkillOn && player.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill")
-            && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (/*player.isSkillOn && */player.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill") && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
            
             player.cureng += 30;

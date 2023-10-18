@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerStateMachine
 {
-    public PlayerState currentState { get; private set; }
-
+    public PlayerState currentState {get; private set; }
+    public PlayerState prevState { get; private set; }//이전 상태를 저장하기 위한 용도;
     public void Initialize(PlayerState _startState)
     {
         currentState = _startState;
@@ -15,6 +15,7 @@ public class PlayerStateMachine
     public void ChangeState(PlayerState _newState)
     {
         currentState.Exit();
+        prevState = currentState;
         currentState = _newState;
         currentState.Enter();
     }

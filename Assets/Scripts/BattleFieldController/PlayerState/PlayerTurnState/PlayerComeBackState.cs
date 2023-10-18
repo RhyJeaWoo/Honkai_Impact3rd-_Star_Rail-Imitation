@@ -15,13 +15,13 @@ public class PlayerComeBackState : PlayerState
 
        //player.transform.LookAt(player.toPlayerPos);
 
-        Debug.Log("내 돌아갈 좌표" + player.toPlayerPos);
+        //Debug.Log("내 돌아갈 좌표" + player.toPlayerPos);
     }
 
     public override void Exit()
     {
         base.Exit();
-       player.transform.LookAt(player.toEnemyPos);
+        player.transform.LookAt(player.toEnemyPos);
         player.toEnemyPos = Vector3.zero;
     }
 

@@ -37,7 +37,7 @@ public class PlayerController : Entity
     public PlayerSkillState skillState { get; private set; }//스킬 시전 상태
     public PlayerSkillWaitState skillWaitState { get; private set; }//턴을 받아왔을때의 상태 여기서 선택 상태로 넘어가고 그다음 공격/
 
-    public PlayerTargetToMoveSkillState targetMoveState { get; private set; }//내가 사용한 스킬이 타게팅 공격 스킬일 경우.
+    public PlayerTargetToMoveState targetMoveState { get; private set; }//내가 사용한 스킬이 타게팅 공격 스킬일 경우.
     public PlayerComeBackState comeBackState { get; private set; }//내가 만약 적을 향해 이동했을 경우 다시 호출할 상태(제 자리로 가야함)
 
     public PlayerBuffGiveState giveBuffState { get; private set; }//만약 내가 사용한 스킬이 버프계열일 경우.
@@ -92,7 +92,7 @@ public class PlayerController : Entity
         hitState = new PlayerHitState(this, stateMachine, "Hit");//공격 당했을 경우(Idle)에서 작동됨.
 
 
-        targetMoveState = new PlayerTargetToMoveSkillState(this, stateMachine, "TargetToMove");
+        targetMoveState = new PlayerTargetToMoveState(this, stateMachine, "TargetToMove");
         giveBuffState = new PlayerBuffGiveState(this, stateMachine, "GiveBuff");
 
         
@@ -118,13 +118,13 @@ public class PlayerController : Entity
 
 
     // 스킬 전략 설정
+    // 고민 1 전략안에 전략을 한번더 쓰는 중첩 전략을 쓸것인가...?
     public void SetSkillStrategy(PlayerSkillStrategy strategy)
     {
         skillStrategy = strategy;
     }
 
     // 공격 전략 설정
-
     public void SetAttackStrategy(PlayerAttackStrategy strategy)
     {
         attackStrategy = strategy;
@@ -133,18 +133,13 @@ public class PlayerController : Entity
 
 
     // 플레이어블 캐릭터의 스킬 실행시 연결될 전략
+    // 무늬만 존재하고 사용되지는 않음.
     public void ExecuteSkill(PlayerController player)
     {
         if (skillStrategy != null)
         {
-            //skillStrategy.ExcuteSkill(player);
-
-            // 스킬 중 특정 타이밍에 데미지를 주어야 할 때, target을 설정하고 애니메이션 재생
-           // target = GetTarget(); // 데미지를 주어야 할 대상을 얻어옴
-            //skillStrategy.PlayAnimation(this); // 애니메이션 재생
         }
     }
-
     public void ExecuteAttack(PlayerController player)
     {
         if(attackStrategy != null) { }
@@ -155,10 +150,9 @@ public class PlayerController : Entity
     {
         if (skillStrategy != null)
         {
-            //skillStrategy.SkillToTarget(target);
+            
              float skillDamage = skillStrategy.ExcuteSkill(this); //델리게이트에 전략에서 받아온 정보값을 지역 변수에 저장
-             float PlayerCurLevel = curLevel;
-
+           
             // 데미지 이벤트 발생
             OnDamageDealt?.Invoke(skillDamage);
 
@@ -170,10 +164,11 @@ public class PlayerController : Entity
     {
         if(attackStrategy != null)
         {
-            attackStrategy.ExcuteAttack(this);
-            //float attackDamage = 
+            float norAtkDamage = attackStrategy.ExcuteAttack(this); //델리게이트에 전략에서 받아온 정보값을 지역 변수에 저장
+
             // 데미지 이벤트 발생
-            //OnDamageDealt?.Invoke(attackDamage);
+            OnDamageDealt?.Invoke(norAtkDamage);
+           
         }
     }
 

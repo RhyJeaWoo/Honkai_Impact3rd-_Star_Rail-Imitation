@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeiAttack : PlayerAttackStrategy
 {
     float attackDamage = 0.35f;
-    public void ExcuteAttack(PlayerController player)
+    public float ExcuteAttack(PlayerController player)
     {
         if (Random.Range(0f, 100f) < player.curCrt)
         {
@@ -17,13 +17,17 @@ public class MeiAttack : PlayerAttackStrategy
             // critical hit!
 
             Debug.Log("메이 크리티컬 평타 데미지는 : " + player.criticalDamage);
+
+            return player.criticalDamage;
         }
         else
         {
             player.norAtkDamage = player.defaultDamage * attackDamage;
 
             // normal hit
-            Debug.Log("메이 논 크리티컬 평타 데미지는 : " + player.defaultDamage);
+            Debug.Log("메이 논 크리티컬 평타 데미지는 : " + player.norAtkDamage);
+
+            return player.norAtkDamage;
         }
 
       

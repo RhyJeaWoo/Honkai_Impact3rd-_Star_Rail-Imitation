@@ -40,7 +40,7 @@ public class PlayerAttackWaitState : PlayerState
         {
             //여기서 공격 모션 준비 idle 실행
             //확정으로 키 입력시 작동
-            player.stateMachine.ChangeState(player.attackState);
+            player.stateMachine.ChangeState(player.targetMoveState);
           
             //Debug.Log("Q가 눌렸음");
         }

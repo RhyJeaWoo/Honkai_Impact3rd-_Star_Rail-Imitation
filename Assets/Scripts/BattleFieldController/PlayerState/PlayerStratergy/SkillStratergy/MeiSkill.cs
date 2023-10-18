@@ -34,7 +34,7 @@ public class MeiSkill : PlayerSkillStrategy
                 player.norAtkDamage = player.defaultDamage * meiSkillDamage1;
 
                 // normal hit
-                Debug.Log("메이 논 크리티컬 스킬 데미지는 : " + player.defaultDamage);
+                Debug.Log("메이 논 크리티컬 스킬 데미지는 : " + player.norAtkDamage);
                 return player.norAtkDamage;
             }
 
@@ -60,17 +60,17 @@ public class MeiSkill : PlayerSkillStrategy
             {
                 player.norAtkDamage = player.defaultDamage * meiSkillDamage2;
                 // normal hit
-                Debug.Log("메이 논 크리티컬 스킬 데미지는 : " + player.defaultDamage);
+                Debug.Log("메이 논 크리티컬 스킬 데미지는 : " + player.norAtkDamage);
                 return player.norAtkDamage;
             }
         }
         else if(skillCount ==2)
         {
             //여기서 공격 타입을 정할지 생각중.
-
+            skillCount = 0;
             if (Random.Range(0f, 100f) < player.curCrt)
             {
-                skillCount = 0;
+               
 
                 //데미지 공식도 여기서 생각하자.
 
@@ -84,10 +84,10 @@ public class MeiSkill : PlayerSkillStrategy
             else
             {
 
-                skillCount = 0;
+              
                 player.norAtkDamage = player.defaultDamage * meiSkillDamage3;
                 // normal hit
-                Debug.Log("메이 논 크리티컬 스킬 데미지는 : " + player.defaultDamage);
+                Debug.Log("메이 논 크리티컬 스킬 데미지는 : " + player.norAtkDamage);
                 return player.norAtkDamage;
             }
 
