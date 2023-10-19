@@ -15,8 +15,8 @@ public class PlayerAttackWaitState : PlayerState
         base.Enter();
         Debug.Log(player.name + "턴 선택(일반공격) 상태임");
 
-
        
+
 
 
     }
@@ -47,7 +47,10 @@ public class PlayerAttackWaitState : PlayerState
         if (Input.GetKeyDown(KeyCode.E))
         {
             //키변경시 스킬 준비 모션으로 이동
+            
             player.stateMachine.ChangeState(player.skillWaitState);
+
+           //if()
             //Debug.Log("E가 눌렸음");
         }
 

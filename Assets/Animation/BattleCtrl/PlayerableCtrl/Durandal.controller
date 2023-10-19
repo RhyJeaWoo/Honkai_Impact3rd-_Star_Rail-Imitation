@@ -367,7 +367,7 @@ AnimatorStateMachine:
     m_Position: {x: 520, y: -130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -273868119174380375}
-    m_Position: {x: 140, y: 130, z: 0}
+    m_Position: {x: 190, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5194207974987697682}
     m_Position: {x: 390, y: -240, z: 0}
@@ -376,7 +376,7 @@ AnimatorStateMachine:
     m_Position: {x: -30, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3974570720485667769}
-    m_Position: {x: -20, y: 140, z: 0}
+    m_Position: {x: -20, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5896814430156953187}
     m_Position: {x: 390, y: -80, z: 0}
@@ -781,7 +781,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Damage_Die_Loop
+  m_Name: Dying
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

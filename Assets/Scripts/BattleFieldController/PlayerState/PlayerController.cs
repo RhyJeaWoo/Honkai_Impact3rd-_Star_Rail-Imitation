@@ -175,9 +175,31 @@ public class PlayerController : Entity
     public void DeligateLevel()
     {
         OnLevelDealt?.Invoke(curLevel);
+       
     }
 
 
+
+    public void Heal(float healAmount)
+    {
+        if (curhp > 0)
+        {
+            curhp += healAmount;
+
+            if (curhp > maxhp)
+            {
+                curhp = maxhp;
+            }
+        }
+    }
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////// 캐릭터 스킬 개별 구현에 관한 스크립트 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 }

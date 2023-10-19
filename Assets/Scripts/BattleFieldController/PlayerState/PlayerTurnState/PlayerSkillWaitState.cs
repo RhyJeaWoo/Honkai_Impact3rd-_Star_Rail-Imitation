@@ -14,6 +14,18 @@ public class PlayerSkillWaitState : PlayerState
         Debug.Log(player.name + "턴 스킬 선택 상태임");
 
         //player.toPlayerPos = TurnManager.Instance.PlayerTranfrom;
+        
+        if (player.CompareTag("Elysia")) //이 턴을 제어받은 컨트롤러가 엘리시아 라는 힐러라면,
+        {
+            // Elysia인 경우에만 스킬 실행
+            player.stateMachine.ChangeState(player.giveBuffState);
+        }
+        else
+        {
+            // 다른 캐릭터인 경우에는 다른 상태로 전환 (공격 상태 등)
+            //player.stateMachine.ChangeState(player.skillState);
+        }
+
     }
 
     public override void Exit()
@@ -31,6 +43,7 @@ public class PlayerSkillWaitState : PlayerState
             player.stateMachine.ChangeState(player.attackWaitState);
             //다시 누를경우 원래 모션으로 이동
         }
+
 
 
         if (Input.GetKeyDown(KeyCode.E))

@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class EnemyLumine : EnemyAIController
 {
+
+    public delegate void EnemyDamageDealtHandler(float damage); //적이 보내는 데미지에 관한 델리게이트로 선언
+    public event EnemyDamageDealtHandler OnDamageDealt;//델리게이트
+
+    public delegate void EnemyLevelDealtHandler(float level); //적 레벨에 관한 델리게이트
+    public event EnemyLevelDealtHandler OnLevelDealt;
+    //여기서 루미네 전용 스크립트를 만든다.
+
     #region States
 
 
@@ -58,4 +66,19 @@ public class EnemyLumine : EnemyAIController
     {
         base.Update();
     }
+
+    public void deliveryNorDamage()
+    {
+        //여기서 이 오브젝트가 실행한 상태에 따라서 다른 데미지가 들어가게 세팅 해야됨.
+
+        //float lumineDamage = 루미네가 계산한 데미지
+
+        //OnDamageDealt?.Invoke(damage); 데미지를 보낸다.
+    }
+
+    public void deliveryLevel()
+    {
+        OnLevelDealt?.Invoke(curLevel);
+    }
+
 }

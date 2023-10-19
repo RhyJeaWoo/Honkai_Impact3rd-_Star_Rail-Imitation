@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    private PlayerSkillStrategy currentSkill; //전략 인터페이스 할당
+    public PlayerSkillStrategy currentSkill; //전략 인터페이스 할당
     private PlayerAttackStrategy currentAttack;
 
 
@@ -33,7 +33,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField] public List<EnemyAIController> enemys = new List<EnemyAIController>();
     //적들만 구분하기 위해 다시 저장하는 리스트
 
-    [SerializeField] private List<PlayerController> playable = new List<PlayerController>();
+    [SerializeField] public List<PlayerController> playable = new List<PlayerController>();
     //플레어블만 구분하기 위해 선언된 리스트
 
     [SerializeField] private int curIndex = 0;
@@ -129,6 +129,12 @@ public class TurnManager : MonoBehaviour
                 skillStrategy = new ElysiaSkill();
                 attackStrategy = new ElysiaAttack();
                
+            }
+            else if (player.CompareTag("Durandal"))
+            {
+                skillStrategy = new DurandalSkill();
+                attackStrategy = new DurandalAttack();
+
             }
 
             if (skillStrategy != null)
@@ -340,109 +346,6 @@ public class TurnManager : MonoBehaviour
         //Debug.Log("ChangeTarget은 실행 되었음.");
     }
 
-
-
-
-
-
-
-    ///////////////////////////////////////////////////////////////// 필요없으면 삭제할 코드들 /////////////////////////////////////////////////////////////////////
-    ///
-
-    /* 사용 보류
-    public void WhoisTurn(GameObject obj)
-    {
-        //먼저 여기서 플레이어의 턴인지 아니면, 플레이어가 아닌지에 대해서부터 구별이 필요함.
-
-
-        if (obj.GetComponent<PlayerController>() != null) //플레이어라면? 여기서 UI이동 제어권을 얻을거임.
-        {
-            //나 말고 적 오브젝트를 위치를 받아야되고 target_simbol 를 띄워서 걔 위치를 표시해야하며,
-            //키 입력시 걔 위치로 이동해서 공격을 해야됨. got it?
-            if(Input.GetKeyDown(KeyCode.A)) 
-            {
-                curIndex--;
-                if(curIndex < 0) 
-                {
-                    curIndex = 0;
-
-                    ChangeTarget();
-                }
-
-                Debug.Log("키 입력은 됬음");
-            }
-            else if(Input.GetKeyDown(KeyCode.D))
-            {
-                curIndex++;
-                if(curIndex > enemys.Count)
-                {
-                    curIndex = enemys.Count -1;
-                    
-                    ChangeTarget();
-                }
-                Debug.Log("키 입력은 됬음");
-            }
-         
-
-        }
-        else
-        {
-
-            Debug.Log("플레이어 턴이 아니라 반환 되었음!");
-            return;
-          
-        }
-
-
-    }*/
-
-    /*
-    //모든 플레이어 리스트에 넣고 저장할거임
-    private void AllObjectList()
-    {
-
-
-        Entity nextPlayer = new Entity(); ;
-        //한줄 함수 실행법
-
-        if (nextPlayer != null)
-        {
-      
-            currentObjectIndex = players.IndexOf(nextPlayer);
-            //nextPlayer.StartTurn();
-            //Debug.Log(nextPlayer.name + " has the next turn.");
-        }
-    }
-
-    // FindAllPlayer();
-    
-    private Entity FindAllPlayer()
-    {
-        Entity nextPlayer = null;
-        // float lowestTurnSpeed = float.MaxValue;
-
-        // Debug.Log(lowestTurnSpeed);
-
-        foreach (Entity player in players)
-        {
-            //일단 리스트에 다 넣어야되니까
-        }
-
-        return nextPlayer;
-    }
-
-    private void AllEnemyList()
-    {
-        BaseEnemy enemy = new BaseEnemy();
-
-        if(enemy != null) 
-        {
-            currentEnemyIndex = enemys.IndexOf(enemy);
-        }
-
-
-    }
-    */
 
 
 }

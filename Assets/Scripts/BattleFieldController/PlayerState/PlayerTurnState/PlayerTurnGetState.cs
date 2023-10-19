@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerTurnGetState : PlayerState
 {
+    //턴을 받으면 실행되는 상태
     public PlayerTurnGetState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
