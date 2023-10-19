@@ -11,6 +11,7 @@ public class TurnManager : MonoBehaviour
     private PlayerAttackStrategy currentAttack;
 
 
+    private Transform healTarget; // 힐 대상을 저장하는 변수
 
     public GameObject target_simbol;
 
@@ -21,6 +22,7 @@ public class TurnManager : MonoBehaviour
     public bool StopTurn;
 
 
+    //private Transform healTarget; // 힐 대상을 저장하는 변수
 
 
     //bool isPlayerTurn; 쓰이지도 안흔ㄴ거 일단 보류
@@ -285,15 +287,36 @@ public class TurnManager : MonoBehaviour
             PlayerController playerController = FindObjectOfType<PlayerController>();
             if (playerController != null)
             {
-                playerController.target = enemys[curIndex].transform;
+                if(playerController.CompareTag("Elysia"))
+                {
+                    playerController = playable[curIndex];
+                    target_simbol.transform.position = playerController.transform.position;
+                }
+                else
+                {
+                    var enemyController = enemys[curIndex];
+                    target_simbol.transform.position = playerController.transform.position;
 
-                TargetEnemyTranform = enemys[curIndex].transform.position;
+                    playerController.target = enemyController.transform; // 수정된 부분
+                    TargetEnemyTranform = enemyController.transform.position; // 수정된 부
 
-               // PlayerTranfrom = playerController.transform.position;
+                }
+
+                //playerController.target = enemys[curIndex].transform;
+
+                //TargetEnemyTranform = enemys[curIndex].transform.position;
+
+                //playerController.target = playerController.transform;
+                //TargetEnemyTranform = playerController.transform.position;
 
             }
         }
         //ChangeTarget();
+    }
+
+    public void SetHealTarget(Transform target)
+    {
+        healTarget = target;
     }
 
     IEnumerator ReSizeBox()

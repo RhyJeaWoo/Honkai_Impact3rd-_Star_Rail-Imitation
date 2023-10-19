@@ -12,11 +12,16 @@ public class PlayerController : Entity
 
     public Transform target; // 데미지를 주어야 하는 대상
 
+    private Transform healTarget; // 아군 힐 대상을 저장하는 변수
+
+
     public delegate void DamageDealtHandler(float damage); //데미지에 관한 델리게이트로 선언
     public event DamageDealtHandler OnDamageDealt;//델리게이트
 
     public delegate void LevelDealtHandler(float level); //레벨에 관한 델리게이트
     public event LevelDealtHandler OnLevelDealt;
+
+
 
     #endregion
 
@@ -180,6 +185,26 @@ public class PlayerController : Entity
 
 
 
+    public void SetHealTarget(Transform target)
+    {
+        healTarget = target;
+    }
+
+    public void CastHealSkill()
+    {
+        if (healTarget != null)
+        {
+            // 아군 힐 로직을 이곳에 구현
+            // healTarget은 아군을 나타내는 Transform입니다.
+            // 이 아군에게 힐을 시전하는 코드를 작성하세요.
+        }
+        else
+        {
+            Debug.LogWarning("Heal target is not set.");
+        }
+    }
+
+
     public void Heal(float healAmount)
     {
         if (curhp > 0)
@@ -194,7 +219,33 @@ public class PlayerController : Entity
     }
 
 
+    public void CastDefensiveSkill()
+    {
+        if (target != null)
+        {
+          
 
+            // Elysia의 경우 아군을 선택하므로 아군 리스트를 사용
+            if (CompareTag("Elysia"))
+            {
+                TurnManager turnManager = FindObjectOfType<TurnManager>();
+
+                // target_simbol을 활성화하여 아군 힐 대상을 표시
+                turnManager.target_simbol.SetActive(true);
+                turnManager.target_simbol.transform.position = target.position;
+
+                // 아군 힐 대상을 TurnManager에 저장
+                turnManager.SetHealTarget(target);
+            }
+            else
+            {
+                // 다른 캐릭터의 경우 적을 선택
+                // ... 다른 적 공격 로직
+            }
+
+            // 이제 힐 대상에게 힐을 시전하는 로직은 TurnManager에서 처리
+        }
+    }
 
 
 
