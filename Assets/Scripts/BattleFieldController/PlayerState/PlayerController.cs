@@ -51,7 +51,7 @@ public class PlayerController : Entity
     public PlayerComeBackState comeBackState { get; private set; }//내가 만약 적을 향해 이동했을 경우 다시 호출할 상태(제 자리로 가야함)
 
     public PlayerWhereGiveBuffState whereGiveBuffState { get; private set; } //일단 내가 누구한테 힐을 줄건지
-    public PlayerBuffGiveState giveBuffState { get; private set; }// 내가 고른애한테 버프 시전
+    public PlayerBuffGiveState buffgiveState { get; private set; }// 내가 고른애한테 버프 시전
 
 
 
@@ -106,7 +106,8 @@ public class PlayerController : Entity
         targetMoveState = new PlayerTargetToMoveState(this, stateMachine, "TargetToMove"); //위치에 있는 적을 향해 움직임
 
 
-        giveBuffState = new PlayerBuffGiveState(this, stateMachine, "GiveBuff"); //버프(힐)을 주는 상태
+        buffgiveState = new PlayerBuffGiveState(this, stateMachine, "BuffGive"); //버프(힐)을 주는 상태
+        whereGiveBuffState = new PlayerWhereGiveBuffState(this, stateMachine, "WhereGiveBuff");
 
 
 

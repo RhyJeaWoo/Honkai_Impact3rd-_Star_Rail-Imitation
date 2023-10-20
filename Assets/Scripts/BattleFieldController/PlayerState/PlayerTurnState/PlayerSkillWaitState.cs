@@ -30,7 +30,7 @@ public class PlayerSkillWaitState : PlayerState
         if (player.CompareTag("Elysia")) //이 턴을 제어받은 컨트롤러가 엘리시아 라는 힐러라면,
         {
 
-            player.stateMachine.ChangeState(player.giveBuffState);
+            player.stateMachine.ChangeState(player.whereGiveBuffState);
         }
         else
         {

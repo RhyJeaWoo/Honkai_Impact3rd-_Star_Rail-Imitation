@@ -13,15 +13,8 @@ public class PlayerBuffGiveState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        TurnManager.Instance.target_simbol.SetActive(true); // 활성화
+        player.vircam[3].MoveToTopOfPrioritySubqueue();
 
-        Debug.Log("버프를 줄 수 있는 상태에 진입하였음.");
-
-        player.vircam[1].MoveToTopOfPrioritySubqueue();
-        //player.CastDefensiveSkill();
-
-      
-        // Elysia인 경우에만 스킬 실행
 
     }
 
@@ -35,22 +28,19 @@ public class PlayerBuffGiveState : PlayerState
     {
         base.Update();
 
-        TurnManager.Instance.ChangePlayerTarget();
-
-       // Debug.Log("target_simbol 좌표 :" + TurnManager.Instance.target_simbol.transform.position);
-
-       
-
-     
-
-        if (Input.GetKeyDown(KeyCode.E))
+        if (player.anim.GetCurrentAnimatorStateInfo(0).IsName("BuffGive")
+            && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
-
-
-            //Debug.Log("키눈 눌렸음");
-
             player.CastHealSkill();
 
+            player.cureng += 30;
+
+            player.isMyTurn = false;
+            TurnManager.Instance.TurnEnd();
+            TurnManager.Instance.target_simbol.SetActive(false);
+            player.stateMachine.ChangeState(player.idleState);
         }
+
+
     }
 }
