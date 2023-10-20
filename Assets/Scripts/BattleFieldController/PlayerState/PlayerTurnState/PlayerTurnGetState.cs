@@ -18,7 +18,7 @@ public class PlayerTurnGetState : PlayerState
         TurnManager.Instance.target_simbol.SetActive(true);
 
 
-        player.vircam.MoveToTopOfPrioritySubqueue();
+        player.vircam[0].MoveToTopOfPrioritySubqueue();
 
         player.toPlayerPos = player.transform.position;
 

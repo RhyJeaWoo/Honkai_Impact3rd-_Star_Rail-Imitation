@@ -22,7 +22,7 @@ public class LumineSelectState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        lumine.vircam.MoveToTopOfPrioritySubqueue();
+        lumine.vircam[0].MoveToTopOfPrioritySubqueue();
     }
 
     public override void Exit()

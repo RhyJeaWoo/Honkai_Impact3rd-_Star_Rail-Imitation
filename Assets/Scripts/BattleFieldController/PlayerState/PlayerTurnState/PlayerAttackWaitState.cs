@@ -15,19 +15,12 @@ public class PlayerAttackWaitState : PlayerState
         base.Enter();
         Debug.Log(player.name + "턴 선택(일반공격) 상태임");
 
-       
-
-
-
     }
 
     public override void Exit()
     {
         base.Exit();
         
-
-
-
     }
 
     public override void Update()

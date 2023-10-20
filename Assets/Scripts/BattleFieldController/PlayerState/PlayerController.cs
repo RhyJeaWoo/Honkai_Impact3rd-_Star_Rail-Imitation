@@ -1,19 +1,24 @@
-using Cinemachine;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class PlayerController : Entity
 {
 
-    #region Digine
+    public List<PlayerController> playerList = new List<PlayerController>();
+    //내 시점에서 바라볼 수 있는 플레이어 리스트
+
+
+
+
+    #region Design Patterns
+
+    //전략
     private PlayerSkillStrategy skillStrategy;
     private PlayerAttackStrategy attackStrategy;
 
-    public Transform target; // 데미지를 주어야 하는 대상
-
-    private Transform healTarget; // 아군 힐 대상을 저장하는 변수
-
+    //델리게이트
 
     public delegate void DamageDealtHandler(float damage); //데미지에 관한 델리게이트로 선언
     public event DamageDealtHandler OnDamageDealt;//델리게이트
@@ -36,7 +41,7 @@ public class PlayerController : Entity
 
     public PlayerAttackWaitState attackWaitState { get; private set; }//공격 대기 상태
 
-   
+
     public PlayerAttackState attackState { get; private set; }//공격 상태 
 
     public PlayerSkillState skillState { get; private set; }//스킬 시전 상태
@@ -45,9 +50,10 @@ public class PlayerController : Entity
     public PlayerTargetToMoveState targetMoveState { get; private set; }//내가 사용한 스킬이 타게팅 공격 스킬일 경우.
     public PlayerComeBackState comeBackState { get; private set; }//내가 만약 적을 향해 이동했을 경우 다시 호출할 상태(제 자리로 가야함)
 
-    public PlayerBuffGiveState giveBuffState { get; private set; }//만약 내가 사용한 스킬이 버프계열일 경우.
+    public PlayerWhereGiveBuffState whereGiveBuffState { get; private set; } //일단 내가 누구한테 힐을 줄건지
+    public PlayerBuffGiveState giveBuffState { get; private set; }// 내가 고른애한테 버프 시전
 
-    
+
 
 
     public PlayerUltimateState ultimateState { get; private set; } //궁을 시전한 상태, 어떤 상태에서든 사용이 가능함.
@@ -77,7 +83,7 @@ public class PlayerController : Entity
 
         skillWaitState = new PlayerSkillWaitState(this, stateMachine, "SkillWait"); //내 턴이면 맨 처음 시작되는 스테이트
 
-       
+
 
 
         attackState = new PlayerAttackState(this, stateMachine, "Attack");
@@ -91,18 +97,21 @@ public class PlayerController : Entity
         comeBackState = new PlayerComeBackState(this, stateMachine, "ComeBack");
 
         idleState = new PlayerIdleState(this, stateMachine, "Idle"); //내 턴이 아닐 경우 대기하는 스테이트(상대 또는 계산을 기다리는 턴)
-       
-        
+
+
         deadState = new PlayerDeadState(this, stateMachine, "Dead");//내 HP가 다 달았을 경우 진입할 스테이트(어떤 때라도 발동됨 내턴, 상대턴 구분 없음)
         hitState = new PlayerHitState(this, stateMachine, "Hit");//공격 당했을 경우(Idle)에서 작동됨.
 
 
-        targetMoveState = new PlayerTargetToMoveState(this, stateMachine, "TargetToMove");
-        giveBuffState = new PlayerBuffGiveState(this, stateMachine, "GiveBuff");
+        targetMoveState = new PlayerTargetToMoveState(this, stateMachine, "TargetToMove"); //위치에 있는 적을 향해 움직임
 
-        
+
+        giveBuffState = new PlayerBuffGiveState(this, stateMachine, "GiveBuff"); //버프(힐)을 주는 상태
+
+
 
     }
+
     // 참고로 스타레일 내 방어력 계수는
     // 1 - (내 방어력 / 내 방어력 + 200 + 10 * 적 레벨) 이다. 
 
@@ -111,15 +120,38 @@ public class PlayerController : Entity
     {
         base.Start();
         stateMachine.Initialize(idleState);
+
+        // TurnManager 스크립트로부터 healTarget 배열을 가져와서 playerList 리스트에 저장
+        playerList.AddRange(TurnManager.Instance.healTarget.Select(transform => transform.GetComponent<PlayerController>()));
+
+        ListSort();
+
+     
     }
 
     protected override void Update()
     {
         base.Update();
         stateMachine.currentState.Update();
+
+        //Debug.Log(playerList[0].name);
+        //Debug.Log(playerList[1].name);
+        //Debug.Log(playerList[2].name);
+        //Debug.Log(healTarget); //null
     }
     #endregion
 
+
+    public void ListSort()
+    {
+        List<PlayerController> sortedPlayers = new List<PlayerController>(playerList);
+
+        //원하는 순서대로 정렬
+        sortedPlayers.Sort((player1, player2) => player1.transform.position.x.CompareTo(player2.transform.position.x));
+
+        //정렬된 리스트를 playerble 리스트에 할당
+        playerList = sortedPlayers;
+    }
 
 
     // 스킬 전략 설정
@@ -143,11 +175,12 @@ public class PlayerController : Entity
     {
         if (skillStrategy != null)
         {
+
         }
     }
     public void ExecuteAttack(PlayerController player)
     {
-        if(attackStrategy != null) { }
+        if (attackStrategy != null) { }
     }
 
     //애니메이션으로 실행
@@ -155,9 +188,9 @@ public class PlayerController : Entity
     {
         if (skillStrategy != null)
         {
-            
-             float skillDamage = skillStrategy.ExcuteSkill(this); //델리게이트에 전략에서 받아온 정보값을 지역 변수에 저장
-           
+
+            float skillDamage = skillStrategy.ExcuteSkill(this); //델리게이트에 전략에서 받아온 정보값을 지역 변수에 저장
+
             // 데미지 이벤트 발생
             OnDamageDealt?.Invoke(skillDamage);
 
@@ -167,48 +200,33 @@ public class PlayerController : Entity
 
     public void AttackDamageEnvet()
     {
-        if(attackStrategy != null)
+        if (attackStrategy != null)
         {
             float norAtkDamage = attackStrategy.ExcuteAttack(this); //델리게이트에 전략에서 받아온 정보값을 지역 변수에 저장
 
             // 데미지 이벤트 발생
             OnDamageDealt?.Invoke(norAtkDamage);
-           
+
         }
     }
 
     public void DeligateLevel()
     {
         OnLevelDealt?.Invoke(curLevel);
-       
+
     }
 
 
+    /* ========================================================여기부터 실험내용 ============================================ */
 
-    public void SetHealTarget(Transform target)
-    {
-        healTarget = target;
-    }
 
-    public void CastHealSkill()
-    {
-        if (healTarget != null)
-        {
-            // 아군 힐 로직을 이곳에 구현
-            // healTarget은 아군을 나타내는 Transform입니다.
-            // 이 아군에게 힐을 시전하는 코드를 작성하세요.
-        }
-        else
-        {
-            Debug.LogWarning("Heal target is not set.");
-        }
-    }
 
 
     public void Heal(float healAmount)
     {
         if (curhp > 0)
         {
+            //TurnManager.Instance.healTarget
             curhp += healAmount;
 
             if (curhp > maxhp)
@@ -217,40 +235,43 @@ public class PlayerController : Entity
             }
         }
     }
-
-
-    public void CastDefensiveSkill()
+    public void CastHealSkill()
     {
-        if (target != null)
+        if (playerList.Count > 0)
         {
+            float heal = skillStrategy.ExcuteSkill(this);
+
+
           
+                if (TurnManager.Instance.targetPlayerName == playerList[0].name)
+                {
+                    playerList[0].Heal(heal);
+                    Debug.Log(playerList[0].name + "이 힐을 받았습니다.");
 
-            // Elysia의 경우 아군을 선택하므로 아군 리스트를 사용
-            if (CompareTag("Elysia"))
-            {
-                TurnManager turnManager = FindObjectOfType<TurnManager>();
+                }
+                else if (TurnManager.Instance.targetPlayerName == playerList[1].name)
+                {
+                    playerList[1].Heal(heal);
+                    Debug.Log(playerList[1].name + "이 힐을 받았습니다.");
+                }
+                else if (TurnManager.Instance.targetPlayerName == playerList[2].name)
+                {
+                    playerList[2].Heal(heal);
+                    Debug.Log(playerList[2].name + "이 힐을 받았습니다.");
+                }
+                else
+                {
+                    Debug.Log("정보 일치 하는게 없음.");
+                }
 
-                // target_simbol을 활성화하여 아군 힐 대상을 표시
-                turnManager.target_simbol.SetActive(true);
-                turnManager.target_simbol.transform.position = target.position;
 
-                // 아군 힐 대상을 TurnManager에 저장
-                turnManager.SetHealTarget(target);
-            }
-            else
-            {
-                // 다른 캐릭터의 경우 적을 선택
-                // ... 다른 적 공격 로직
-            }
-
-            // 이제 힐 대상에게 힐을 시전하는 로직은 TurnManager에서 처리
+        }
+        else
+        {
+            Debug.LogWarning("Heal target is not set.");
         }
     }
 
-
-
-
-    //////////////////////////////////////////////////////////////////////////////////////// 캐릭터 스킬 개별 구현에 관한 스크립트 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 }

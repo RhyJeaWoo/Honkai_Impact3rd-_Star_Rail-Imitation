@@ -16,11 +16,13 @@ public class Entity : MonoBehaviour
      
     public SkinnedMeshRenderer[] skin;
 
-    public CinemachineVirtualCamera vircam;
+    public CinemachineVirtualCamera[] vircam;
 
     public Vector3 toEnemyPos = Vector3.zero; //적의 위치
 
     public Vector3 toPlayerPos = Vector3.zero;//내 원래 위치
+
+    public Vector3 TargetEnemyTranform { get; set; } // TargetEnemyTranform을 속성으로 추가
 
     [Header("플레이어의 스테이터스")]
     public float curLevel;//현재 레벨
@@ -66,6 +68,9 @@ public class Entity : MonoBehaviour
     public float defenseCoefficient;//방어 계수
     public float liciveOpponentLevel;//전달 받은 상대 레벨 계수
     public float ignoredDefense;//방어 무시 받는 계수
+
+    [Header("플레이어의 힐 관련 정리")]
+    public float sumHeal; //힐 총합 수치
    
 
     [Header("잡다한거")]
@@ -84,6 +89,25 @@ public class Entity : MonoBehaviour
     {
         skin = GetComponentsInChildren<SkinnedMeshRenderer>();
 
+
+        ObjectStatCal();
+
+
+    }
+
+    protected virtual void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+
+    // Update 함수에서 턴 및 행동 수치를 업데이트합니다.
+    protected virtual void Update()
+    {
+        time -= Time.deltaTime;
+    }
+
+    public void ObjectStatCal()
+    {
         // 최종 속도 계산    
         float finalSpeed = baseSpeed * (1 + buffSpeed / 100) + flatSpeed;
 
@@ -98,23 +122,9 @@ public class Entity : MonoBehaviour
 
         //크리티컬 적용전 데미지   (공격력 * 스킬 계수) * (1 + 피해 증가 배수) 
 
-        defaultDamage = (atk ) * (1 + increasedDamage);
+        defaultDamage = (atk) * (1 + increasedDamage);
 
 
-      
     }
 
-    protected virtual void Awake()
-    {
-        anim = GetComponent<Animator>();
-    }
-
-    // Update 함수에서 턴 및 행동 수치를 업데이트합니다.
-    protected virtual void Update()
-    {
-        time -= Time.deltaTime;
-    }
-
-
-   
 }

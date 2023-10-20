@@ -9,7 +9,7 @@ public class PlayerTargetToMoveState : PlayerState
 
     public override void Enter()
     {
-        player.toEnemyPos = TurnManager.Instance.TargetEnemyTranform;
+        player.toEnemyPos = TurnManager.Instance.EnemyTransForm;
 
 
         // 타겟 방향으로 회전함
@@ -33,6 +33,8 @@ public class PlayerTargetToMoveState : PlayerState
     public override void Update()
     {
         base.Update();
+
+        Debug.Log("TurnManager.Instance.TargetEnemyTranform" + TurnManager.Instance.TargetSimbolEnemyTr);
 
         player.transform.position = Vector3.Lerp(player.transform.position, player.toEnemyPos - new Vector3(0, 0, 1f), 0.05f);
 

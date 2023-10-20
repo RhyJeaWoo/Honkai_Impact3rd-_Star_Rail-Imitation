@@ -509,7 +509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a197325c15a33734aaa6a7d742ee78af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a197325c15a33734aaa6a7d742ee78af, type: 3}
       propertyPath: m_LocalPosition.y
@@ -517,7 +517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a197325c15a33734aaa6a7d742ee78af, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a197325c15a33734aaa6a7d742ee78af, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2604,7 +2604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &201178003
 Transform:
   m_ObjectHideFlags: 0
@@ -2612,15 +2612,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201178002}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.9848078, z: -0.17364816, w: 0}
+  m_LocalPosition: {x: 1, y: 2.5, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1113741420}
   m_Father: {fileID: 1234249892}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: 180, z: 0}
 --- !u!114 &201178004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3016,7 +3016,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bfa8239630c90c149b5ceb6f646a26a2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1316696003}
   m_SourcePrefab: {fileID: 100100000, guid: bfa8239630c90c149b5ceb6f646a26a2, type: 3}
 --- !u!1 &441389682
 GameObject:
@@ -3290,7 +3293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 551077465}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: -0, z: -3}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7005,7 +7008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4937939151522102583, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4937939151522102583, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7013,7 +7016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4937939151522102583, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4937939151522102583, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7845,13 +7848,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anims: {fileID: 0}
   skin: []
-  vircam: {fileID: 831699278}
+  vircam:
+  - {fileID: 831699278}
   toEnemyPos: {x: 0, y: 0, z: 0}
   toPlayerPos: {x: 0, y: 0, z: 0}
   curLevel: 0
   maxLevel: 0
   maxhp: 3000
-  curhp: 0
+  curhp: 100
   atk: 2200
   def: 1200
   cureng: 0
@@ -7873,12 +7877,12 @@ MonoBehaviour:
   defenseCoefficient: 0
   liciveOpponentLevel: 0
   ignoredDefense: 0
+  sumHeal: 0
   time: 0
   isMyTurn: 0
   isAtackOn: 0
   isSkillOn: 0
   canAct: 0
-  target: {fileID: 0}
 --- !u!4 &743735076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7677131781496069969, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
@@ -8220,8 +8224,13 @@ MonoBehaviour:
   all_obj: []
   enemys: []
   playable: []
-  curIndex: 0
-  TargetEnemyTranform: {x: 0, y: 0, z: 0}
+  curEnemyIndex: 0
+  curPlayerIndex: 0
+  TargetSimbolEnemyTr: {x: 0, y: 0, z: 0}
+  EnemyTransForm: {x: 0, y: 0, z: 0}
+  TargetSimbolPlTr: {x: 0, y: 0, z: 0}
+  PlayerTransForm: {x: 0, y: 0, z: 0}
+  healTarget: []
 --- !u!1 &775623414
 GameObject:
   m_ObjectHideFlags: 0
@@ -8585,6 +8594,11 @@ MonoBehaviour:
       animatedPosition: 0
       animatedAxis: 0
       animatedShape: 0
+--- !u!1 &777111935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bfa8239630c90c149b5ceb6f646a26a2, type: 3}
+  m_PrefabInstance: {fileID: 384379508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &789143844
 GameObject:
   m_ObjectHideFlags: 0
@@ -9246,11 +9260,11 @@ GameObject:
   - component: {fileID: 1073189397}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1073189397
 Transform:
   m_ObjectHideFlags: 0
@@ -9889,7 +9903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1254200969
 Transform:
   m_ObjectHideFlags: 0
@@ -9898,7 +9912,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254200968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0, z: -3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10426,6 +10440,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bfa8239630c90c149b5ceb6f646a26a2, type: 3}
   m_PrefabInstance: {fileID: 384379508}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1316696003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777111935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad52299bd979cd4ab4118320c8431ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anims: {fileID: 0}
+  skin: []
+  vircam: []
+  toEnemyPos: {x: 0, y: 0, z: 0}
+  toPlayerPos: {x: 0, y: 0, z: 0}
+  curLevel: 0
+  maxLevel: 0
+  maxhp: 0
+  curhp: 0
+  atk: 0
+  def: 0
+  cureng: 0
+  maxeng: 0
+  curCrt: 0
+  criticalPower: 0
+  baseSpeed: 0
+  buffSpeed: 0
+  flatSpeed: 0
+  currentSpeed: 0
+  baseTurnSpeed: 0
+  currentTurnSpeed: 0
+  defaultDamage: 0
+  norAtkDamage: 0
+  criticalDamage: 0
+  skillDamage: 0
+  increasedDamage: 0
+  SumDamage: 0
+  defenseCoefficient: 0
+  liciveOpponentLevel: 0
+  ignoredDefense: 0
+  sumHeal: 0
+  time: 0
+  isMyTurn: 0
+  isAtackOn: 0
+  isSkillOn: 0
+  canAct: 1
 --- !u!1 &1344728576
 GameObject:
   m_ObjectHideFlags: 0
@@ -10839,7 +10901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anims: {fileID: 0}
   skin: []
-  vircam: {fileID: 2083497154}
+  vircam: []
   toEnemyPos: {x: 0, y: 0, z: 0}
   toPlayerPos: {x: 0, y: 0, z: 0}
   curLevel: 0
@@ -10867,12 +10929,12 @@ MonoBehaviour:
   defenseCoefficient: 0
   liciveOpponentLevel: 0
   ignoredDefense: 0
+  sumHeal: 0
   time: 0
   isMyTurn: 0
   isAtackOn: 0
   isSkillOn: 0
   canAct: 0
-  target: {fileID: 0}
 --- !u!1 &1528152195
 GameObject:
   m_ObjectHideFlags: 0
@@ -10968,20 +11030,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anims: {fileID: 0}
   skin: []
-  vircam: {fileID: 2138337929}
+  vircam:
+  - {fileID: 2138337929}
+  - {fileID: 201178004}
   toEnemyPos: {x: 0, y: 0, z: 0}
   toPlayerPos: {x: 0, y: 0, z: 0}
   curLevel: 0
   maxLevel: 0
   maxhp: 0
-  curhp: 0
+  curhp: 100
   atk: 0
   def: 0
   cureng: 0
   maxeng: 0
   curCrt: 0
   criticalPower: 0
-  baseSpeed: 95
+  baseSpeed: 140
   buffSpeed: 0
   flatSpeed: 0
   currentSpeed: 0
@@ -10996,12 +11060,12 @@ MonoBehaviour:
   defenseCoefficient: 0
   liciveOpponentLevel: 0
   ignoredDefense: 0
+  sumHeal: 0
   time: 0
   isMyTurn: 0
   isAtackOn: 0
   isSkillOn: 0
   canAct: 0
-  target: {fileID: 0}
 --- !u!1 &1660639018
 GameObject:
   m_ObjectHideFlags: 0
@@ -13494,7 +13558,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anims: {fileID: 0}
   skin: []
-  vircam: {fileID: 248408501}
+  vircam:
+  - {fileID: 248408501}
   toEnemyPos: {x: 0, y: 0, z: 0}
   toPlayerPos: {x: 0, y: 0, z: 0}
   curLevel: 70
@@ -13522,6 +13587,7 @@ MonoBehaviour:
   defenseCoefficient: 0
   liciveOpponentLevel: 0
   ignoredDefense: 0
+  sumHeal: 0
   time: 0
   isMyTurn: 0
   isAtackOn: 0
@@ -18565,13 +18631,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anims: {fileID: 0}
   skin: []
-  vircam: {fileID: 2083497154}
+  vircam:
+  - {fileID: 2083497154}
   toEnemyPos: {x: 0, y: 0, z: 0}
   toPlayerPos: {x: 0, y: 0, z: 0}
   curLevel: 80
   maxLevel: 0
   maxhp: 2800
-  curhp: 0
+  curhp: 100
   atk: 2800
   def: 900
   cureng: 0
@@ -18593,12 +18660,12 @@ MonoBehaviour:
   defenseCoefficient: 0
   liciveOpponentLevel: 0
   ignoredDefense: 0
+  sumHeal: 0
   time: 0
   isMyTurn: 0
   isAtackOn: 0
   isSkillOn: 0
   canAct: 0
-  target: {fileID: 0}
 --- !u!1 &1985538245
 GameObject:
   m_ObjectHideFlags: 0
