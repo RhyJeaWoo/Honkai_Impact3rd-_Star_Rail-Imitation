@@ -32,6 +32,7 @@ public class LumineNorAtkState : EnemyState
         if (lumine.anim.GetCurrentAnimatorStateInfo(0).IsName("NorAtk") && lumine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             Debug.Log("루미네 NorAtk 이 조건문은 실행되었음");
+
             lumine.isMyTurn = false;
             TurnManager.Instance.TurnEnd();
 

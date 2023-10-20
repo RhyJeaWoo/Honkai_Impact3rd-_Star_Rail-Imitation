@@ -247,19 +247,19 @@ public class PlayerController : Entity
                 if (TurnManager.Instance.targetPlayerName == playerList[0].name)
                 {
                     playerList[0].Heal(heal);
-                    Debug.Log(playerList[0].name + "이 힐을 받았습니다.");
+                    Debug.Log(playerList[0].name + "이(가) 힐을 " + heal + " 만큼 받았습니다.");
 
                 }
                 else if (TurnManager.Instance.targetPlayerName == playerList[1].name)
                 {
                     playerList[1].Heal(heal);
-                    Debug.Log(playerList[1].name + "이 힐을 받았습니다.");
-                }
+                Debug.Log(playerList[0].name + "이(가) 힐을 " + heal + " 만큼 받았습니다.");
+            }
                 else if (TurnManager.Instance.targetPlayerName == playerList[2].name)
                 {
                     playerList[2].Heal(heal);
-                    Debug.Log(playerList[2].name + "이 힐을 받았습니다.");
-                }
+                Debug.Log(playerList[0].name + "이(가) 힐을 " + heal + " 만큼 받았습니다.");
+            }
                 else
                 {
                     Debug.Log("정보 일치 하는게 없음.");

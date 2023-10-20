@@ -22,7 +22,7 @@ public class EnemyLumine : EnemyAIController
 
     public LumineStrAtkState strAtkState { get; private set; } //루미네가 패턴1 공격 선택시
 
-    public LumineStrAtk2State strAtk2State { get; private set; } //루미네 패턴2 공격 선택시
+    public LumineStrAtk2State str2AtkState { get; private set; } //루미네 패턴2 공격 선택시
 
     public LumineUlitimateState ulitimateState { get; private set; } //루미네 턴일때 루미네의 체력이 n% 낮을 경우 발동 나머지 패턴 전부 쓰지 않음.
 
@@ -44,7 +44,7 @@ public class EnemyLumine : EnemyAIController
         selectState = new LumineSelectState(this, stateMachine, "Select",this);
         norAtkState = new LumineNorAtkState(this, stateMachine, "NorAtk", this);
         strAtkState = new LumineStrAtkState(this, stateMachine, "StrAtk", this);
-        strAtk2State = new LumineStrAtk2State(this, stateMachine, "Str2Atk", this);
+        str2AtkState = new LumineStrAtk2State(this, stateMachine, "Str2Atk", this);
         ulitimateState = new LumineUlitimateState(this, stateMachine, "Ultimate", this);
         idleState = new LumineIdleState(this, stateMachine, "Idle",this);
         hitState = new LumineHitState(this, stateMachine, "Hit", this);

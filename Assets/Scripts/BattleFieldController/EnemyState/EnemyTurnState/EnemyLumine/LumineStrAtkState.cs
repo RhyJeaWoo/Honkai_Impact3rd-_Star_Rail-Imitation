@@ -23,6 +23,21 @@ public class LumineStrAtkState : EnemyState
     public override void Update()
     {
         base.Update();
+
+
+        if (lumine.anim.GetCurrentAnimatorStateInfo(0).IsName("StrAtk") && lumine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            Debug.Log("루미네 StrAtk 이 조건문은 실행되었음");
+
+            lumine.isMyTurn = false;
+            TurnManager.Instance.TurnEnd();
+
+            stateMachine.ChangeState(lumine.idleState);
+        }
+        else
+        {
+            Debug.Log("루미네 StrAtk 이 조건문은 실행되지않았음");
+        }
     }
 
     
