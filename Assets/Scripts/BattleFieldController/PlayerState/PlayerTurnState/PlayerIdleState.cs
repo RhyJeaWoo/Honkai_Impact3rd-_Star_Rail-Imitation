@@ -41,6 +41,12 @@ public class PlayerIdleState : PlayerState
             player.stateMachine.ChangeState(player.turnGetState);
         }
 
+        if(player.isUltimate)
+        {
+            player.stateMachine.ChangeState(player.ultimateWaitState);
+            //만약 이상태로 넘어가면 루미네나 다른 몬스터의 행동은 즉시 정지되어야함.
+        }
+
         //여기서 만약에 내가 상태이상 상태라면은 데미지를 받고 시작하게 만들면된다/
         // ex)if(player.isMyTurn && player.isStatusEffect)로 검사를 해서, PlayerStatusEffectState머신 만들고, 그쪽에서 데미지를 받고 넘어가면 될듯.
 

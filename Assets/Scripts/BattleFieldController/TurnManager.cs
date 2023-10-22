@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class TurnManager : MonoBehaviour
 {
@@ -23,6 +18,8 @@ public class TurnManager : MonoBehaviour
     public string targetPlayerName;
 
     public string targetEnemyName;
+
+    public bool isUltimateActivate;
 
 
     [Header("오브젝트 관련 리스트 및 요소들")]
@@ -44,13 +41,13 @@ public class TurnManager : MonoBehaviour
     public Vector3 TargetSimbolEnemyTr; //내가 지정한 적의 위치 앞에 이동하기 위해 저의 좌표를 저장할 벡터3 좌표 변수임
                                         //턴이 끝나면 초기화 시킬거임.
 
-    public Vector3 EnemyTransForm; //적의 위치를 저장하는 변수
+    public Vector3 EnemyTransForm { get; set; } //적의 위치를 저장하는 변수
 
-    public Vector3 TargetSimbolPlTr;
+    public Vector3 TargetSimbolPlTr; 
 
     public Vector3 PlayerTransForm;
 
-    
+
 
 
     public Transform[] healTarget; // 힐 대상을 저장하는 변수 , 사실상 플레이어들의 트랜스폼을 저장하는 변수임.
@@ -61,7 +58,7 @@ public class TurnManager : MonoBehaviour
     private void Awake()
     {
         SingTone();
-    
+
     }
 
     private void OnEnable()
@@ -104,7 +101,7 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
 
-       
+
         ListAddRange();
 
         ListSort();
@@ -130,7 +127,7 @@ public class TurnManager : MonoBehaviour
 
     }
 
-   
+
 
     public void ListAddRange()
     {
@@ -152,6 +149,12 @@ public class TurnManager : MonoBehaviour
 
 
     }
+
+    /*
+    public void EnemyPos()
+    {
+        enemys = new Transform[enemys.Count];
+    }*/
 
     public void ListSort()
     {
@@ -209,14 +212,14 @@ public class TurnManager : MonoBehaviour
                 player.SetSkillStrategy(skillStrategy);
                 player.SetAttackStrategy(attackStrategy);
                 player.SetUltimateStratergy(ultimateStrategy);
-                
+
             }
         }
 
     }
 
-    /*
 
+    /*
     public void PlayerSkill()
     {
         // 현재 플레이어의 스킬 실행
@@ -235,44 +238,67 @@ public class TurnManager : MonoBehaviour
     //누구의 턴인지 알 수 없을때(누가 먼저 0 인지 알 수 없을 경우, 리스트 전체의 current값을 0이 될때까지 감소)
     public void TurnTime()
     {
-        if (!StopTurn)
+        if (!isUltimateActivate)
         {
-            for (int i = 0; i < all_obj.Count; i++)
+
+         
+
+            for (int i = 0; i < playable.Count; i++)
             {
-
-                all_obj[i].currentTurnSpeed -= 1f;
-
-                if (all_obj[i].currentTurnSpeed <= 0)
-                {
-                    all_obj[i].currentTurnSpeed = 0;
-
-                    //대충 턴 잡고 턴시작되는내용
-                    all_obj[i].isMyTurn = true;
-
-                    StopTurn = true;
-
-                    Debug.Log("플레이어 턴 잡힘 " + all_obj[i].name);
-
-                    all_obj[i].currentTurnSpeed = all_obj[i].baseTurnSpeed;
-
-                    break;
-                }
-            }
-        }
-        else
-        {
-            //여기 미완성 작성중임.
-
-            for(int i = 0; i< playable.Count; i++) 
-            {
-                //여기서 전략을 넣자.
+                //먼저 키를 비교함
                 if (playable[i].cureng == playable[i].maxeng)
                 {
+                    if (Input.GetKeyDown(KeyCode.Alpha1) && playable[0].cureng == playable[0].maxeng) //여기서 누른애 순서랑 오브젝트 순서가 같은지를 같이 비교를 해야됨
+                    {
+                        isUltimateActivate = true;
+                        StopTurn = true;
 
+                        //궁극기가 눌렸다면
+                        Debug.Log("키가 눌렸음");
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha2) && playable[1].cureng == playable[1].maxeng)
+                    {
+
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha3) && playable[2].cureng == playable[2].maxeng)
+                    {
+
+                    }
+                    else if(Input.GetKeyDown(KeyCode.Alpha4) && playable[3].cureng == playable[3].maxeng)
+                    {
+
+                    }
                 }
-            
+            }
+
+
+
+            if (!StopTurn && !isUltimateActivate)
+            {
+                for (int i = 0; i < all_obj.Count; i++)
+                {
+
+                    all_obj[i].currentTurnSpeed -= 1f;
+
+                    if (all_obj[i].currentTurnSpeed <= 0)
+                    {
+                        all_obj[i].currentTurnSpeed = 0;
+
+                        //대충 턴 잡고 턴시작되는내용
+                        all_obj[i].isMyTurn = true;
+
+                        StopTurn = true;
+
+                        Debug.Log("플레이어 턴 잡힘 " + all_obj[i].name);
+
+                        all_obj[i].currentTurnSpeed = all_obj[i].baseTurnSpeed;
+
+                        break;
+                    }
+                }
             }
         }
+     
     }
 
 
@@ -359,7 +385,7 @@ public class TurnManager : MonoBehaviour
         target_simbol.transform.position = new Vector3(playable[curPlayerIndex].transform.position.x, target_simbol.transform.position.y, playable[curPlayerIndex].transform.position.z + 0.2f);
         targetPlayerName = playable[curPlayerIndex].name;
 
-        
+
     }
 
 
@@ -369,29 +395,31 @@ public class TurnManager : MonoBehaviour
         target_simbol.transform.position = new Vector3(enemys[curEnemyIndex].transform.position.x
             , target_simbol.transform.position.y, target_simbol.transform.position.z);
 
-        TargetSimbolEnemyTr = target_simbol.transform.position; // 공격할 적 위치 저장 Vector값임
+        TargetSimbolEnemyTr = target_simbol.transform.position; // 공격할 타겟 심볼의  Vector 저장 값임(적 enemy의 위치 저장값이 아님)
+        targetEnemyName = enemys[curEnemyIndex].name;
+        EnemyTransForm = enemys[curEnemyIndex].transform.position;
 
     }
 
 
     public void SkillStackUse()
     {
-        if(SkillStack != 0)
+        if (SkillStack != 0)
         {
             SkillStack--;
         }
-        
-        if(SkillStack < 0)
+
+        if (SkillStack < 0)
         {
             SkillStack = 0;
-          
+
         }
     }
 
     public void SkillStackAdd()
     {
         SkillStack++;
-        if(SkillStack > 5)
+        if (SkillStack > 5)
         {
             SkillStack = 5;
         }

@@ -45,6 +45,9 @@ public class PlayerWhereGiveBuffState : PlayerState
             player.stateMachine.ChangeState(player.buffgiveState);
 
 
+        }else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            player.stateMachine.ChangeState(player.turnGetState);
         }
     }
 
