@@ -171,6 +171,7 @@ public class TurnManager : MonoBehaviour
         {
             PlayerSkillStrategy skillStrategy = null;
             PlayerAttackStrategy attackStrategy = null;
+            PlayerUltimateStrategy ultimateStrategy = null;
 
 
 
@@ -178,24 +179,28 @@ public class TurnManager : MonoBehaviour
             {
                 skillStrategy = new MeiSkill();
                 attackStrategy = new MeiAttack();
+                ultimateStrategy = new MeiUltimate();
 
             }
             else if (player.CompareTag("Kiana"))
             {
                 skillStrategy = new KianaSkill();
                 attackStrategy = new KianaAttack();
+                ultimateStrategy = new KianaUltimate();
 
             }
             else if (player.CompareTag("Elysia"))
             {
                 skillStrategy = new ElysiaSkill();
                 attackStrategy = new ElysiaAttack();
+                ultimateStrategy = new ElysiaUltimate();
 
             }
             else if (player.CompareTag("Durandal"))
             {
                 skillStrategy = new DurandalSkill();
                 attackStrategy = new DurandalAttack();
+                ultimateStrategy = new DurandalUltimate();
 
             }
 
@@ -203,12 +208,14 @@ public class TurnManager : MonoBehaviour
             {
                 player.SetSkillStrategy(skillStrategy);
                 player.SetAttackStrategy(attackStrategy);
+                player.SetUltimateStratergy(ultimateStrategy);
+                
             }
         }
 
     }
 
-
+    /*
 
     public void PlayerSkill()
     {
@@ -223,7 +230,7 @@ public class TurnManager : MonoBehaviour
         PlayerController currentPlayer = playable[curEnemyIndex];
         currentPlayer.ExecuteAttack(currentPlayer);
 
-    }
+    }*/
 
     //누구의 턴인지 알 수 없을때(누가 먼저 0 인지 알 수 없을 경우, 리스트 전체의 current값을 0이 될때까지 감소)
     public void TurnTime()
@@ -250,6 +257,20 @@ public class TurnManager : MonoBehaviour
 
                     break;
                 }
+            }
+        }
+        else
+        {
+            //여기 미완성 작성중임.
+
+            for(int i = 0; i< playable.Count; i++) 
+            {
+                //여기서 전략을 넣자.
+                if (playable[i].cureng == playable[i].maxeng)
+                {
+
+                }
+            
             }
         }
     }
@@ -338,22 +359,15 @@ public class TurnManager : MonoBehaviour
         target_simbol.transform.position = new Vector3(playable[curPlayerIndex].transform.position.x, target_simbol.transform.position.y, playable[curPlayerIndex].transform.position.z + 0.2f);
         targetPlayerName = playable[curPlayerIndex].name;
 
-        //TargetSimbolPlTr = target_simbol.transform.position; // 공격할 적 위치 저장 Vector값임
-
-        /*
-        // 여기서 적의 위치를 TargetEnemyTranform에 저장
-        if (playable.Count > 0 && curPlayerIndex >= 0 &&curPlayerIndex < playable.Count)
-        {
-            PlayerTransForm = playable[curEnemyIndex].transform.position;
-
-        }*/
+        
     }
 
 
     public void ChangeEnemyTarget()
     {
         //PlayerController playerController = FindObjectOfType<PlayerController>();
-        target_simbol.transform.position = new Vector3(enemys[curEnemyIndex].transform.position.x + 0.0f, target_simbol.transform.position.y, target_simbol.transform.position.z);
+        target_simbol.transform.position = new Vector3(enemys[curEnemyIndex].transform.position.x
+            , target_simbol.transform.position.y, target_simbol.transform.position.z);
 
         TargetSimbolEnemyTr = target_simbol.transform.position; // 공격할 적 위치 저장 Vector값임
 

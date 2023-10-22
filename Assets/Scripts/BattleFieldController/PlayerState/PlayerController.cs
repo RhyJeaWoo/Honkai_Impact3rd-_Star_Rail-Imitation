@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class PlayerController : Entity
 {
@@ -17,6 +16,7 @@ public class PlayerController : Entity
     //전략
     private PlayerSkillStrategy skillStrategy;
     private PlayerAttackStrategy attackStrategy;
+    private PlayerUltimateStrategy ultimateStrategy;
 
     //델리게이트
 
@@ -127,7 +127,7 @@ public class PlayerController : Entity
 
         ListSort();
 
-     
+
     }
 
     protected override void Update()
@@ -135,10 +135,6 @@ public class PlayerController : Entity
         base.Update();
         stateMachine.currentState.Update();
 
-        //Debug.Log(playerList[0].name);
-        //Debug.Log(playerList[1].name);
-        //Debug.Log(playerList[2].name);
-        //Debug.Log(healTarget); //null
     }
     #endregion
 
@@ -168,6 +164,11 @@ public class PlayerController : Entity
         attackStrategy = strategy;
     }
 
+    public void SetUltimateStratergy(PlayerUltimateStrategy strategy)
+    {
+        ultimateStrategy = strategy;
+    }
+
 
 
     // 플레이어블 캐릭터의 스킬 실행시 연결될 전략
@@ -194,8 +195,6 @@ public class PlayerController : Entity
 
             // 데미지 이벤트 발생
             OnDamageDealt?.Invoke(skillDamage);
-
-
         }
     }
 
@@ -236,6 +235,7 @@ public class PlayerController : Entity
             }
         }
     }
+
     public void CastHealSkill()
     {
         if (playerList.Count > 0)
@@ -243,28 +243,27 @@ public class PlayerController : Entity
             float heal = skillStrategy.ExcuteSkill(this);
 
 
-          
-                if (TurnManager.Instance.targetPlayerName == playerList[0].name)
-                {
-                    playerList[0].Heal(heal);
-                    Debug.Log(playerList[0].name + "이(가) 힐을 " + heal + " 만큼 받았습니다.");
 
-                }
-                else if (TurnManager.Instance.targetPlayerName == playerList[1].name)
-                {
-                    playerList[1].Heal(heal);
+            if (TurnManager.Instance.targetPlayerName == playerList[0].name)
+            {
+                playerList[0].Heal(heal);
+                Debug.Log(playerList[0].name + "이(가) 힐을 " + heal + " 만큼 받았습니다.");
+
+            }
+            else if (TurnManager.Instance.targetPlayerName == playerList[1].name)
+            {
+                playerList[1].Heal(heal);
                 Debug.Log(playerList[0].name + "이(가) 힐을 " + heal + " 만큼 받았습니다.");
             }
-                else if (TurnManager.Instance.targetPlayerName == playerList[2].name)
-                {
-                    playerList[2].Heal(heal);
+            else if (TurnManager.Instance.targetPlayerName == playerList[2].name)
+            {
+                playerList[2].Heal(heal);
                 Debug.Log(playerList[0].name + "이(가) 힐을 " + heal + " 만큼 받았습니다.");
             }
-                else
-                {
-                    Debug.Log("정보 일치 하는게 없음.");
-                }
-
+            else
+            {
+                Debug.Log("정보 일치 하는게 없음.");
+            }
 
         }
         else
