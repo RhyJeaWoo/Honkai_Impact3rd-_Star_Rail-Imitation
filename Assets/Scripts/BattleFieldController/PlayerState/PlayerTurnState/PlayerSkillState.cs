@@ -7,6 +7,7 @@ public class PlayerSkillState : PlayerState
     
     public PlayerSkillState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
+
     }
 
     public override void Enter()

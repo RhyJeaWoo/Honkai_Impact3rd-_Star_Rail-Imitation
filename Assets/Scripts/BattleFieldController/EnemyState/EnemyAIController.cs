@@ -5,9 +5,6 @@ using UnityEngine;
 public class EnemyAIController : Entity
 {
 
-
-
-
     public EnemyStateMachine2 stateMachine { get; private set; }
 
     // 이벤트 핸들러 메서드

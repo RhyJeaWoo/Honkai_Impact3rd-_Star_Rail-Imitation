@@ -289,17 +289,17 @@ public class TurnManager : MonoBehaviour
                         //궁극기가 눌렸다면
                         Debug.Log("4번 키가 눌렸음");
                     }
-                }
+                } // 이 로직들에서 궁극기가 켜짐.
             }
 
 
 
-            if (!StopTurn && !isUltimateActivate)
+            if (!StopTurn && !isUltimateActivate) //그러면 여기서 뒤에 문장이 false로 바뀜 
             {
                 for (int i = 0; i < all_obj.Count; i++)
                 {
 
-                    all_obj[i].currentTurnSpeed -= 1f;
+                    all_obj[i].currentTurnSpeed -= 1f; // 결론적으로 여기에 제동이 걸림.
 
                     if (all_obj[i].currentTurnSpeed <= 0)
                     {

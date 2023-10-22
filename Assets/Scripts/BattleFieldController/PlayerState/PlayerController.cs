@@ -58,6 +58,8 @@ public class PlayerController : Entity
 
     public PlayerUltimateState ultimateState { get; private set; } //궁을 시전한 상태, 어떤 상태에서든 사용이 가능함.
 
+    public PlayerBeforeUltimateExcute beforeUltimateExcute { get; private set; }
+
 
     public PlayerUltimateWaitState ultimateWaitState { get; private set; }//궁극기 시전후 대기 상태로 사용 예정. 어떠한 상태에서든 개입 가능함.
 
@@ -94,6 +96,8 @@ public class PlayerController : Entity
 
         ultimateWaitState = new PlayerUltimateWaitState(this, stateMachine, "UltimateWait");//내 턴중 선택 상태 전에 유지할 상태(턴 스테이트 이후로 연결될 상태임) ,궁극기 발동시 대기할 모션으로 사용
 
+        beforeUltimateExcute = new PlayerBeforeUltimateExcute(this, stateMachine, "BeforeUltimate");
+
         ultimateState = new PlayerUltimateState(this, stateMachine, "Ultimate"); //궁극기 모션 발동
 
         ultimateEndState = new PlayerUltimateEndState(this, stateMachine, "UltimateEnd"); //여기서는 카메라나 연출 모션으로 뺄거임. 그리고 종료될때, 여기서 처리 할거임.
@@ -117,9 +121,10 @@ public class PlayerController : Entity
 
        
 
-
-
     }
+
+    #endregion
+
 
     // 참고로 스타레일 내 방어력 계수는
     // 1 - (내 방어력 / 내 방어력 + 200 + 10 * 적 레벨) 이다. 
@@ -133,7 +138,9 @@ public class PlayerController : Entity
         // TurnManager 스크립트로부터 healTarget 배열을 가져와서 playerList 리스트에 저장
         playerList.AddRange(TurnManager.Instance.healTarget.Select(transform => transform.GetComponent<PlayerController>()));
 
-        ListSort();
+        ListSort(); //한번 인위적으로 정렬 해줌. 
+
+        
 
 
     }
@@ -144,8 +151,7 @@ public class PlayerController : Entity
         stateMachine.currentState.Update();
 
     }
-    #endregion
-
+  
 
     public void ListSort()
     {

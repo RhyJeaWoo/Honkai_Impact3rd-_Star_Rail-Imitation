@@ -11,11 +11,13 @@ public class PlayerUltimateState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.cureng = 0;
     }
 
     public override void Exit()
     {
         base.Exit();
+        player.cureng += 5;
     }
 
     public override void Update()
