@@ -238,35 +238,56 @@ public class TurnManager : MonoBehaviour
     //누구의 턴인지 알 수 없을때(누가 먼저 0 인지 알 수 없을 경우, 리스트 전체의 current값을 0이 될때까지 감소)
     public void TurnTime()
     {
-        if (!isUltimateActivate)
+        if (!isUltimateActivate) //궁극기 모드가 아닐경우
         {
 
          
 
-            for (int i = 0; i < playable.Count; i++)
+            for (int i = 0; i < playable.Count; i++) // 일단 턴 매니저가 모든 플레이어 오브젝트를 감쌈
             {
                 //먼저 키를 비교함
                 if (playable[i].cureng == playable[i].maxeng)
                 {
                     if (Input.GetKeyDown(KeyCode.Alpha1) && playable[0].cureng == playable[0].maxeng) //여기서 누른애 순서랑 오브젝트 순서가 같은지를 같이 비교를 해야됨
+                        //일단 전략을 당장 사용할 겨를이 없으니 이렇게 사용합시다.
                     {
                         isUltimateActivate = true;
                         StopTurn = true;
 
                         //궁극기가 눌렸다면
-                        Debug.Log("키가 눌렸음");
+                        Debug.Log("1번 키가 눌렸음");
+                        playable[0].isUltimate = true;
                     }
                     else if (Input.GetKeyDown(KeyCode.Alpha2) && playable[1].cureng == playable[1].maxeng)
                     {
+                        isUltimateActivate = true;
 
+                        StopTurn = true;//일단 턴 제어를 멈춤.
+
+                        playable[1].isUltimate = true;
+
+                        //궁극기가 눌렸다면
+                        Debug.Log("2번 키가 눌렸음");
                     }
                     else if (Input.GetKeyDown(KeyCode.Alpha3) && playable[2].cureng == playable[2].maxeng)
                     {
+                        isUltimateActivate = true;
+                        StopTurn = true;
 
+                        playable[2].isUltimate = true;
+
+                        //궁극기가 눌렸다면
+                        Debug.Log("3번 키가 눌렸음");
                     }
                     else if(Input.GetKeyDown(KeyCode.Alpha4) && playable[3].cureng == playable[3].maxeng)
                     {
+                        isUltimateActivate = true;
+                        StopTurn = true;
 
+                        playable[3].isUltimate = true;
+
+                        //궁극기가 눌렸다면
+                        Debug.Log("4번 키가 눌렸음");
                     }
                 }
             }
@@ -307,6 +328,10 @@ public class TurnManager : MonoBehaviour
         StopTurn = false;
     }
 
+    public void UltimateEnd()
+    {
+        isUltimateActivate = false;
+    }
 
     public void TargetMove()
     {
@@ -397,7 +422,7 @@ public class TurnManager : MonoBehaviour
 
         TargetSimbolEnemyTr = target_simbol.transform.position; // 공격할 타겟 심볼의  Vector 저장 값임(적 enemy의 위치 저장값이 아님)
         targetEnemyName = enemys[curEnemyIndex].name;
-        EnemyTransForm = enemys[curEnemyIndex].transform.position;
+        EnemyTransForm = enemys[curEnemyIndex].transform.position; //이게 없어서 문제가 생겼던거임 너무 돌아갔었음.
 
     }
 

@@ -61,6 +61,8 @@ public class PlayerController : Entity
 
     public PlayerUltimateWaitState ultimateWaitState { get; private set; }//궁극기 시전후 대기 상태로 사용 예정. 어떠한 상태에서든 개입 가능함.
 
+    public PlayerUltimateEndState ultimateEndState { get; private set; }
+
 
 
 
@@ -90,9 +92,13 @@ public class PlayerController : Entity
         skillState = new PlayerSkillState(this, stateMachine, "Skill"); //내 턴에서 스킬을 선택했을 경우 결정하는 스테이트
 
 
-        ultimateWaitState = new PlayerUltimateWaitState(this, stateMachine, "Wait");//내 턴중 선택 상태 전에 유지할 상태(턴 스테이트 이후로 연결될 상태임) ,궁극기 발동시 대기할 모션으로 사용
+        ultimateWaitState = new PlayerUltimateWaitState(this, stateMachine, "UltimateWait");//내 턴중 선택 상태 전에 유지할 상태(턴 스테이트 이후로 연결될 상태임) ,궁극기 발동시 대기할 모션으로 사용
 
-        ultimateState = new PlayerUltimateState(this, stateMachine, "Ultimate"); //아무 턴이나 눌렀을 시 결정되는 스테이트
+        ultimateState = new PlayerUltimateState(this, stateMachine, "Ultimate"); //궁극기 모션 발동
+
+        ultimateEndState = new PlayerUltimateEndState(this, stateMachine, "UltimateEnd"); //여기서는 카메라나 연출 모션으로 뺄거임. 그리고 종료될때, 여기서 처리 할거임.
+
+
 
         comeBackState = new PlayerComeBackState(this, stateMachine, "ComeBack");
 
@@ -108,6 +114,8 @@ public class PlayerController : Entity
 
         buffgiveState = new PlayerBuffGiveState(this, stateMachine, "BuffGive"); //버프(힐)을 주는 상태
         whereGiveBuffState = new PlayerWhereGiveBuffState(this, stateMachine, "WhereGiveBuff");
+
+       
 
 
 
@@ -184,9 +192,10 @@ public class PlayerController : Entity
     {
         if (attackStrategy != null) { }
     }
-
-    //애니메이션으로 실행
-    public void SkillDamageEvent()
+     
+    //애니메이션으로 실행 , 이코드 다시한번 다듬어야 될거 같음, 지금은 그냥 이 델리게이트를 가진 애들한테 다 보내는 코드가 되는데,
+    //다중 공격이면 그냥 보내면 되긴함. 근데, 일단 단일이거나, 내가 지정해서 때리는거에 있어서, 그 부분이 들어가야 되지 않나 싶음.
+    public void SkillDamageEvent() 
     {
         if (skillStrategy != null)
         {
@@ -212,7 +221,7 @@ public class PlayerController : Entity
 
     public void DeligateLevel()
     {
-        OnLevelDealt?.Invoke(curLevel);
+        OnLevelDealt?.Invoke(curLevel); //레벨을 전달 해야 계수 계산이 가능함.
 
     }
 

@@ -11,6 +11,13 @@ public class PlayerUltimateWaitState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
+        player.toEnemyPos = TurnManager.Instance.EnemyTransForm;//타겟 지정
+
+
+        // 타겟 방향으로 회전함
+        player.transform.LookAt(player.toEnemyPos);
+
     }
 
     public override void Exit()
@@ -21,5 +28,10 @@ public class PlayerUltimateWaitState : PlayerState
     public override void Update()
     {
         base.Update();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+        }
     }
 }

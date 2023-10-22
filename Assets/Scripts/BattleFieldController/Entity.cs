@@ -80,6 +80,7 @@ public class Entity : MonoBehaviour
     public bool isMyTurn; // 내 턴인지
     public bool isAtackOn = false; //내가 공격 준비 상태에서 공격할 준비가 되었는지
     public bool isSkillOn = false; //내가 스킬 준비 상태에서 스킬을 사용할 준비가 되었는지 체크하고 넘어가는걸로
+
     public bool isUltimate = false; //내가 궁극기 버튼을 눌렀는가에 대한 체크
 
     public bool canAct = true; //HP가 0이 되어서 활동할 수 있는지 체크

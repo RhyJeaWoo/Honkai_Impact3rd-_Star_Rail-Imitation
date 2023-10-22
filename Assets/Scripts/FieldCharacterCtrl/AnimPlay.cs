@@ -8,20 +8,31 @@ public class AnimPlay : MonoBehaviour
     public GameObject skillEffect;
     public GameObject ultimate;
 
+    public GameObject ultimateWaitEffect;
+
    void Skill()
    {
-        Instantiate(skillEffect, transform.position, transform.rotation);
+      GameObject skilleffect = Instantiate(skillEffect, transform.position, transform.rotation);
+      Destroy(skilleffect, 3f);
    }
 
     
     void Atk()
     {
-        Instantiate(atkEffect, transform.position, transform.rotation);
+        GameObject atkeffect = Instantiate(atkEffect, transform.position, transform.rotation);
+        Destroy(atkeffect, 3f);
     }
 
     void Ultimate()
     {
-        Instantiate(ultimate, transform.position, transform.rotation);
+        GameObject ultimateEffect = Instantiate(ultimate, transform.position, transform.rotation);
+        Destroy(ultimateEffect, 3f);
+    }
+
+    void UltimateWaitEffect()
+    {
+        GameObject ultimateWaiteffect = Instantiate(ultimate, transform.position, transform.rotation);
+        Destroy(ultimateWaiteffect, 3f);
     }
 
 }
