@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerUltimateWaitState : PlayerState //여기서 궁극기를 발동할 타겟 지정할거임
+public class PlayerUltimateWaitState : PlayerState //여기서 궁극기를 발동할 타겟 지정하고 스페이스 누르면 작동
 {
     public PlayerUltimateWaitState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
@@ -11,6 +11,12 @@ public class PlayerUltimateWaitState : PlayerState //여기서 궁극기를 발동할 타겟
     public override void Enter()
     {
         base.Enter();
+
+        player.vircam[0].MoveToTopOfPrioritySubqueue();
+
+        player.anims.UltimateWaitEffect();
+
+        TurnManager.Instance.target_simbol.SetActive(true);
 
         player.toEnemyPos = TurnManager.Instance.EnemyTransForm;//타겟 지정
 
@@ -33,7 +39,7 @@ public class PlayerUltimateWaitState : PlayerState //여기서 궁극기를 발동할 타겟
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            
+            stateMachine.ChangeState(player.beforeUltimateExcute);
         }
     }
 }

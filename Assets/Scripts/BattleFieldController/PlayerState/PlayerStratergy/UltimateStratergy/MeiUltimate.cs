@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class MeiUltimate : PlayerUltimateStrategy
 {
-    public float Ultimate(PlayerController player)
+    float ultimate_Coefficient = 4f;
+    public float ExecuteUltimate(PlayerController player)
     {
-        return 0;
+        if (Random.Range(0f, 100f) < player.curCrt)
+        {
+            player.criticalDamage = player.defaultDamage * (1 + player.criticalPower) * ultimate_Coefficient;
+
+            return player.criticalDamage;
+        }
+        else
+
+        {
+            player.norAtkDamage = player.defaultDamage * ultimate_Coefficient;
+
+            return player.norAtkDamage;
+        }
+          
     }
 }

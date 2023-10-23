@@ -219,22 +219,6 @@ public class TurnManager : MonoBehaviour
     }
 
 
-    /*
-    public void PlayerSkill()
-    {
-        // 현재 플레이어의 스킬 실행
-        PlayerController currentPlayer = playable[curEnemyIndex];
-        currentPlayer.ExecuteSkill(currentPlayer);
-    }
-
-    public void PlayerAttack()
-    {
-        // 현재 플레이어의 공격 실행
-        PlayerController currentPlayer = playable[curEnemyIndex];
-        currentPlayer.ExecuteAttack(currentPlayer);
-
-    }*/
-
     //누구의 턴인지 알 수 없을때(누가 먼저 0 인지 알 수 없을 경우, 리스트 전체의 current값을 0이 될때까지 감소)
     public void TurnTime()
     {

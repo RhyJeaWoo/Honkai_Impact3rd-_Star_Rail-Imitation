@@ -6,8 +6,8 @@ public class AnimPlay : MonoBehaviour
 {
     public GameObject atkEffect;
     public GameObject skillEffect;
-    public GameObject ultimate;
-
+    public GameObject ultimateEffect;
+    public GameObject hitEffect;
     public GameObject ultimateWaitEffect;
 
    void Skill()
@@ -23,16 +23,23 @@ public class AnimPlay : MonoBehaviour
         Destroy(atkeffect, 3f);
     }
 
-    void Ultimate()
+    public void Ultimate()
     {
-        GameObject ultimateEffect = Instantiate(ultimate, transform.position, transform.rotation);
-        Destroy(ultimateEffect, 3f);
+        GameObject ultimateeffect = Instantiate(ultimateEffect, transform.position, transform.rotation);
+       // Destroy(ultimateeffect, 3f);
     }
 
-    void UltimateWaitEffect()
+    public void UltimateWaitEffect()
     {
-        GameObject ultimateWaiteffect = Instantiate(ultimate, transform.position, transform.rotation);
+        GameObject ultimateWaiteffect = Instantiate(ultimateWaitEffect, transform.position, Quaternion.identity);
         Destroy(ultimateWaiteffect, 3f);
+    }
+
+    void HitEffect()
+    {
+        GameObject hiteffect = Instantiate(hitEffect, transform.position + new Vector3(0,0,1.5f), Quaternion.identity);
+        Destroy(hiteffect, 1f);
+
     }
 
 }

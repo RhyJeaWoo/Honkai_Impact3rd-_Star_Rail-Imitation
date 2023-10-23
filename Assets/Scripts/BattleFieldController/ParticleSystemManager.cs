@@ -24,9 +24,9 @@ public class ParticleSystemManager : MonoBehaviour
         if (ExitCount >= childGameObjects.Length)
         {
             Debug.Log("파티클이 모두 종료되었음");
-            // 모든 자식 게임 오브젝트가 비활성화될 때 필요한 동작을 수행
-            // 이때를 이제 상태에 전달해서 데미지를 주면 될거 같음.
-            // 예를 들어, 상태 패턴으로 전환하는 등의 작업
+            gameObject.SetActive(false);
+            return;
+          
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public interface PlayerUltimateStrategy
 {
-    float Ultimate(PlayerController player);
+    float ExecuteUltimate(PlayerController player);
 
 }
 

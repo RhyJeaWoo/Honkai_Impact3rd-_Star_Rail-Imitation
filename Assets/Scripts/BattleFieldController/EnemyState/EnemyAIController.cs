@@ -20,6 +20,8 @@ public class EnemyAIController : Entity
         // 이 메서드에서 데미지 값을 받아 처리
         Debug.Log("데미지를 전달 받았습니다!" + damage);
         Debug.Log("현재 방어율 계수 : " + defenseCoefficient);
+        Debug.Log("현재 레벨" + curLevel);
+        
         Debug.Log("데미지를 받았습니다: " + SumDamage);
         Debug.Log("현재 hp : " + curhp);
  
@@ -72,7 +74,7 @@ public class EnemyAIController : Entity
     {
         base.Awake();
         stateMachine = new EnemyStateMachine2();
-     
+
     }
 
     protected override void Update()
@@ -81,6 +83,8 @@ public class EnemyAIController : Entity
         stateMachine.currentState.Update();
         //최종 방어계수 = ((현재 레벨 * 100) + 100) / (((전달 받은 상대 레벨 * 10) +200 )  +((현재 레벨 * 10 ) + 200));
         defenseCoefficient = ((curLevel * 10) + 200) / (((liciveOpponentLevel * 10) + 200) + ((curLevel * 10) + 200));
+
+        Debug.Log("현재 실시간 방어율 계수" + defenseCoefficient);
     }
 
     protected override void Start()

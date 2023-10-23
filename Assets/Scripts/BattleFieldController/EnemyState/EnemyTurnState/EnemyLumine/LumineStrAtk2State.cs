@@ -25,7 +25,7 @@ public class LumineStrAtk2State : EnemyState
         base.Update();
 
 
-        if (lumine.anim.GetCurrentAnimatorStateInfo(0).IsName("StrAtk2") && lumine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (lumine.anim.GetCurrentAnimatorStateInfo(0).IsName("Str2Atk") && lumine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             Debug.Log("루미네 StrAtk2 이 조건문은 실행되었음");
 

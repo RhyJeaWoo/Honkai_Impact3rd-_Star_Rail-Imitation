@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KianaUltimate : PlayerUltimateStrategy
 {
-    public float Ultimate(PlayerController player)
+    public float ExecuteUltimate(PlayerController player)
     {
         return 0;
     }

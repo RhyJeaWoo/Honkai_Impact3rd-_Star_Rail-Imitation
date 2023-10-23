@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class PlayerController : Entity
 {
 
     public List<PlayerController> playerList = new List<PlayerController>();
     //내 시점에서 바라볼 수 있는 플레이어 리스트
-
+    public PlayableDirector playableDirector; //각자의 궁극기를 여기에 삽입.
 
 
 
@@ -56,14 +57,16 @@ public class PlayerController : Entity
 
 
 
-    public PlayerUltimateState ultimateState { get; private set; } //궁을 시전한 상태, 어떤 상태에서든 사용이 가능함.
 
-    public PlayerBeforeUltimateExcute beforeUltimateExcute { get; private set; }
+
+    public PlayerUltimateState ultimateState { get; private set; } //궁을 시전한 상태, 어떤 상태에서든 사용이 가능함, 여기서 발사함
+
+    public PlayerBeforeUltimateExcute beforeUltimateExcute { get; private set; } //여기서 타임라인 굴림
 
 
     public PlayerUltimateWaitState ultimateWaitState { get; private set; }//궁극기 시전후 대기 상태로 사용 예정. 어떠한 상태에서든 개입 가능함.
 
-    public PlayerUltimateEndState ultimateEndState { get; private set; }
+    public PlayerUltimateEndState ultimateEndState { get; private set; }// 궁극기 종료후 데미지 정산
 
 
 
@@ -92,17 +95,18 @@ public class PlayerController : Entity
 
         attackState = new PlayerAttackState(this, stateMachine, "Attack");
         skillState = new PlayerSkillState(this, stateMachine, "Skill"); //내 턴에서 스킬을 선택했을 경우 결정하는 스테이트
+        //////////////////////////////////////////////////
 
 
         ultimateWaitState = new PlayerUltimateWaitState(this, stateMachine, "UltimateWait");//내 턴중 선택 상태 전에 유지할 상태(턴 스테이트 이후로 연결될 상태임) ,궁극기 발동시 대기할 모션으로 사용
 
-        beforeUltimateExcute = new PlayerBeforeUltimateExcute(this, stateMachine, "BeforeUltimate");
+        beforeUltimateExcute = new PlayerBeforeUltimateExcute(this, stateMachine, "BeforeUltimate"); //궁 실행되기 바로 전 모션
 
         ultimateState = new PlayerUltimateState(this, stateMachine, "Ultimate"); //궁극기 모션 발동
 
         ultimateEndState = new PlayerUltimateEndState(this, stateMachine, "UltimateEnd"); //여기서는 카메라나 연출 모션으로 뺄거임. 그리고 종료될때, 여기서 처리 할거임.
 
-
+        /////////////////////////////////////////////////////
 
         comeBackState = new PlayerComeBackState(this, stateMachine, "ComeBack");
 
@@ -139,6 +143,8 @@ public class PlayerController : Entity
         playerList.AddRange(TurnManager.Instance.healTarget.Select(transform => transform.GetComponent<PlayerController>()));
 
         ListSort(); //한번 인위적으로 정렬 해줌. 
+
+     
 
         
 
@@ -199,6 +205,15 @@ public class PlayerController : Entity
         if (attackStrategy != null) { }
     }
      
+
+    public void ExecuteUltimate(PlayerController player)
+    {
+        if(skillStrategy != null) 
+        {
+        
+        }
+    }
+
     //애니메이션으로 실행 , 이코드 다시한번 다듬어야 될거 같음, 지금은 그냥 이 델리게이트를 가진 애들한테 다 보내는 코드가 되는데,
     //다중 공격이면 그냥 보내면 되긴함. 근데, 일단 단일이거나, 내가 지정해서 때리는거에 있어서, 그 부분이 들어가야 되지 않나 싶음.
     public void SkillDamageEvent() 
@@ -222,6 +237,17 @@ public class PlayerController : Entity
             // 데미지 이벤트 발생
             OnDamageDealt?.Invoke(norAtkDamage);
 
+        }
+    }
+
+    public void UltimateDamageEvent()
+    {
+        if(skillStrategy != null)
+        {
+            float ultimateDamage = ultimateStrategy.ExecuteUltimate(this);
+
+            //데미지 이벤트 발생
+            OnDamageDealt?.Invoke(ultimateDamage);
         }
     }
 
