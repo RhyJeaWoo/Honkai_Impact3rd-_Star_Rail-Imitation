@@ -21,7 +21,7 @@ public class PlayerBuffGiveState : PlayerState
     public override void Exit()
     {
         base.Exit();
-        TurnManager.Instance.target_simbol.SetActive(false); // 활성화
+        TurnManager.Instance.Enemy_target_simbol.SetActive(false); // 활성화
     }
 
     public override void Update()
@@ -36,8 +36,8 @@ public class PlayerBuffGiveState : PlayerState
             player.cureng += 30;
 
             player.isMyTurn = false;
-            TurnManager.Instance.TurnEnd();
-            TurnManager.Instance.target_simbol.SetActive(false);
+            TurnManager.Instance.TurnEnd(); //로직을 다시 짜야된다.
+            //TurnManager.Instance.target_simbol.SetActive(false);
             player.stateMachine.ChangeState(player.idleState);
         }
 

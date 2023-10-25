@@ -12,7 +12,8 @@ public class PlayerWhereGiveBuffState : PlayerState
     {
         base.Enter();
 
-        TurnManager.Instance.target_simbol.SetActive(true); // 활성화
+        TurnManager.Instance.Player_target_simbol.SetActive(true); // 활성화
+        TurnManager.Instance.Enemy_target_simbol.SetActive(false);
 
         Debug.Log("버프를 줄 수 있는 상태에 진입하였음.");
 

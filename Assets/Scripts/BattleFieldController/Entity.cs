@@ -33,8 +33,6 @@ public class Entity : MonoBehaviour
 
     public float atk;//현재 공격력
     public float def;//현재 방어력
-   
-
 
     public float cureng;//현재 에너지
     public float maxeng;//최대 에너지
@@ -50,7 +48,8 @@ public class Entity : MonoBehaviour
     public float baseTurnSpeed; // 기초 행동 수치
     public float currentTurnSpeed; // 현재 행동 수치
 
-
+    [Header("플레이어가 가지는 속성")]
+    public string s = "s";
 
 
     [Header("플레이어의 데미지 관련 정리")]
@@ -77,23 +76,27 @@ public class Entity : MonoBehaviour
 
     public float time;//특정 스테이트에서 바로 빠져나가기 위한 쿨타임.
 
-    public bool isMyTurn; // 내 턴인지
-    public bool isAtackOn = false; //내가 공격 준비 상태에서 공격할 준비가 되었는지
-    public bool isSkillOn = false; //내가 스킬 준비 상태에서 스킬을 사용할 준비가 되었는지 체크하고 넘어가는걸로
-
+    public bool isMyTurn; // 내 턴인지를 체크하는 변수
+  
     public bool isUltimate = false; //내가 궁극기 버튼을 눌렀는가에 대한 체크
+
+    public bool IsReservingUltimate { get; set; } = false; //궁극기가 예약되었는가?
 
     public bool canAct = true; //HP가 0이 되어서 활동할 수 있는지 체크
 
 
+    //public bool StopTurn;
+    // public bool isAtackOn = false; //내가 공격 준비 상태에서 공격할 준비가 되었는지 체크
+    //public bool isSkillOn = false; //내가 스킬 준비 상태에서 스킬을 사용할 준비가 되었는지 체크
+    //되었는지 체크하고 넘어가는걸로
+
     // Start 함수에서 초기화를 수행합니다.
+
     protected virtual void Start()
     {
         skin = GetComponentsInChildren<SkinnedMeshRenderer>();
 
-
         ObjectStatCal();
-
 
     }
 
@@ -108,25 +111,19 @@ public class Entity : MonoBehaviour
         time -= Time.deltaTime;
     }
 
-    public void ObjectStatCal()
+    public void ObjectStatCal() //초기 수치 계산
     {
         // 최종 속도 계산    
         float finalSpeed = baseSpeed * (1 + buffSpeed / 100) + flatSpeed;
-
         // 기초 행동 수치 계산
         baseTurnSpeed = 10000 / finalSpeed;
-
         // 초기화 혹은 턴 시작 시 현재 속도와 행동 수치를 설정
         currentSpeed = finalSpeed;
         currentTurnSpeed = baseTurnSpeed;
-
         curhp = maxhp;
-
         //크리티컬 적용전 데미지   (공격력 * 스킬 계수) * (1 + 피해 증가 배수) 
 
         defaultDamage = (atk) * (1 + increasedDamage);
-
-
     }
 
 }

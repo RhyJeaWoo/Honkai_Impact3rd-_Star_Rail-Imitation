@@ -27,6 +27,7 @@ public class PlayerSkillState : PlayerState
     {
         base.Exit();
         //player.isSkillOn = false;
+
     }
 
     public override void Update()
@@ -38,8 +39,6 @@ public class PlayerSkillState : PlayerState
             player.cureng += 30;
 
             player.isMyTurn = false;
-            TurnManager.Instance.TurnEnd();
-            TurnManager.Instance.target_simbol.SetActive(false);
             player.stateMachine.ChangeState(player.comeBackState);
            
         }

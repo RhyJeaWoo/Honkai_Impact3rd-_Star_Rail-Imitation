@@ -16,6 +16,10 @@ public class PlayerAttackWaitState : PlayerState
 
         Debug.Log(player.name + "턴 선택(일반공격) 상태임");
 
+        //여기서 심볼 타겟 다시 잡기.
+
+        
+
     }
 
     public override void Exit()
@@ -28,7 +32,7 @@ public class PlayerAttackWaitState : PlayerState
     {
         base.Update();
 
-    
+        //TurnManager.Instance.ChangeEnemyTarget();
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -36,7 +40,7 @@ public class PlayerAttackWaitState : PlayerState
             //확정으로 키 입력시 작동
             player.stateMachine.ChangeState(player.targetMoveState);
           
-            //Debug.Log("Q가 눌렸음");
+        
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -44,8 +48,7 @@ public class PlayerAttackWaitState : PlayerState
             
             player.stateMachine.ChangeState(player.skillWaitState);
 
-           //if()
-            //Debug.Log("E가 눌렸음");
+      
         }
 
     }

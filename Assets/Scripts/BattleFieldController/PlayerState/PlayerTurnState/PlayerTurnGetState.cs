@@ -15,34 +15,14 @@ public class PlayerTurnGetState : PlayerState
         player.skin[1].enabled = true;
         player.skin[0].enabled = true;
 
-        TurnManager.Instance.target_simbol.SetActive(true);
+        TurnManager.Instance.Enemy_target_simbol.SetActive(true); //적 마크
+        TurnManager.Instance.Player_target_simbol.SetActive(false);//아군 마크
 
 
         player.vircam[0].MoveToTopOfPrioritySubqueue();
+       
 
         player.toPlayerPos = player.transform.position;
-
-
-        //player.toPlayerPos = TurnManager.Instance.PlayerTranfrom;
-
-
-        //Debug.Log("턴을 획득 하였음.");
-        //여기서 기본공격 준비 애니메이션 실행
-        //player.vircam.transform.position = player.transform.position + new Vector3(0,-0.3f,-9.7f);
-
-        //  player.moveCamPos = player.vircam.transform.position; //먼저 가상 카메라 초기 위치 좌표를 저장함
-        //   player.virCamRot = player.vircam.transform.rotation; //가상 카메라 회전 값을 저장
-
-        // 내 오브젝트 위치값을 Vector에 저장
-
-        //player.virCamPos = player.vircam.transform.position;//똑같이 카메라의 원래 값을 저장함.
-
-        //버그 발생 오브젝트가 X좌표 0일경우 문제가 발생하지 않는다. 하지만,
-
-        //
-
-        //player.vircam
-
 
 
     }

@@ -16,11 +16,12 @@ public class PlayerUltimateEndState : PlayerState
     {
         //base.Enter(); 애니메이션을 쓰지 않을거기 때문에 잠금
 
-        player.vircam[0].MoveToTopOfPrioritySubqueue();
-
+ 
         player.UltimateDamageEvent();
 
-        Debug.Log("호출되었음");
+        player.playableDirector.enabled = false;
+
+        //Debug.Log("호출되었음");
 
 
     }
@@ -28,13 +29,17 @@ public class PlayerUltimateEndState : PlayerState
     public override void Exit()
     {
         //base.Exit(); 애니메이션 안쓸거니까 잠금
+        TurnManager.Instance.ultimateQueue.Dequeue();
+        TurnManager.Instance.TurnEnd();
+        TurnManager.Instance.UltimateEnd();
+        player.isUltimate = false;
+
     }
 
     public override void Update()
     {
         base.Update();
-        player.isUltimate = false;
-        TurnManager.Instance.TurnEnd();
+
         stateMachine.ChangeState(player.idleState);
     }
 }

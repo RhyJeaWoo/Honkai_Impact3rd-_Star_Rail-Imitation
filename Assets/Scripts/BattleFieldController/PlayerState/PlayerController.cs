@@ -6,13 +6,15 @@ using UnityEngine.Playables;
 public class PlayerController : Entity
 {
 
+
     public List<PlayerController> playerList = new List<PlayerController>();
     //내 시점에서 바라볼 수 있는 플레이어 리스트
     public PlayableDirector playableDirector; //각자의 궁극기를 여기에 삽입.
 
-
-
     #region Design Patterns
+
+    
+
 
     //전략
     private PlayerSkillStrategy skillStrategy;
@@ -57,7 +59,7 @@ public class PlayerController : Entity
 
 
 
-
+    public PlayerIsMyUltimateTurnState isMyUltimateTurnState { get; private set; }
 
     public PlayerUltimateState ultimateState { get; private set; } //궁을 시전한 상태, 어떤 상태에서든 사용이 가능함, 여기서 발사함
 
@@ -97,6 +99,7 @@ public class PlayerController : Entity
         skillState = new PlayerSkillState(this, stateMachine, "Skill"); //내 턴에서 스킬을 선택했을 경우 결정하는 스테이트
         //////////////////////////////////////////////////
 
+        isMyUltimateTurnState = new PlayerIsMyUltimateTurnState(this, stateMachine, "isMyUltimateTurn");
 
         ultimateWaitState = new PlayerUltimateWaitState(this, stateMachine, "UltimateWait");//내 턴중 선택 상태 전에 유지할 상태(턴 스테이트 이후로 연결될 상태임) ,궁극기 발동시 대기할 모션으로 사용
 
@@ -313,6 +316,14 @@ public class PlayerController : Entity
         }
     }
 
+  
 
+    public void HandleUltimateReservations()
+    {
+        // 궁극기 예약 처리 로직 추가
+        // ...
+        IsReservingUltimate = true; //이 캐릭터가 예약 되었는가?
+        Debug.Log(name + "이(가) 궁극기를 예약했습니다.");
+    }
 
 }

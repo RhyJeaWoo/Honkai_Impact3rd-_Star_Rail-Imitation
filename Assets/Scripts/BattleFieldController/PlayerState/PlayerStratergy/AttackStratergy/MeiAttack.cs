@@ -16,7 +16,7 @@ public class MeiAttack : PlayerAttackStrategy
 
             // critical hit!
 
-            Debug.Log("메이 크리티컬 평타 데미지는 : " + player.criticalDamage);
+            //Debug.Log("메이 크리티컬 평타 데미지는 : " + player.criticalDamage);
 
             return player.criticalDamage;
         }
@@ -25,7 +25,7 @@ public class MeiAttack : PlayerAttackStrategy
             player.norAtkDamage = player.defaultDamage * attackDamage;
 
             // normal hit
-            Debug.Log("메이 논 크리티컬 평타 데미지는 : " + player.norAtkDamage);
+            //Debug.Log("메이 논 크리티컬 평타 데미지는 : " + player.norAtkDamage);
 
             return player.norAtkDamage;
         }

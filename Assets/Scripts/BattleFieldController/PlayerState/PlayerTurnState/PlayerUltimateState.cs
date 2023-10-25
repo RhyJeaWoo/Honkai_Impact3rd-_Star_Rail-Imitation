@@ -31,7 +31,7 @@ public class PlayerUltimateState : PlayerState
         base.Exit();
       
         player.cureng += 5;
-        player.playableDirector.enabled = false;
+      
         time = 0;
 
 
@@ -48,8 +48,16 @@ public class PlayerUltimateState : PlayerState
             time += Time.deltaTime;
         }
 
+
+        //player.playableDirector.duration -= Time.deltaTime;
+
+
+
+
         if (time >= player.playableDirector.duration)
         {
+
+            player.playableDirector.Stop();
             stateMachine.ChangeState(player.ultimateEndState);
         
         }

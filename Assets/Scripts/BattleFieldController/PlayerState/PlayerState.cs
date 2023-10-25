@@ -8,9 +8,6 @@ public class PlayerState
     protected PlayerStateMachine stateMachine;
     protected PlayerController player;
 
-    
-
-
     protected Rigidbody2D rb;
 
    // protected float xInput;
@@ -41,8 +38,10 @@ public class PlayerState
     {
         stateTimer -= Time.deltaTime;
 
-    
-      //  player.anim.SetFloat("yVelocity", rb.velocity.y);
+
+        //  player.anim.SetFloat("yVelocity", rb.velocity.y);
+       // Debug.Log("현재 이 플레이어 이름 " + player.gameObject.name);
+       // Debug.Log("지금 현재 상태" + stateMachine.currentState);
 
     }
 
@@ -53,6 +52,6 @@ public class PlayerState
 
     public virtual void AnimationFinishTrigger()
     {
-      //  triggerCalled = true;
+      
     }
 }

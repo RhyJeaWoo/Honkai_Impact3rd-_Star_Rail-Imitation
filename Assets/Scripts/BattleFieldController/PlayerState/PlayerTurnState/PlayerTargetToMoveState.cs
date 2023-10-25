@@ -34,7 +34,7 @@ public class PlayerTargetToMoveState : PlayerState
     {
         base.Update();
 
-        Debug.Log("TurnManager.Instance.TargetEnemyTranform" + TurnManager.Instance.TargetSimbolEnemyTr);
+        //Debug.Log("TurnManager.Instance.TargetEnemyTranform" + TurnManager.Instance.TargetSimbolEnemyTr);
 
         player.transform.position = Vector3.Lerp(player.transform.position, player.toEnemyPos - new Vector3(0, 0, 1f), 0.05f);
 

@@ -16,7 +16,7 @@ public class PlayerUltimateWaitState : PlayerState //여기서 궁극기를 발동할 타겟
 
         player.anims.UltimateWaitEffect();
 
-        TurnManager.Instance.target_simbol.SetActive(true);
+        TurnManager.Instance.Enemy_target_simbol.SetActive(true);
 
         player.toEnemyPos = TurnManager.Instance.EnemyTransForm;//타겟 지정
 
@@ -35,11 +35,12 @@ public class PlayerUltimateWaitState : PlayerState //여기서 궁극기를 발동할 타겟
     {
         base.Update();
 
-        //먼저 여기서 공격할 상대를 지정하는 코드를 짜자
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             stateMachine.ChangeState(player.beforeUltimateExcute);
         }
+
+
+
     }
 }

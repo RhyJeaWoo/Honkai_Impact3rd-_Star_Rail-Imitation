@@ -34,9 +34,8 @@ public class PlayerAttackState : PlayerState
           
             player.cureng += 20;
 
-            player.isMyTurn = false;
-            TurnManager.Instance.TurnEnd();
-            TurnManager.Instance.target_simbol.SetActive(false);
+         
+            TurnManager.Instance.Enemy_target_simbol.SetActive(false);
             player.stateMachine.ChangeState(player.comeBackState);
          
         }
