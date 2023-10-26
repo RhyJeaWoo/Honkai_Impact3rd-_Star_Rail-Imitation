@@ -48,7 +48,7 @@ public class Entity : MonoBehaviour
     public float baseTurnSpeed; // 기초 행동 수치
     public float currentTurnSpeed; // 현재 행동 수치
 
-    [Header("플레이어가 가지는 속성")]
+    [Header("이 오브젝트가 가지는 속성")]
     public string s = "s";
 
 
@@ -70,6 +70,18 @@ public class Entity : MonoBehaviour
 
     [Header("플레이어의 힐 관련 정리")]
     public float sumHeal; //힐 총합 수치
+
+    /*
+     * 여기서 플레이어가 가지는 속성을 정함
+     * 물, 번개, 얼음 , 허수, 양자 ,물리 만 다루려고함.
+     * 일단 키아나 불
+     * 메이 번개 확정
+     * 엘리시아는 양자
+     * 듀란달은 허수로 생각중
+     * 
+     * 루미네는 약점 속성 불 번개 그리고 물리만 생각중
+     * 
+     */
    
 
     [Header("잡다한거")]
