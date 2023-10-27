@@ -3178,6 +3178,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8584458747252528236, guid: a199ba41574f889488349e202a304db1, type: 3}
   m_PrefabInstance: {fileID: 1948714498}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &192945279 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2122280212584583058, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
+  m_PrefabInstance: {fileID: 728644938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &201178002
 GameObject:
   m_ObjectHideFlags: 0
@@ -4143,6 +4148,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1447811074723687393, guid: a199ba41574f889488349e202a304db1, type: 3}
   m_PrefabInstance: {fileID: 1948714498}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &462954800 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8509793859144601410, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
+  m_PrefabInstance: {fileID: 728644938}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &479044992
 GameObject:
@@ -10730,6 +10740,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4937939151522102583, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
       insertIndex: -1
       addedObject: {fileID: 558757033}
+    - targetCorrespondingSourceObject: {fileID: 4937939151522102583, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1165357175}
     - targetCorrespondingSourceObject: {fileID: 7677131781496069969, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
       insertIndex: 0
       addedObject: {fileID: 355508659}
@@ -10799,6 +10812,11 @@ MonoBehaviour:
   canAct: 0
   playerList: []
   playableDirector: {fileID: 1014930203}
+--- !u!4 &738520549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 79602722778510132, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
+  m_PrefabInstance: {fileID: 728644938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &743735076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7677131781496069969, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
@@ -12756,6 +12774,11 @@ PlayableDirector:
     - 5e1ba9d1fce338243ba75e238547bce4: {fileID: 1919257531}
     - b064ff1c4260b71409bb75cd7957439b: {fileID: 1207458692}
     - 33c93f682842e274a82d4c37c13fb71a: {fileID: 1505165410}
+--- !u!4 &1038104550 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7914270766214750467, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
+  m_PrefabInstance: {fileID: 728644938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1040007711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1001736902584987725, guid: a199ba41574f889488349e202a304db1, type: 3}
@@ -13649,6 +13672,573 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138292367}
   m_CullTransparentMesh: 1
+--- !u!1 &1165357174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1165357175}
+  - component: {fileID: 1165357176}
+  m_Layer: 0
+  m_Name: MagicaPants
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1165357175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165357174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 728644939}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1165357176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165357174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdbd3ce05f5b45942b56ede5c9b38364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializeData:
+    clothType: 1
+    sourceRenderers: []
+    paintMode: 0
+    paintMaps: []
+    rootBones:
+    - {fileID: 738520549}
+    - {fileID: 2053884770}
+    - {fileID: 1406849505}
+    - {fileID: 192945279}
+    - {fileID: 462954800}
+    - {fileID: 1647808021}
+    - {fileID: 1038104550}
+    - {fileID: 1365993520}
+    connectionMode: 0
+    rotationalInterpolation: 0.5
+    rootRotation: 0.5
+    updateMode: 0
+    animationPoseRatio: 0
+    reductionSetting:
+      simpleDistance: 0
+      shapeDistance: 0
+    customSkinningSetting:
+      enable: 0
+      skinningBones: []
+    normalAlignmentSetting:
+      alignmentMode: 0
+      adjustmentTransform: {fileID: 0}
+    cullingSettings:
+      cameraCullingMode: 30
+      cameraCullingMethod: 0
+      cameraCullingRenderers: []
+    normalAxis: 1
+    gravity: 5
+    gravityDirection:
+      x: 0
+      y: -1
+      z: 0
+    gravityFalloff: 0
+    stablizationTimeAfterReset: 0.1
+    damping:
+      value: 0.1
+      useCurve: 0
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    radius:
+      value: 0.02
+      useCurve: 0
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    inertiaConstraint:
+      worldInertia: 1
+      movementSpeedLimit:
+        value: 5
+        use: 1
+      rotationSpeedLimit:
+        value: 720
+        use: 1
+      localInertia: 1
+      depthInertia: 0.7
+      centrifualAcceleration: 0.1
+      particleSpeedLimit:
+        value: 4
+        use: 1
+      teleportMode: 0
+      teleportDistance: 0.5
+      teleportRotation: 90
+    tetherConstraint:
+      distanceCompression: 0.7
+    distanceConstraint:
+      stiffness:
+        value: 1
+        useCurve: 1
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: -0.5
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0.5
+            inSlope: -0.5
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    triangleBendingConstraint:
+      stiffness: 1
+    angleRestorationConstraint:
+      useAngleRestoration: 1
+      stiffness:
+        value: 0.2
+        useCurve: 1
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: -0.7955246
+            outSlope: -0.7955246
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 0.2044754
+            inSlope: -0.7955246
+            outSlope: -0.7955246
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+      velocityAttenuation: 0.7
+      gravityFalloff: 0
+    angleLimitConstraint:
+      useAngleLimit: 1
+      limitAngle:
+        value: 60
+        useCurve: 1
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0.199749
+            inSlope: 0.800251
+            outSlope: 0.800251
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0.800251
+            outSlope: 0.800251
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+      stiffness: 1
+    motionConstraint:
+      useMaxDistance: 0
+      maxDistance:
+        value: 0.3
+        useCurve: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+      useBackstop: 0
+      backstopRadius: 10
+      backstopDistance:
+        value: 0
+        useCurve: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+      stiffness: 1
+    colliderCollisionConstraint:
+      mode: 1
+      friction: 0.05
+      colliderList: []
+    selfCollisionConstraint:
+      selfMode: 0
+      surfaceThickness:
+        value: 0.005
+        useCurve: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0.5
+            inSlope: 0
+            outSlope: 0.5
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0.5
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+      syncMode: 0
+      syncPartner: {fileID: 0}
+      clothMass: 0
+    wind:
+      influence: 1
+      frequency: 1
+      turbulence: 1
+      blend: 0.7
+      synchronization: 0.7
+      depthWeight: 0
+      movingWind: 0
+  serializeData2:
+    selectionData:
+      positions:
+      - x: -0.031723738
+        y: 0.89390045
+        z: 0.0902307
+      - x: -0.054373503
+        y: 0.7803512
+        z: 0.070348024
+      - x: -0.039648533
+        y: 0.85456365
+        z: 0.096342325
+      - x: -0.0142941475
+        y: 0.98126405
+        z: 0.10500002
+      - x: -0.013510704
+        y: 0.98475015
+        z: 0.09101486
+      - x: -0.0058865547
+        y: 1.0236876
+        z: 0.121500015
+      - x: 0.008838177
+        y: 1.0978999
+        z: 0.14749408
+      - x: -0.054006815
+        y: 0.78300434
+        z: 0.09775448
+      - x: -0.039282084
+        y: 0.8572168
+        z: 0.12374878
+      - x: -0.08176184
+        y: 0.87868667
+        z: 0.08219743
+      - x: -0.09546995
+        y: 0.79218304
+        z: 0.07307196
+      - x: -0.11225009
+        y: 0.69269603
+        z: 0.053161383
+      - x: -0.12532139
+        y: 0.61599195
+        z: 0.0399189
+      - x: -0.11059666
+        y: 0.6902044
+        z: 0.0659132
+      - x: 0.008670092
+        y: 0.8605526
+        z: 0.08274269
+      - x: -0.011926651
+        y: 0.7754308
+        z: 0.0735755
+      - x: -0.03456998
+        y: 0.6771195
+        z: 0.053629875
+      - x: -0.05192852
+        y: 0.6012752
+        z: 0.040361404
+      - x: -0.03720379
+        y: 0.6754875
+        z: 0.066355705
+      - x: 0.003489256
+        y: 0.93896157
+        z: 0.08755398
+      - x: -0.005844593
+        y: 0.78027326
+        z: 0.086854696
+      - x: 0.008925438
+        y: 0.6418429
+        z: 0.08343196
+      - x: 0.054273367
+        y: 0.4924445
+        z: 0.10096407
+      - x: 0.130301
+        y: 0.35412925
+        z: 0.10691762
+      - x: 0.19695282
+        y: 0.22529608
+        z: 0.08925915
+      - x: 0.2551427
+        y: 0.08260478
+        z: 0.026750088
+      - x: 0.26986742
+        y: 0.15681726
+        z: 0.05274439
+      - x: -0.04680848
+        y: 0.94904757
+        z: 0.08725071
+      - x: -0.099368334
+        y: 0.7990273
+        z: 0.08629131
+      - x: -0.16632533
+        y: 0.6769853
+        z: 0.08237553
+      - x: -0.26596546
+        y: 0.5566606
+        z: 0.09903383
+      - x: -0.38950443
+        y: 0.4583632
+        z: 0.103784084
+      - x: -0.50046325
+        y: 0.36514533
+        z: 0.08505511
+      - x: -0.6084373
+        y: 0.25577313
+        z: 0.021545172
+      - x: -0.59371257
+        y: 0.3299855
+        z: 0.047539473
+      - x: 0.09676957
+        y: 1.0018815
+        z: 0.02317071
+      - x: 0.073774815
+        y: 0.929019
+        z: 0.06643486
+      - x: 0.017113686
+        y: 0.7220714
+        z: 0.117264986
+      - x: 0.031838417
+        y: 0.7962836
+        z: 0.14325929
+      - x: 0.10286021
+        y: 0.95077217
+        z: -0.035396338
+      - x: 0.049622536
+        y: 0.8706878
+        z: -0.118808985
+      - x: 0.06434727
+        y: 0.94490016
+        z: -0.09281492
+      - x: -0.107867
+        y: 1.0429162
+        z: 0.02193737
+      - x: -0.11524367
+        y: 0.966922
+        z: 0.06529546
+      - x: -0.1433413
+        y: 0.7542466
+        z: 0.11629748
+      - x: -0.12861657
+        y: 0.82845896
+        z: 0.14229178
+      - x: -0.13251185
+        y: 0.99797016
+        z: -0.036815166
+      - x: -0.11330223
+        y: 0.90335834
+        z: -0.11979079
+      - x: -0.0985775
+        y: 0.97757065
+        z: -0.09379673
+      attributes:
+      - Value: 1
+      - Value: 2
+      - Value: 2
+      - Value: 1
+      - Value: 1
+      - Value: 1
+      - Value: 1
+      - Value: 2
+      - Value: 2
+      - Value: 1
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 1
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 1
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 1
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 2
+      - Value: 1
+      - Value: 1
+      - Value: 2
+      - Value: 2
+      - Value: 1
+      - Value: 1
+      - Value: 1
+      - Value: 1
+      - Value: 1
+      - Value: 2
+      - Value: 2
+      - Value: 1
+      - Value: 1
+      - Value: 1
+      maxConnectionDistance: 0.22050285
+      userEdit: 1
+  gizmoSerializeData:
+    always: 0
+    clothDebugSettings:
+      enable: 1
+      ztest: 0
+      position: 1
+      axis: 0
+      shape: 1
+      baseLine: 0
+      depth: 0
+      collider: 1
+      animatedPosition: 0
+      animatedAxis: 0
+      animatedShape: 0
 --- !u!1 &1207458690
 GameObject:
   m_ObjectHideFlags: 0
@@ -14734,6 +15324,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6102043121980802236, guid: a199ba41574f889488349e202a304db1, type: 3}
   m_PrefabInstance: {fileID: 1948714498}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1365993520 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4618645968689514583, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
+  m_PrefabInstance: {fileID: 728644938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1367491765
 GameObject:
   m_ObjectHideFlags: 0
@@ -14941,6 +15536,11 @@ Transform:
   m_Father: {fileID: 1234249892}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1406849505 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6567242731544287431, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
+  m_PrefabInstance: {fileID: 728644938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1411531100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4145758998898932646, guid: a199ba41574f889488349e202a304db1, type: 3}
@@ -15738,6 +16338,11 @@ MonoBehaviour:
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: a197325c15a33734aaa6a7d742ee78af, type: 3}
   m_PrefabInstance: {fileID: 44054823}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1647808021 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2115068265514929723, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
+  m_PrefabInstance: {fileID: 728644938}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1651014338
 GameObject:
@@ -24263,6 +24868,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2053884770 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2823461900958071683, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
+  m_PrefabInstance: {fileID: 728644938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2083497152
 GameObject:
   m_ObjectHideFlags: 0
