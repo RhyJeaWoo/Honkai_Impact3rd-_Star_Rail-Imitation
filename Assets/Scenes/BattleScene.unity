@@ -3976,7 +3976,7 @@ PlayableDirector:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395820084}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 53f9a130690bfa149b9ea1020b29168a, type: 2}
   m_InitialState: 1
@@ -13854,7 +13854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1236002716
 Transform:
   m_ObjectHideFlags: 0
@@ -23712,11 +23712,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1837744a1093054f8a81b8dbbce0397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atkEffect: {fileID: 9182003644490663784, guid: 2006d48446e84894e9af637a7ba6cf4e, type: 3}
-  skillEffect: {fileID: 8800596256936212562, guid: 362b34cac7d0afa408f9edbcd2e1301e, type: 3}
+  atkEffect: {fileID: 9182003644490663784, guid: 1aa431de6ee6f344aa640cc254d31807, type: 3}
+  skillEffect: {fileID: 8800596256936212562, guid: 15a5d447327862c42be8884ecfb179e2, type: 3}
   ultimateEffect: {fileID: 2631319394416397090, guid: 4ce856ae33f0aee43bacdc91669a911f, type: 3}
   hitEffect: {fileID: 8332965574598888156, guid: d3c10a5078e2f7448bbf747fc7768637, type: 3}
   ultimateWaitEffect: {fileID: 1078496311052904, guid: 1674caf6f46ca1c41b000b2203b9e476, type: 3}
+  BladeHitPos: {fileID: 7929668677450426348}
 --- !u!114 &1948714505
 MonoBehaviour:
   m_ObjectHideFlags: 0

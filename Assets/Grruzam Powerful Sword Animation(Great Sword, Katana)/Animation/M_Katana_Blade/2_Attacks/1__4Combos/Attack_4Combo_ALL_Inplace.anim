@@ -69023,6 +69023,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.33333334
+    functionName: Atk
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.33333334
     functionName: AttackDamageEnvet
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -69030,6 +69037,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.36666667
+    functionName: HitEffect
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.76666665
     functionName: Atk
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -69044,7 +69058,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.8
-    functionName: Atk
+    functionName: HitEffect
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
