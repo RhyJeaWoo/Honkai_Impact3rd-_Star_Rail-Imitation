@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class PlayerIsMyUltimateTurnState : PlayerState
 {
-
+    //궁극기를 눌렀을때, 자기 상태를 기다리는 중
     private bool ultimateReserved = false; // 궁극기 예약 여부를 나타내는 플래그
     public PlayerIsMyUltimateTurnState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
@@ -27,8 +28,6 @@ public class PlayerIsMyUltimateTurnState : PlayerState
 
         if (player.isUltimate)
         {
-            // 궁극기 상태로 전환
-
             stateMachine.ChangeState(player.ultimateWaitState);
             return;
         }
@@ -40,6 +39,7 @@ public class PlayerIsMyUltimateTurnState : PlayerState
             if (otherPlayer != player && otherPlayer.isMyTurn)
             {
                 otherPlayerIsTurn = true;
+                Debug.Log("누군가가 턴을 잡았음");
                 break;
             }
         }
@@ -58,5 +58,12 @@ public class PlayerIsMyUltimateTurnState : PlayerState
             //TurnManager.Instance.TurnEnd();
         }
 
+       
+
+       
     }
+        
+       
+
+    
 }

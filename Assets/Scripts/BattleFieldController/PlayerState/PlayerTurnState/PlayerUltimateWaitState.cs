@@ -14,7 +14,7 @@ public class PlayerUltimateWaitState : PlayerState //¿©±â¼­ ±Ã±Ø±â¸¦ ¹ßµ¿ÇÒ Å¸°Ù
 
         player.vircam[0].MoveToTopOfPrioritySubqueue();
 
-        player.anims.UltimateWaitEffect();
+        //player.anims.UltimateWaitEffect();
 
         TurnManager.Instance.Enemy_target_simbol.SetActive(true);
 

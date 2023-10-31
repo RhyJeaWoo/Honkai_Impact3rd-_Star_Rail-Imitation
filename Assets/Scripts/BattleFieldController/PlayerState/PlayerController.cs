@@ -7,7 +7,7 @@ public class PlayerController : Entity
 {
 
 
-    public List<PlayerController> playerList = new List<PlayerController>();
+    public List<PlayerController> playerList = new List<PlayerController>(new PlayerController[4]);
     //내 시점에서 바라볼 수 있는 플레이어 리스트
     public PlayableDirector playableDirector; //각자의 궁극기를 여기에 삽입.
 
@@ -140,18 +140,16 @@ public class PlayerController : Entity
     protected override void Start()
     {
         base.Start();
+
         stateMachine.Initialize(idleState);
 
         // TurnManager 스크립트로부터 healTarget 배열을 가져와서 playerList 리스트에 저장
         playerList.AddRange(TurnManager.Instance.healTarget.Select(transform => transform.GetComponent<PlayerController>()));
-
+        //Debug.Log(TurnManager.Instance.healTarget.Length);
+        
         ListSort(); //한번 인위적으로 정렬 해줌. 
 
-     
-
-        
-
-
+  
     }
 
     protected override void Update()
@@ -159,6 +157,13 @@ public class PlayerController : Entity
         base.Update();
         stateMachine.currentState.Update();
 
+        if(maxeng < cureng)
+        {
+            cureng = maxeng;
+        }
+
+        Debug.Log(stateMachine.currentState);
+      
     }
   
 

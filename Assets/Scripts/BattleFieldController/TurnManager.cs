@@ -15,11 +15,12 @@ public class TurnManager : MonoBehaviour
 
     [SerializeField] private int SkillStack = 3;
 
-   
+
 
     public string targetPlayerName;
 
     public string targetEnemyName;
+
 
 
     public bool StopTurn; //true면 턴 중지 이때 IsTurn이 true면 턴 인계로 false됨
@@ -31,7 +32,7 @@ public class TurnManager : MonoBehaviour
 
     public bool ultimateReserved = false;//궁극기가 예약 되었다면 true
 
- 
+
 
     [Header("오브젝트 관련 리스트 및 요소들")]
     [SerializeField] private List<Entity> all_obj = new List<Entity>();
@@ -42,17 +43,20 @@ public class TurnManager : MonoBehaviour
 
     [SerializeField] public List<PlayerController> playable = new List<PlayerController>();
     //플레어블만 구분하기 위해 선언된 리스트
+    [SerializeField] public List<PlayerController> playerUltimate = new List<PlayerController>(); //이걸 그냥 먼저 들어온 애들을 순차적으로 저장할 예정임.
+
+    //[SerializeField] public Queue<PlayerController> ultimateQueue = new Queue<PlayerController>(); //폐기예정
 
 
     [SerializeField] private int curEnemyIndex = 0;
     [SerializeField] private int curPlayerIndex = 0;
 
     [Header("궁극기 사용 순서를 나타내기 위해 사용하는 큐")]
-    public Queue<PlayerController> ultimateQueue = new Queue<PlayerController>();
+    //public Queue<PlayerController> ultimateQueue = new Queue<PlayerController>();
 
     //[Header("턴이 먼저 잡힌 순서를 나타내기 위해 사용하는 큐")]
     //public Queue<Entity> isturnQueue = new Queue<PlayerController>();
-    
+
 
 
     public Vector3 TargetSimbolEnemyTr; //내가 지정한 적의 위치 앞에 이동하기 위해 저의 좌표를 저장할 벡터3 좌표 변수임
@@ -63,9 +67,6 @@ public class TurnManager : MonoBehaviour
     public Vector3 TargetSimbolPlTr;
 
     public Vector3 PlayerTransForm;
-
-
-
 
     public Transform[] healTarget; // 힐 대상을 저장하는 변수 , 사실상 플레이어들의 트랜스폼을 저장하는 변수임.
 
@@ -140,8 +141,10 @@ public class TurnManager : MonoBehaviour
 
         TurnTime();
 
-        Debug.Log("ultimateQueue.Count: " + ultimateQueue.Count);
-     
+        //Debug.Log("ultimateQueue.Count: " + ultimateQueue.Count);
+
+        //List<PlayerController> distinctList = playerUltimate.Distinct().ToList();
+
     }
 
 
@@ -236,51 +239,99 @@ public class TurnManager : MonoBehaviour
 
     public void TurnTime()
     {
+
+
         // 여기에서 궁극기 예약 및 큐에 추가 로직을 유지
-        for (int i = 0; i < playable.Count; i++)
-        {
-            if (ultimateQueue.Count > 0) //궁극기를 누른 player오브젝트를 큐에 저장되면, Count가 오름
-            {
-                isUltimateActivate = true; //궁극기를 누른 플레이어가 있는가?
-                playable[i].HandleUltimateReservations();
-                //IsReservingUltimate가  playable[i]가 예약했다는 뜻 true로 바뀜
-                //이때 여러명이 누를 수 있으니, playerControl이   public bool isUltimate 가 모두 false 일때 IsReservingUltimate가 false로 바뀌어야함.
-            }else
-            {
-                isUltimateActivate = false;
-            }
-               
-
-
-                if (playable[i].cureng == playable[i].maxeng)
+        /*
+                if (ultimateQueue.Count > 0) //궁극기를 누른 player오브젝트를 큐에 저장되면, Count가 오름
                 {
-                    KeyCode hotkey = KeyCode.Alpha1 + i;
-                    if (Input.GetKeyDown(hotkey))
+
+                    isUltimateActivate = true; //궁극기를 누른 플레이어가 있는가?
+
+                    for (int i = 0; i < playable.Count; i++)
                     {
-                        //if (!playable[i].isMyTurn && !playable[i].isUltimate)
-                        
-                            ReserveUltimate(playable[i]);
-                            // 플레이어를 "궁극기 예약 중" 상태로 설정
-                            playable[i].isUltimate = true; //여기서 궁극기가 사용가능한가.
-                            Debug.Log((i + 1) + "번 키가 눌렸음");
-                        //여기서 만약 예약만 한다고 치면 
-                        
+                        if (playable[i].isUltimate)
+                        {
+
+                            //playable[i].IsReservingUltimate = false;
+                        }
                     }
+                    //IsReservingUltimate가  playable[i]가 예약했다는 뜻 true로 바뀜
+                    //이때 여러명이 누를 수 있으니, playerControl이   public bool isUltimate 가 모두 false 일때 IsReservingUltimate가 false로 바뀌어야함.
                 }
-          
-        }
+                else
+                {
+                    isUltimateActivate = false;
+                }*/
+
+        //그냥 큐 안쓰고 리스트로 해서, 리스트 첫번째 인지 보고 첫번쨰만 실행하고 종료되면 리스트 제거할거임 ㅡㅡ
 
 
-        if (ultimateQueue.Count == 0) //궁극기가 예약된 유저가 없을 경우 턴을 속행
+        if (playable[0].cureng == playable[0].maxeng && Input.GetKeyDown(KeyCode.Alpha1))
         {
-            
-            // 큐가 비어있을 때, 즉 예약된 궁극기가 없을 때에만 플레이어 턴 처리
+
+            // if (Input.GetKeyDown(hotkey))
+            //s {
+            //if (!playable[i].isMyTurn && !playable[i].isUltimate)
+
+            //ReserveUltimate(playable[0]);
+            // 플레이어를 "궁극기 예약 중" 상태로 설정
+            playable[0].isUltimate = true; //여기서 궁극기가 사용가능한가.
+            playable[0].HandleUltimateReservations(); //플레이어에게 궁극기를 입력하였다고 알려줌
+            playerUltimate.Add(playable[0]);
+            playable[0].cureng = 0;
+
+            Debug.Log(KeyCode.Alpha1 + "번 키가 눌렸음");
+            //여기서 만약 예약만 한다고 치면 
+
+            // }
+        }
+        else if (playable[1].cureng == playable[1].maxeng && Input.GetKeyDown(KeyCode.Alpha2))
+        {
+
+            //ReserveUltimate(playable[1]);
+            // 플레이어를 "궁극기 예약 중" 상태로 설정
+            playable[1].isUltimate = true; //여기서 궁극기가 사용가능한가.
+            playable[1].HandleUltimateReservations();
+            playerUltimate.Add(playable[1]);
+            playable[1].cureng = 0;
+            Debug.Log(KeyCode.Alpha2 + "번 키가 눌렸음");
+        }
+        else if (playable[2].cureng == playable[2].maxeng && Input.GetKeyDown(KeyCode.Alpha3))
+        {
+
+            //ReserveUltimate(playable[2]);
+            // 플레이어를 "궁극기 예약 중" 상태로 설정
+            playable[2].isUltimate = true; //여기서 궁극기가 사용가능한가.
+            playable[2].HandleUltimateReservations();
+            playerUltimate.Add(playable[2]);
+            playable[2].cureng = 0;
+            Debug.Log(KeyCode.Alpha3 + "번 키가 눌렸음");
+        }
+        /*
+        else if (playable[3].cureng == playable[3].maxeng && Input.GetKeyDown(KeyCode.Alpha4))
+        {
+
+            ReserveUltimate(playable[3]);
+            // 플레이어를 "궁극기 예약 중" 상태로 설정
+            playable[3].isUltimate = true; //여기서 궁극기가 사용가능한가.
+            Debug.Log(KeyCode.Alpha4 + "번 키가 눌렸음");
+        }*/
+
+        //   if (ultimateQueue.Count == 0) //궁극기가 예약된 유저가 없을 경우 턴을 속행
+        // {
+
+        // 큐가 비어있을 때, 즉 예약된 궁극기가 없을 때에만 플레이어 턴 처리
+
+        if (playerUltimate.Count == 0)
+        {
+
             for (int i = 0; i < all_obj.Count; i++)
             {
                 if (!all_obj[i].isUltimate)
                 {
-                    if(!StopTurn)
-                    all_obj[i].currentTurnSpeed -= 1f;
+                    if (!StopTurn)
+                        all_obj[i].currentTurnSpeed -= 1f;
                 }
                 else
                 {
@@ -294,7 +345,7 @@ public class TurnManager : MonoBehaviour
 
                     //일단 이대로
                     StopTurn = true; //매니저가 턴 종료한다고 선언
-                    
+
                     all_obj[i].isMyTurn = true; //그리고 이 플레이어의 턴이 실행
 
                     // 턴이 잡힌 플레이어를 큐에 추가
@@ -305,106 +356,45 @@ public class TurnManager : MonoBehaviour
                     // "궁극기 예약 중" 상태인 플레이어의 플래그 해제
                     if (all_obj[i].IsReservingUltimate)
                     {
-                        all_obj[i].IsReservingUltimate = false;
-                      
-                     
+                        //all_obj[i].IsReservingUltimate = false;
+
+
                     }
 
                     Debug.Log("플레이어 턴 잡힘 " + all_obj[i].name);
+
                     all_obj[i].currentTurnSpeed = all_obj[i].baseTurnSpeed;
                 }
             }
+        }else
+        {
+            
         }
+
     }
 
-
-    /*========================================================== 실험중 ===================================================*/
+    /*========================================================== 실험중 ===================================================
     private void ReserveUltimate(PlayerController player)
     {
+        
         // 예약된 궁극기를 대기열에 추가
         ultimateQueue.Enqueue(player);
         // 큐에 추가할 때 디버그 메시지 출력
         Debug.Log(player.name + "의 궁극기 예약이 큐에 추가되었음.");
-    }
+        실험 로직
+        
 
-    private void ReserveNextTurnPlayer(Entity currentPlayer) //턴이 잡힌 플레이어를 큐에 추가
-    {
-        if (currentPlayer is PlayerController)
+        if (!ultimateQueue.Contains(player))
         {
-            PlayerController nextPlayer = (PlayerController)currentPlayer;
-            ultimateQueue.Enqueue(nextPlayer);
+            // 예약된 궁극기를 대기열에 추가
+            ultimateQueue.Enqueue(player);
+            // 큐에 추가할 때 디버그 메시지 출력
+            Debug.Log(player.name + "의 궁극기 예약이 큐에 추가되었음.");
         }
-    }
-
-
-    /* 다시 실험
-    public void TurnTime()
-    {
-
-        if (ultimateQueue.Count > 0)
+        else
         {
-            isUltimateActivate = true;
-
-            PlayerController nextPlayer = ultimateQueue.Peek(); // 큐에서 다음 플레이어를 가져옴
-            if (!nextPlayer.isMyTurn)
-            {
-                // 다음 플레이어의 턴이 종료되었음
-
-                nextPlayer.isUltimate = true;
-
-                ultimateQueue.Dequeue(); // 큐에서 제거
-                Debug.Log(nextPlayer.name + "의 궁극기가 발동 직전임2");
-                // 궁극기 발동 로직 추가
-            }
-        }
-
-        if (!isUltimateActivate)//궁극기 활성 상태가 아니라면
-        {
-            for (int i = 0; i < playable.Count; i++)
-            {
-                if (playable[i].cureng == playable[i].maxeng) //소유한 에너지가 같은가
-                {
-                    KeyCode hotkey = KeyCode.Alpha1 + i; // 플레이어 번호에 해당하는 키 계산
-                    if (Input.GetKeyDown(hotkey))
-                    {
-                      
-                            ReserveUltimate(playable[i]);
-                            
-                            if (!all_obj[i].isMyTurn)
-                            {
-                                isUltimateActivate = true;
-                                //playable[i].isMyTurn = true;
-
-                                playable[i].isUltimate = true;
-                                Debug.Log((i + 1) + "번 키가 눌렸음");
-                            }
-                        
-                    }
-                }
-            }
-
-        }
-
-        if (!StopTurn)// isUltimateActivate = true;
-        {
-            for (int i = 0; i < all_obj.Count; i++)
-            {
-              
-                    all_obj[i].currentTurnSpeed -= 1f;
-            
-
-                if (all_obj[i].currentTurnSpeed <= 0)
-                {
-                    all_obj[i].currentTurnSpeed = 0;
-                    
-                    all_obj[i].isMyTurn = true;
-
-                    StopTurn = true; //턴을 멈춰라
-                    Debug.Log("플레이어 턴 잡힘 " + all_obj[i].name);
-                    all_obj[i].currentTurnSpeed = all_obj[i].baseTurnSpeed;
-                    break;
-                }
-            }
+            // 이미 예약되었던 플레이어에 대한 처리 (예를 들어, 이미 예약되었다는 메시지 출력)
+            Debug.Log(player.name + "은(는) 이미 궁극기를 예약했습니다.");
         }
     }*/
 
@@ -533,6 +523,81 @@ public class TurnManager : MonoBehaviour
 
 
 }
+
+
+
+
+
+/* 다시 실험
+public void TurnTime()
+{
+
+    if (ultimateQueue.Count > 0)
+    {
+        isUltimateActivate = true;
+
+        PlayerController nextPlayer = ultimateQueue.Peek(); // 큐에서 다음 플레이어를 가져옴
+        if (!nextPlayer.isMyTurn)
+        {
+            // 다음 플레이어의 턴이 종료되었음
+
+            nextPlayer.isUltimate = true;
+
+            ultimateQueue.Dequeue(); // 큐에서 제거
+            Debug.Log(nextPlayer.name + "의 궁극기가 발동 직전임2");
+            // 궁극기 발동 로직 추가
+        }
+    }
+
+    if (!isUltimateActivate)//궁극기 활성 상태가 아니라면
+    {
+        for (int i = 0; i < playable.Count; i++)
+        {
+            if (playable[i].cureng == playable[i].maxeng) //소유한 에너지가 같은가
+            {
+                KeyCode hotkey = KeyCode.Alpha1 + i; // 플레이어 번호에 해당하는 키 계산
+                if (Input.GetKeyDown(hotkey))
+                {
+
+                        ReserveUltimate(playable[i]);
+
+                        if (!all_obj[i].isMyTurn)
+                        {
+                            isUltimateActivate = true;
+                            //playable[i].isMyTurn = true;
+
+                            playable[i].isUltimate = true;
+                            Debug.Log((i + 1) + "번 키가 눌렸음");
+                        }
+
+                }
+            }
+        }
+
+    }
+
+    if (!StopTurn)// isUltimateActivate = true;
+    {
+        for (int i = 0; i < all_obj.Count; i++)
+        {
+
+                all_obj[i].currentTurnSpeed -= 1f;
+
+
+            if (all_obj[i].currentTurnSpeed <= 0)
+            {
+                all_obj[i].currentTurnSpeed = 0;
+
+                all_obj[i].isMyTurn = true;
+
+                StopTurn = true; //턴을 멈춰라
+                Debug.Log("플레이어 턴 잡힘 " + all_obj[i].name);
+                all_obj[i].currentTurnSpeed = all_obj[i].baseTurnSpeed;
+                break;
+            }
+        }
+    }
+}*/
 
 /*
 

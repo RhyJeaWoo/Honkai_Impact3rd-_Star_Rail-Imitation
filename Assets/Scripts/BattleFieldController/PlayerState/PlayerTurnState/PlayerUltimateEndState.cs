@@ -29,7 +29,8 @@ public class PlayerUltimateEndState : PlayerState
     public override void Exit()
     {
         //base.Exit(); 애니메이션 안쓸거니까 잠금
-        TurnManager.Instance.ultimateQueue.Dequeue();
+        //TurnManager.Instance.ultimateQueue.Dequeue();
+        TurnManager.Instance.playerUltimate.Remove(TurnManager.Instance.playerUltimate[0]);
         TurnManager.Instance.TurnEnd();
         TurnManager.Instance.UltimateEnd();
         player.isUltimate = false;

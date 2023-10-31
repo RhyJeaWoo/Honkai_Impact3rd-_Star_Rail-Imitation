@@ -92,7 +92,9 @@ public class Entity : MonoBehaviour
   
     public bool isUltimate = false; //내가 궁극기 버튼을 눌렀는가에 대한 체크
 
-    public bool IsReservingUltimate { get; set; } = false; //궁극기가 예약되었는가?
+    public bool IsReservingUltimate = false; //궁극기가 예약되었는가?
+
+    public bool firstUltimate = false; //이 변수는 가장 먼저 첫번째로 도달한 애가 있는지를 체크하는 함수임.
 
     public bool canAct = true; //HP가 0이 되어서 활동할 수 있는지 체크
 

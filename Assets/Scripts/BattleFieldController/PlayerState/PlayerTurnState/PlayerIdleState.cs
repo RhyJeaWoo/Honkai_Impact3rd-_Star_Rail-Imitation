@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
 public class PlayerIdleState : PlayerState
@@ -24,33 +24,56 @@ public class PlayerIdleState : PlayerState
     public override void Exit()
     {
         base.Exit();
-        
+
     }
 
     public override void Update()
     {
         base.Update();
-   
+
         if (player.isMyTurn)
         {
             player.stateMachine.ChangeState(player.turnGetState);
         }
 
-        for(int i = 0; i < player.playerList.Count; i++) {
+        /*
+       if (TurnManager.Instance.playerUltimate[0] == null)
+        {
+            throw new ArgumentOutOfRangeException("궁극기가 삽입되지 않았음");
+            
 
-            if (!TurnManager.Instance.StopTurn && player.isUltimate && !player.playerList[i].isMyTurn && !player.isMyTurn) //누군가의 턴이 아니어야만 함 내턴도, 남의턴도, 그러면서 나의 궁
+       }
+       else
+       {
+            Debug.Log("널에서 통과됨");
+            if (TurnManager.Instance.playerUltimate[0].name == player.transform.gameObject.name)
             {
-                //여기만 건드리면 될듯?
-
-
                 player.stateMachine.ChangeState(player.isMyUltimateTurnState);
                 //만약 이상태로 넘어가면 루미네나 다른 몬스터의 행동은 즉시 정지되어야함.
+                Debug.Log("통과됨");
             }
-        }
-      
+            else
+            {
+                Debug.Log("궁극기 리스트에 들어온게 없음");
+            }
+       }*/
 
-        //여기서 만약에 내가 상태이상 상태라면은 데미지를 받고 시작하게 만들면된다/
-        // ex)if(player.isMyTurn && player.isStatusEffect)로 검사를 해서, PlayerStatusEffectState머신 만들고, 그쪽에서 데미지를 받고 넘어가면 될듯.
+        if (TurnManager.Instance.playerUltimate.Count == 0)
+        {
+            //Debug.Log("궁극기 리스트가 비어 있음");
+        }
+        else if (TurnManager.Instance.playerUltimate[0] == null)
+        {
+            Debug.Log("궁극기가 삽입되지 않았음");
+        }
+        else if (TurnManager.Instance.playerUltimate[0].name == player.transform.gameObject.name)
+        {
+            player.stateMachine.ChangeState(player.isMyUltimateTurnState);
+            // 이 상태로 전환하면 루미네나와 다른 몬스터의 행동은 즉시 정지되어야 함.
+            Debug.Log("궁극기 리스트에 해당 플레이어의 객체가 존재하며 통과됨");
+        }
+
+
 
     }
 
