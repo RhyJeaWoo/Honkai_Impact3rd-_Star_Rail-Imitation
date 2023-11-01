@@ -8,8 +8,11 @@ public class PlayerController : Entity
 
 
     public List<PlayerController> playerList = new List<PlayerController>(new PlayerController[4]);
+    //좋은 방법이 아님 그냥 턴매니저의 값을 받아와서 그걸로 처리하는게 좋아보임.
+
+
     //내 시점에서 바라볼 수 있는 플레이어 리스트
-    public PlayableDirector playableDirector; //각자의 궁극기를 여기에 삽입.
+    public PlayableDirector[] playableDirector; //각자의 스킬이나, 궁극기를 타임라인에 삽입.
 
     #region Design Patterns
 
@@ -149,7 +152,7 @@ public class PlayerController : Entity
         
         ListSort(); //한번 인위적으로 정렬 해줌. 
 
-  
+    
     }
 
     protected override void Update()
@@ -162,7 +165,7 @@ public class PlayerController : Entity
             cureng = maxeng;
         }
 
-        Debug.Log(stateMachine.currentState);
+       // Debug.Log(stateMachine.currentState);
       
     }
   

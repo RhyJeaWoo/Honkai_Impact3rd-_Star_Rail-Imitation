@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerSkillState : PlayerState
 {
-    
+
+
+    float time = 0;
+
     public PlayerSkillState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
 
@@ -12,7 +15,17 @@ public class PlayerSkillState : PlayerState
 
     public override void Enter()
     {
-        base.Enter();
+        time = 0;
+        if (player.CompareTag("Durandal"))
+        {
+            player.playableDirector[1].enabled = true;
+        }
+        else
+        {
+            base.Enter();
+        }
+
+       
         //player.toEnemyPos = TurnManager.Instance.TargetEnemyTranform;
 
         // 타겟 방향으로 회전함
@@ -27,20 +40,49 @@ public class PlayerSkillState : PlayerState
     {
         base.Exit();
         //player.isSkillOn = false;
+        if(player.CompareTag("Durandal"))
+        {
+            player.playableDirector[1].enabled = false;
+        }
 
     }
 
     public override void Update()
     {
-        base.Update();
-        if (/*player.isSkillOn && */player.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill") && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (player.CompareTag("Durandal"))
         {
-           
-            player.cureng += 30;
+            if (player.playableDirector[1].enabled)
+            {
+                time += Time.deltaTime;
+            }
 
-            player.isMyTurn = false;
-            player.stateMachine.ChangeState(player.comeBackState);
-           
+
+            //player.playableDirector.duration -= Time.deltaTime;
+
+            if (time >= player.playableDirector[1].duration)
+            {
+
+                player.playableDirector[1].Stop();
+                player.isMyTurn = false;
+                stateMachine.ChangeState(player.comeBackState);
+
+            }
         }
+        else
+        {
+            base.Update();
+            if (/*player.isSkillOn && */player.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill") && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+
+                player.cureng += 30;
+
+                player.isMyTurn = false;
+                player.stateMachine.ChangeState(player.comeBackState);
+
+            }
+
+        }
+
+        
     }
 }

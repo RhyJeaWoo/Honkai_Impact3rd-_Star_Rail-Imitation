@@ -19,7 +19,7 @@ public class PlayerUltimateEndState : PlayerState
  
         player.UltimateDamageEvent();
 
-        player.playableDirector.enabled = false;
+        player.playableDirector[0].enabled = false;
 
         //Debug.Log("호출되었음");
 

@@ -24,7 +24,7 @@ public class KianaSkill : PlayerSkillStrategy
 
                 // critical hit!
 
-                Debug.Log("키아나 크리티컬 스킬 데미지는 : " + player.criticalDamage);
+                //Debug.Log("키아나 크리티컬 스킬 데미지는 : " + player.criticalDamage);
 
                 return player.criticalDamage;
             }
@@ -33,7 +33,7 @@ public class KianaSkill : PlayerSkillStrategy
                 player.norAtkDamage = player.defaultDamage * meiSkillDamage1;
 
                 // normal hit
-                Debug.Log("키아나 논 크리티컬 스킬 데미지는 : " + player.norAtkDamage);
+                //Debug.Log("키아나 논 크리티컬 스킬 데미지는 : " + player.norAtkDamage);
 
                 return player.norAtkDamage;
             }

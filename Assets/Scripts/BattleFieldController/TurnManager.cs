@@ -141,9 +141,6 @@ public class TurnManager : MonoBehaviour
 
         TurnTime();
 
-        //Debug.Log("ultimateQueue.Count: " + ultimateQueue.Count);
-
-        //List<PlayerController> distinctList = playerUltimate.Distinct().ToList();
 
     }
 

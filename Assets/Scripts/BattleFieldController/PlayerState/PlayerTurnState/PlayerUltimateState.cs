@@ -15,10 +15,12 @@ public class PlayerUltimateState : PlayerState
 
     public override void Enter()
     {
-  
+        time = 0;
+
+
         player.cureng = 0;
 
-        player.playableDirector.enabled = true;
+        player.playableDirector[0].enabled = true;
 
         player.DeligateLevel();
 
@@ -43,7 +45,7 @@ public class PlayerUltimateState : PlayerState
         base.Update();
 
 
-        if (player.playableDirector.enabled)
+        if (player.playableDirector[0].enabled)
         {
             time += Time.deltaTime;
         }
@@ -54,10 +56,10 @@ public class PlayerUltimateState : PlayerState
 
 
 
-        if (time >= player.playableDirector.duration)
+        if (time >= player.playableDirector[0].duration)
         {
 
-            player.playableDirector.Stop();
+            player.playableDirector[0].Stop();
             stateMachine.ChangeState(player.ultimateEndState);
         
         }

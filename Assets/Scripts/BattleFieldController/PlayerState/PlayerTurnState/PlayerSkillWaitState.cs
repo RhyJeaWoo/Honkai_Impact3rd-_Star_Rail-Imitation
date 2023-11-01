@@ -9,7 +9,12 @@ public class PlayerSkillWaitState : PlayerState
     }
     public override void Enter()
     {
-        base.Enter();
+       
+      
+            base.Enter();
+        
+
+       
        
         Debug.Log(player.name + "턴 스킬 선택 상태임");
 

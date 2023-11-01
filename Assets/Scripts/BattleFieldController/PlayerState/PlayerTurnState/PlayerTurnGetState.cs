@@ -11,26 +11,26 @@ public class PlayerTurnGetState : PlayerState
 
     public override void Enter()
     {
-        base.Enter();
+        //base.Enter();
+
         player.skin[1].enabled = true;
         player.skin[0].enabled = true;
 
         TurnManager.Instance.Enemy_target_simbol.SetActive(true); //적 마크
         TurnManager.Instance.Player_target_simbol.SetActive(false);//아군 마크
 
-
         player.vircam[0].MoveToTopOfPrioritySubqueue();
        
-
         player.toPlayerPos = player.transform.position;
 
-
+        Debug.Log("턴을 잡았음");
     }
         
     public override void Exit()
     {
-        base.Exit();
-       // player.vircam.transform.position = player.virCamPos;
+        //base.Exit();
+        // player.vircam.transform.position = player.virCamPos;
+        Debug.Log("attackWait로 빠졌음");
       
     }
 

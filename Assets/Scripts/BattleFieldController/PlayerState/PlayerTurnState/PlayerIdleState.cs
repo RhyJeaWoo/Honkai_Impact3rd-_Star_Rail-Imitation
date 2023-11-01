@@ -24,6 +24,7 @@ public class PlayerIdleState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        Debug.Log("idle 에서 나감");
 
     }
 
@@ -36,27 +37,7 @@ public class PlayerIdleState : PlayerState
             player.stateMachine.ChangeState(player.turnGetState);
         }
 
-        /*
-       if (TurnManager.Instance.playerUltimate[0] == null)
-        {
-            throw new ArgumentOutOfRangeException("궁극기가 삽입되지 않았음");
-            
-
-       }
-       else
-       {
-            Debug.Log("널에서 통과됨");
-            if (TurnManager.Instance.playerUltimate[0].name == player.transform.gameObject.name)
-            {
-                player.stateMachine.ChangeState(player.isMyUltimateTurnState);
-                //만약 이상태로 넘어가면 루미네나 다른 몬스터의 행동은 즉시 정지되어야함.
-                Debug.Log("통과됨");
-            }
-            else
-            {
-                Debug.Log("궁극기 리스트에 들어온게 없음");
-            }
-       }*/
+      
 
         if (TurnManager.Instance.playerUltimate.Count == 0)
         {
@@ -66,7 +47,7 @@ public class PlayerIdleState : PlayerState
         {
             Debug.Log("궁극기가 삽입되지 않았음");
         }
-        else if (TurnManager.Instance.playerUltimate[0].name == player.transform.gameObject.name)
+        else if (TurnManager.Instance.playerUltimate[0].name == player.transform.gameObject.name && !TurnManager.Instance.StopTurn)
         {
             player.stateMachine.ChangeState(player.isMyUltimateTurnState);
             // 이 상태로 전환하면 루미네나와 다른 몬스터의 행동은 즉시 정지되어야 함.
@@ -78,3 +59,26 @@ public class PlayerIdleState : PlayerState
     }
 
 }
+
+
+/*
+     if (TurnManager.Instance.playerUltimate[0] == null)
+      {
+          throw new ArgumentOutOfRangeException("궁극기가 삽입되지 않았음");
+
+
+     }
+     else
+     {
+          Debug.Log("널에서 통과됨");
+          if (TurnManager.Instance.playerUltimate[0].name == player.transform.gameObject.name)
+          {
+              player.stateMachine.ChangeState(player.isMyUltimateTurnState);
+              //만약 이상태로 넘어가면 루미네나 다른 몬스터의 행동은 즉시 정지되어야함.
+              Debug.Log("통과됨");
+          }
+          else
+          {
+              Debug.Log("궁극기 리스트에 들어온게 없음");
+          }
+     }*/
