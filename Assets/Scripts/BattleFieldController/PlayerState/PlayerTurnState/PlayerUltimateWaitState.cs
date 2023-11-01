@@ -13,8 +13,8 @@ public class PlayerUltimateWaitState : PlayerState //¿©±â¼­ ±Ã±Ø±â¸¦ ¹ßµ¿ÇÒ Å¸°Ù
         base.Enter();
 
         player.vircam[0].MoveToTopOfPrioritySubqueue();
-
-        //player.anims.UltimateWaitEffect();
+        if(player.CompareTag("Mei"))
+        player.anims.UltimateWaitEffect();
 
         TurnManager.Instance.Enemy_target_simbol.SetActive(true);
 

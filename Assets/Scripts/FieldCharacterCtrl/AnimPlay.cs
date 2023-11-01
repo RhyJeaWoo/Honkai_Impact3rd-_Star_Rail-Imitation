@@ -96,8 +96,9 @@ public class AnimPlay : MonoBehaviour
 
     public void UltimateWaitEffect()
     {
-        GameObject ultimateWaiteffect = Instantiate(ultimateWaitEffect, transform.position, transform.rotation);
-        Destroy(ultimateWaiteffect, 3f);
+        GameObject ultimateWaiteffect = Instantiate(ultimateWaitEffect, transform.position, ultimateWaitEffect.transform.rotation);
+        Debug.Log("생성되었음");
+        Destroy(ultimateWaiteffect, 6f);
     }
 
     void HitEffect()
