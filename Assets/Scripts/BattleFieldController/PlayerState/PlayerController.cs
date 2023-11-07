@@ -402,4 +402,10 @@ public class PlayerController : Entity
 
     }
 
+
+    public void SetDamage(float damage)
+    {
+        curhp -= damage;
+    }
+
 }

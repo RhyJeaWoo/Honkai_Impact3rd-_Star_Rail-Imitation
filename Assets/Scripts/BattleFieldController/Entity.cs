@@ -148,12 +148,12 @@ public class Entity : MonoBehaviour
         defaultDamage = (atk) * (1 + increasedDamage);
     }
 
-    protected void DamageDelegate(float damage)
+    public void DamageDelegate(float damage)
     {
         OnDamageDealt?.Invoke(damage);
     }
 
-    protected void LevelDelegate() 
+    public void LevelDelegate() 
     {
         OnLevelDealt?.Invoke(curLevel);
     }

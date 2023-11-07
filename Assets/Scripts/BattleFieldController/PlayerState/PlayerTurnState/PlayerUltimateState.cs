@@ -22,7 +22,7 @@ public class PlayerUltimateState : PlayerState
 
         player.playableDirector[0].enabled = true;
 
-        player.DeligateLevel();
+        player.LevelDelegate();
 
 
 

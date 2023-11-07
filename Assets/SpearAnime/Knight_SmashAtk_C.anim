@@ -99547,7 +99547,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.033333335
-    functionName: DeligateLevel
+    functionName: LevelDelegate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

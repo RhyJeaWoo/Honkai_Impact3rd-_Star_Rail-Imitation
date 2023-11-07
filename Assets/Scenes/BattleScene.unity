@@ -21346,6 +21346,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d52cfbdf9a0419f408b5597b9f5088b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1757154046}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d52cfbdf9a0419f408b5597b9f5088b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1757154048}
   m_SourcePrefab: {fileID: 100100000, guid: d52cfbdf9a0419f408b5597b9f5088b2, type: 3}
 --- !u!4 &1757154044 stripped
 Transform:
@@ -21403,6 +21406,24 @@ MonoBehaviour:
   IsReservingUltimate: 0
   firstUltimate: 0
   canAct: 0
+--- !u!114 &1757154048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500355102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a249701a85db12548ae1e8615b2e4ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atkEffect: {fileID: 1339483653523732529, guid: b7016aae7bbdcd54fb4bf3a41bf01a60, type: 3}
+  skillEffect: {fileID: 0}
+  ultimateEffect: {fileID: 0}
+  hitEffect: {fileID: 0}
+  ultimateWaitEffect: {fileID: 0}
+  BladeHitPos: {fileID: 0}
 --- !u!4 &1773116114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5855158152798917021, guid: a199ba41574f889488349e202a304db1, type: 3}
@@ -27021,10 +27042,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 222355527396983460, guid: a199ba41574f889488349e202a304db1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1948714503}
+      addedObject: {fileID: 1948714505}
     - targetCorrespondingSourceObject: {fileID: 222355527396983460, guid: a199ba41574f889488349e202a304db1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1948714505}
+      addedObject: {fileID: 1948714507}
   m_SourcePrefab: {fileID: 100100000, guid: a199ba41574f889488349e202a304db1, type: 3}
 --- !u!4 &1948714499 stripped
 Transform:
@@ -27046,24 +27067,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 222355527396983460, guid: a199ba41574f889488349e202a304db1, type: 3}
   m_PrefabInstance: {fileID: 1948714498}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1948714503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948714502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1837744a1093054f8a81b8dbbce0397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atkEffect: {fileID: 9182003644490663784, guid: 1aa431de6ee6f344aa640cc254d31807, type: 3}
-  skillEffect: {fileID: 8800596256936212562, guid: 15a5d447327862c42be8884ecfb179e2, type: 3}
-  ultimateEffect: {fileID: 2631319394416397090, guid: 4ce856ae33f0aee43bacdc91669a911f, type: 3}
-  hitEffect: {fileID: 8332965574598888156, guid: d3c10a5078e2f7448bbf747fc7768637, type: 3}
-  ultimateWaitEffect: {fileID: 1078496311052904, guid: 1674caf6f46ca1c41b000b2203b9e476, type: 3}
-  BladeHitPos: {fileID: 7929668677450426348}
 --- !u!114 &1948714505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27076,7 +27079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a934419144a7abe4880e800636d8e509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anims: {fileID: 1948714503}
+  anims: {fileID: 0}
   skin: []
   vircam:
   - {fileID: 2083497154}
@@ -27123,6 +27126,24 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 6826906542954644068, guid: a199ba41574f889488349e202a304db1, type: 3}
   m_PrefabInstance: {fileID: 1948714498}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1948714507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948714502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8a53e8feb14444ab8910be13ddd38a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atkEffect: {fileID: 9182003644490663784, guid: 1aa431de6ee6f344aa640cc254d31807, type: 3}
+  skillEffect: {fileID: 8800596256936212562, guid: 15a5d447327862c42be8884ecfb179e2, type: 3}
+  ultimateEffect: {fileID: 2631319394416397090, guid: 4ce856ae33f0aee43bacdc91669a911f, type: 3}
+  hitEffect: {fileID: 8332965574598888156, guid: d3c10a5078e2f7448bbf747fc7768637, type: 3}
+  ultimateWaitEffect: {fileID: 1078496311052904, guid: 1674caf6f46ca1c41b000b2203b9e476, type: 3}
+  BladeHitPos: {fileID: 7929668677450426348}
 --- !u!1 &1985538245
 GameObject:
   m_ObjectHideFlags: 0
