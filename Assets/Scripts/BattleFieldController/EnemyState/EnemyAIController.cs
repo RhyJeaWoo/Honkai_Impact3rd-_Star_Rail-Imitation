@@ -26,6 +26,8 @@ public class EnemyAIController : Entity
       //  Debug.Log("ÇöÀç hp : " + curhp);
  
     }
+
+
     public void HandleLevelDealt(float level) 
     {
         

@@ -153,9 +153,9 @@ public class Entity : MonoBehaviour
         OnDamageDealt?.Invoke(damage);
     }
 
-    protected void LevelDelegate(float level) 
+    protected void LevelDelegate() 
     {
-        OnLevelDealt?.Invoke(level);
+        OnLevelDealt?.Invoke(curLevel);
     }
 
 }

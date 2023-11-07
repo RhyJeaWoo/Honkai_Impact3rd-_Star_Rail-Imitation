@@ -159,8 +159,12 @@ public class PlayerController : Entity
             cureng = maxeng;
         }
 
-       // Debug.Log(stateMachine.currentState);
-      
+        //플레이어 방어력 계수
+        //최종 방어계수 = ((현재 레벨 * 100) + 100) / (((전달 받은 상대 레벨 * 10) +200 )  +((현재 레벨 * 10 ) + 200));
+        defenseCoefficient = ((curLevel * 10) + 200 + def) / (((liciveOpponentLevel * 10) + 200) + ((curLevel * 10) + 200));
+
+        // Debug.Log(stateMachine.currentState);
+
     }
   
 
@@ -262,18 +266,13 @@ public class PlayerController : Entity
             //OnDamageDealt?.Invoke(ultimateDamage);
         }
     }
-
+    /*
     public void DeligateLevel()
     {
         //OnLevelDealt?.Invoke(curLevel); //레벨을 전달 해야 계수 계산이 가능함.
         LevelDelegate(curLevel);
 
-    }
-
-
-    /* ========================================================여기부터 실험내용 ============================================ */
-
-
+    }*/
 
 
     public void Heal(float healAmount)
@@ -326,7 +325,7 @@ public class PlayerController : Entity
         }
     }
 
-  
+
 
     public void HandleUltimateReservations()
     {
@@ -334,6 +333,73 @@ public class PlayerController : Entity
         // ...
         IsReservingUltimate = true; //이 캐릭터가 예약 되었는가?
         Debug.Log(name + "이(가) 궁극기를 예약했습니다.");
+    }
+
+
+    /* ========================================================여기부터 실험내용 ============================================ */
+
+    /* 용도 => 광역 공격을 받았을시 */
+    public void HandleDamageDealt(float damage)//
+    {
+        SumDamage = damage * defenseCoefficient;
+
+        curhp = curhp - SumDamage;
+
+        // 이 메서드에서 데미지 값을 받아 처리
+        // Debug.Log("데미지를 전달 받았습니다!" + damage);
+        // Debug.Log("현재 방어율 계수 : " + defenseCoefficient);
+        // Debug.Log("현재 레벨" + curLevel);
+
+        //  Debug.Log("데미지를 받았습니다: " + SumDamage);
+        //  Debug.Log("현재 hp : " + curhp);
+
+    }
+
+    /* 용도 -> 상대방이 공격할때, 데미지 를 산정하기전 내 방어율 계산을 위한 방어계수 */
+    public void HandleLevelDealt(float level)
+    {
+
+        Debug.Log("전달 받은 Level은 " + level);
+
+        liciveOpponentLevel = level;
+    }
+
+
+    // 이벤트 구독
+    public void SubscribeToPlayerDamageEvent()
+    {
+        //  PlayerController[] playerController = FindObjectsOfType<PlayerController>(); // 혹은 다른 방식으로 플레이어 컨트롤러를 찾습니다.
+
+        EnemyAIController[] enemys = FindObjectsOfType<EnemyAIController>(); // 모든 플레이어 컨트롤러를 찾습니다.
+
+        if (enemys != null)
+        {
+            foreach (EnemyAIController enemy in enemys)
+            {
+                //playerController.OnDamageDealt += HandleDamageDealt;
+                enemy.OnLevelDealt += HandleLevelDealt;
+                enemy.OnDamageDealt += HandleDamageDealt;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("적 컨트롤러를 찾을 수 없습니다.");
+        }
+
+    }
+
+    // 이벤트 구독 해제
+    public void UnsubscribeFromPlayerDamageEvent()
+    {
+        EnemyAIController enemy = FindObjectOfType<EnemyAIController>();
+        if (enemy != null)
+        {
+            //playerController.OnDamageDealt -= HandleDamageDealt;
+            enemy.OnLevelDealt -= HandleLevelDealt;
+            enemy.OnDamageDealt -= HandleDamageDealt;
+        }
+
+
     }
 
 }
