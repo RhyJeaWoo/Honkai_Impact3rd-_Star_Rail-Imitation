@@ -7,8 +7,16 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    //델리게이트
 
-  
+    public delegate void DamageDealtHandler(float damage); //데미지에 관한 델리게이트로 선언
+    public event DamageDealtHandler OnDamageDealt;//델리게이트
+
+    public delegate void LevelDealtHandler(float level); //레벨에 관한 델리게이트
+    public event LevelDealtHandler OnLevelDealt;
+
+    
+
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
 
@@ -138,6 +146,16 @@ public class Entity : MonoBehaviour
         //크리티컬 적용전 데미지   (공격력 * 스킬 계수) * (1 + 피해 증가 배수) 
 
         defaultDamage = (atk) * (1 + increasedDamage);
+    }
+
+    protected void DamageDelegate(float damage)
+    {
+        OnDamageDealt?.Invoke(damage);
+    }
+
+    protected void LevelDelegate(float level) 
+    {
+        OnLevelDealt?.Invoke(level);
     }
 
 }

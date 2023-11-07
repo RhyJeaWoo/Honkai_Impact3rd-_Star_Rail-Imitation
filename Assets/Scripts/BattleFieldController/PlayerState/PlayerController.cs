@@ -24,13 +24,7 @@ public class PlayerController : Entity
     private PlayerAttackStrategy attackStrategy;
     private PlayerUltimateStrategy ultimateStrategy;
 
-    //델리게이트
-
-    public delegate void DamageDealtHandler(float damage); //데미지에 관한 델리게이트로 선언
-    public event DamageDealtHandler OnDamageDealt;//델리게이트
-
-    public delegate void LevelDealtHandler(float level); //레벨에 관한 델리게이트
-    public event LevelDealtHandler OnLevelDealt;
+   
 
 
 
@@ -236,7 +230,10 @@ public class PlayerController : Entity
             float skillDamage = skillStrategy.ExcuteSkill(this); //델리게이트에 전략에서 받아온 정보값을 지역 변수에 저장
 
             // 데미지 이벤트 발생
-            OnDamageDealt?.Invoke(skillDamage);
+            //OnDamageDealt?.Invoke(skillDamage);
+            DamageDelegate(skillDamage);
+
+
         }
     }
 
@@ -247,7 +244,8 @@ public class PlayerController : Entity
             float norAtkDamage = attackStrategy.ExcuteAttack(this); //델리게이트에 전략에서 받아온 정보값을 지역 변수에 저장
 
             // 데미지 이벤트 발생
-            OnDamageDealt?.Invoke(norAtkDamage);
+            //OnDamageDealt?.Invoke(norAtkDamage);
+            DamageDelegate(norAtkDamage);
 
         }
     }
@@ -258,14 +256,17 @@ public class PlayerController : Entity
         {
             float ultimateDamage = ultimateStrategy.ExecuteUltimate(this);
 
+            DamageDelegate(ultimateDamage);
+
             //데미지 이벤트 발생
-            OnDamageDealt?.Invoke(ultimateDamage);
+            //OnDamageDealt?.Invoke(ultimateDamage);
         }
     }
 
     public void DeligateLevel()
     {
-        OnLevelDealt?.Invoke(curLevel); //레벨을 전달 해야 계수 계산이 가능함.
+        //OnLevelDealt?.Invoke(curLevel); //레벨을 전달 해야 계수 계산이 가능함.
+        LevelDelegate(curLevel);
 
     }
 
