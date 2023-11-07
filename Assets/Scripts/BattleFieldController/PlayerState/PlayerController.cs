@@ -204,6 +204,7 @@ public class PlayerController : Entity
 
     // 플레이어블 캐릭터의 스킬 실행시 연결될 전략
     // 무늬만 존재하고 사용되지는 않음.
+    /*
     public void ExecuteSkill(PlayerController player)
     {
         if (skillStrategy != null)
@@ -221,9 +222,9 @@ public class PlayerController : Entity
     {
         if(skillStrategy != null) 
         {
-        
+            
         }
-    }
+    }*/
 
     //애니메이션으로 실행 , 이코드 다시한번 다듬어야 될거 같음, 지금은 그냥 이 델리게이트를 가진 애들한테 다 보내는 코드가 되는데,
     //다중 공격이면 그냥 보내면 되긴함. 근데, 일단 단일이거나, 내가 지정해서 때리는거에 있어서, 그 부분이 들어가야 되지 않나 싶음.

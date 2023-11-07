@@ -31,7 +31,7 @@ public class PlayerSkillState : PlayerState
         // 타겟 방향으로 회전함
         player.transform.LookAt(player.toEnemyPos);
 
-        player.ExecuteSkill(this.player);//전략 패턴 실행.
+        //player.ExecuteSkill(this.player);//전략 패턴 실행.
         //player.isSkillOn = true;
         
     }

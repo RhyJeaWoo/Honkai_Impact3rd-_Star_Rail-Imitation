@@ -5,6 +5,7 @@ using UnityEngine;
 public class LumineNorAtkState : EnemyState
 {
     private EnemyLumine lumine;
+    int x;
     public LumineNorAtkState(EnemyAIController _enemyBase, EnemyStateMachine2 _stateMachine, string _animBoolName, EnemyLumine lumine) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         this.lumine = lumine;
@@ -13,6 +14,25 @@ public class LumineNorAtkState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        x = Random.Range(0, 4);
+
+        if(x ==0)
+        {
+            lumine.transform.LookAt(TurnManager.Instance.playable[x].transform.position);
+        }
+        else if(x == 1) 
+        {
+            lumine.transform.LookAt(TurnManager.Instance.playable[x].transform.position);
+        }
+        else if(x==2)
+        {
+            lumine.transform.LookAt(TurnManager.Instance.playable[x].transform.position);
+        }
+        else if (x == 3) 
+        {
+            lumine.transform.LookAt(TurnManager.Instance.playable[x].transform.position);
+        }
        
      
     }
