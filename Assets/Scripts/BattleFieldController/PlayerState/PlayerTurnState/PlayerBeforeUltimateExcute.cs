@@ -23,7 +23,12 @@ public class PlayerBeforeUltimateExcute : PlayerState //여기서 애니메이션 체크
 
     public override void Exit()
     {
-        base.Exit();
+        if (player.CompareTag("Kiana") || player.CompareTag("Elysia") || player.CompareTag("Durandal"))
+        {
+
+        }
+        else
+          base.Exit();
     }
 
     public override void Update()

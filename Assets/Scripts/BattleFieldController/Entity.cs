@@ -32,6 +32,10 @@ public class Entity : MonoBehaviour
 
     public Vector3 TargetEnemyTranform { get; set; } // TargetEnemyTranform을 속성으로 추가
 
+    public GameObject hudDamageText;
+
+    public Transform hudPos;
+
     [Header("플레이어의 스테이터스")]
     public float curLevel;//현재 레벨
     public float maxLevel;//최대 레벨
@@ -81,6 +85,7 @@ public class Entity : MonoBehaviour
     public float increasedDamage;//가하는 피해량 증가 데미지
 
     public float SumDamage;//내가 받은 총 데미지의 합.
+
     public float defenseCoefficient;//방어 계수
     public float liciveOpponentLevel;//전달 받은 상대 레벨 계수
     public float ignoredDefense;//방어 무시 받는 계수
@@ -169,4 +174,29 @@ public class Entity : MonoBehaviour
         OnLevelDealt?.Invoke(curLevel);
     }
 
+    /*
+    private void OnParticleCollision(GameObject other)
+    {
+        if(other != null)
+        {
+            if(other.CompareTag("Lumine"))
+            {
+                curhp = curhp - TurnManager.Instance.enemys[0].atk;
+
+                Debug.Log("데미지를 받았습니다.");
+            }
+        }
+        else if (other == null) return;
+
+    }*/
+
+    
+    public void TakeDamageText(int damage)
+    {
+        GameObject hudText = Instantiate(hudDamageText); // 생성할 텍스트 오브젝트
+        hudText.transform.position = hudPos.position + new Vector3(0,0.5f,0); // 표시될 위치
+        hudText.GetComponent<DamageText>().damage = damage; // 데미지 전달
+        //base.TakeDamage(damage);
+    }
+    
 }

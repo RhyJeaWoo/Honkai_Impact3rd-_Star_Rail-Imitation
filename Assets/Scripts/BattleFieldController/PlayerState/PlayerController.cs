@@ -160,10 +160,11 @@ public class PlayerController : Entity
         }
 
         //플레이어 방어력 계수
-        //최종 방어계수 = ((현재 레벨 * 100) + 100) / (((전달 받은 상대 레벨 * 10) +200 )  +((현재 레벨 * 10 ) + 200));
-        defenseCoefficient = ((curLevel * 10) + 200 + def) / (((liciveOpponentLevel * 10) + 200) + ((curLevel * 10) + 200));
+        //최종 방어계수 = ((현재 레벨 * 100) + 100) / (((전달 받은 상대 레벨 * 10) +200 )  +((현재 레벨 * 10 ) + 200 + 내 현재 방어력));
+        defenseCoefficient = ((curLevel * 10) + 200) / (((liciveOpponentLevel * 10) + 200) + ((curLevel * 10) + 200) + def);
 
         // Debug.Log(stateMachine.currentState);
+        //  2200 / 900 + 1000
 
     }
   
@@ -266,6 +267,7 @@ public class PlayerController : Entity
             //OnDamageDealt?.Invoke(ultimateDamage);
         }
     }
+
     /*
     public void DeligateLevel()
     {
@@ -338,24 +340,26 @@ public class PlayerController : Entity
 
     /* ========================================================여기부터 실험내용 ============================================ */
 
-    /* 용도 => 광역 공격을 받았을시 */
+    /* 용도 => 광역 공격을 받았을시엔 델리게이트를 쓰지만 단일 공격이면 이 함수 호출하면됨. */
     public void HandleDamageDealt(float damage)//
     {
         SumDamage = damage * defenseCoefficient;
 
         curhp = curhp - SumDamage;
 
+      TakeDamageText((int)SumDamage);
+
         // 이 메서드에서 데미지 값을 받아 처리
         // Debug.Log("데미지를 전달 받았습니다!" + damage);
         // Debug.Log("현재 방어율 계수 : " + defenseCoefficient);
         // Debug.Log("현재 레벨" + curLevel);
 
-        //  Debug.Log("데미지를 받았습니다: " + SumDamage);
+        Debug.Log(transform.name + "데미지를 받았습니다: " + SumDamage);
         //  Debug.Log("현재 hp : " + curhp);
 
     }
 
-    /* 용도 -> 상대방이 공격할때, 데미지 를 산정하기전 내 방어율 계산을 위한 방어계수 */
+    /* 용도 -> 상대방이 공격할때, 데미지 를 산정하기전 내 방어율 계산을 위한 방어계수 단일 공격이면 이 함수 호출하면됨.*/
     public void HandleLevelDealt(float level)
     {
 

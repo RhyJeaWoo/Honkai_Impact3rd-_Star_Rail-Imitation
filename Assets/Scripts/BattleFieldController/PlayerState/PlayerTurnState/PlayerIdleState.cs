@@ -32,6 +32,11 @@ public class PlayerIdleState : PlayerState
     {
         base.Update();
 
+        if(player.isDamaged) 
+        {
+            player.stateMachine.ChangeState(player.hitState);
+        }
+
         if (player.isMyTurn)
         {
             player.stateMachine.ChangeState(player.turnGetState);
@@ -53,8 +58,6 @@ public class PlayerIdleState : PlayerState
             // 이 상태로 전환하면 루미네나와 다른 몬스터의 행동은 즉시 정지되어야 함.
             Debug.Log("궁극기 리스트에 해당 플레이어의 객체가 존재하며 통과됨");
         }
-
-
 
     }
 

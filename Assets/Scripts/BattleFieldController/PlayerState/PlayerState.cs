@@ -36,7 +36,7 @@ public class PlayerState
 
     public virtual void Update()
     {
-        stateTimer -= Time.deltaTime;
+        stateTimer -= Time.deltaTime;   
 
 
         //  player.anim.SetFloat("yVelocity", rb.velocity.y);

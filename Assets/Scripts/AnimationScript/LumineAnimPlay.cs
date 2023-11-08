@@ -30,6 +30,8 @@ public class LumineAnimPlay : AnimPlay
         Debug.Log("공격 이펙트가 생성되었음.");
 
 
+
+
         Destroy(atkeffect, 3f);
 
     }
