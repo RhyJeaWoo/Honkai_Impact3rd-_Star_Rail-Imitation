@@ -23,11 +23,14 @@ public class LumineNorAtkState : EnemyState
         if(x ==0)
         {
             lumine.transform.LookAt(TurnManager.Instance.playable[x].transform.position);
+            //일단 공격할 플레이어 방향을 바라봄
 
             TurnManager.Instance.PlayerTransForm = TurnManager.Instance.playable[x].transform.position;
+            //그리고 턴 매니저에 있는 벡터 변수애 공격할 플레이어 변수를 저장함.
+            //저장된걸 AnimPlayer에서 그 좌표에 공격할 이펙트를 생성 시킴.
             //lumine.anims.Atk();
 
-            Debug.Log("루미네 "+ TurnManager.Instance.playable[x].name  + "공격");
+            Debug.Log("루미네가 "+ TurnManager.Instance.playable[x].name  + " 를 공격");
         }
         else if(x == 1) 
         {
@@ -38,8 +41,7 @@ public class LumineNorAtkState : EnemyState
 
 
             //lumine.anims.Atk();
-
-            Debug.Log("루미네 " + TurnManager.Instance.playable[x].name + "공격");
+            Debug.Log("루미네가 " + TurnManager.Instance.playable[x].name + " 를 공격");
         }
         else if(x==2)
         {
@@ -50,8 +52,7 @@ public class LumineNorAtkState : EnemyState
 
 
             //lumine.anims.Atk();
-
-            Debug.Log("루미네 " + TurnManager.Instance.playable[x].name + "공격");
+            Debug.Log("루미네가 " + TurnManager.Instance.playable[x].name + " 를 공격");
         }
         else if (x == 3) 
         {
@@ -64,7 +65,7 @@ public class LumineNorAtkState : EnemyState
             //lumine.anims.Atk();
 
 
-            Debug.Log("루미네 " + TurnManager.Instance.playable[x].name + "공격");
+            Debug.Log("루미네가 " + TurnManager.Instance.playable[x].name + " 를 공격");
 
 
         }
