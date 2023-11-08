@@ -10,7 +10,7 @@ public class PlayerBeforeUltimateExcute : PlayerState //여기서 애니메이션 체크
 
     public override void Enter()
     {
-        if (player.CompareTag("Kiana") || player.CompareTag("Elysia"))
+        if (player.CompareTag("Kiana") || player.CompareTag("Elysia") || player.CompareTag("Durandal")) 
         { 
            
         }
@@ -30,7 +30,7 @@ public class PlayerBeforeUltimateExcute : PlayerState //여기서 애니메이션 체크
     {
         //base.Update();
 
-        if (player.CompareTag("Kiana") || player.CompareTag("Elysia"))
+        if (player.CompareTag("Kiana") || player.CompareTag("Elysia") || player.CompareTag("Durandal"))
         {
             stateMachine.ChangeState(player.ultimateState);
         }

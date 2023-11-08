@@ -305,15 +305,16 @@ public class TurnManager : MonoBehaviour
             playable[2].cureng = 0;
             Debug.Log(KeyCode.Alpha3 + "번 키가 눌렸음");
         }
-        /*
+        
         else if (playable[3].cureng == playable[3].maxeng && Input.GetKeyDown(KeyCode.Alpha4))
         {
 
-            ReserveUltimate(playable[3]);
-            // 플레이어를 "궁극기 예약 중" 상태로 설정
             playable[3].isUltimate = true; //여기서 궁극기가 사용가능한가.
+            playable[3].HandleUltimateReservations();
+            playerUltimate.Add(playable[3]);
+            playable[3].cureng = 0;
             Debug.Log(KeyCode.Alpha4 + "번 키가 눌렸음");
-        }*/
+        }
 
         //   if (ultimateQueue.Count == 0) //궁극기가 예약된 유저가 없을 경우 턴을 속행
         // {

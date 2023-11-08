@@ -56,6 +56,15 @@ public class Entity : MonoBehaviour
     public float baseTurnSpeed; // 기초 행동 수치
     public float currentTurnSpeed; // 현재 행동 수치
 
+    /* 속성 예정 스타레일 식이 아닌 내 마개조 버전으로 생각중.
+     * 
+     * 물리 <-> (원소) 화염 빙결 번개
+     * 
+     * 기계 생물 물리 허수 양자
+     * 
+     * 
+     * 
+     */
     [Header("이 오브젝트가 가지는 속성")]
     public string s = "s";
 
@@ -96,7 +105,9 @@ public class Entity : MonoBehaviour
 
     public float time;//특정 스테이트에서 바로 빠져나가기 위한 쿨타임.
 
-    public bool isMyTurn; // 내 턴인지를 체크하는 변수
+    public bool isDamaged=false;//데미지를 입었는가?
+
+    public bool isMyTurn=false; // 내 턴인지를 체크하는 변수
   
     public bool isUltimate = false; //내가 궁극기 버튼을 눌렀는가에 대한 체크
 

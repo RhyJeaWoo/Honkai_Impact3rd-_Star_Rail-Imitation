@@ -25,7 +25,9 @@ public class LumineAnimPlay : AnimPlay
     {
         //base.Atk();
 
-        GameObject atkeffect = Instantiate(atkEffect, BladeHitPos.transform.position, atkEffect.transform.rotation);
+        GameObject atkeffect = Instantiate(atkEffect, TurnManager.Instance.PlayerTransForm, atkEffect.transform.rotation); //AI가 공격하려는 위치로 공격.
+
+        Debug.Log("공격 이펙트가 생성되었음.");
 
 
         Destroy(atkeffect, 3f);

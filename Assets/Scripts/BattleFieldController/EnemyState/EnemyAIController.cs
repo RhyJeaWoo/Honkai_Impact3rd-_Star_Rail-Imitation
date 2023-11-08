@@ -7,6 +7,7 @@ public class EnemyAIController : Entity
 
     public EnemyStateMachine2 stateMachine { get; private set; }
 
+
     // 이벤트 핸들러 메서드
     // 애니메이션으로 보내게 설계 했고
     // 현재 작동 순서는 다음과 같음. HandleLevelDealt() --> HandleDamageDealt() 이렇게 호출 하는 이유는 공격자의 레벨을 받아야되는데, 

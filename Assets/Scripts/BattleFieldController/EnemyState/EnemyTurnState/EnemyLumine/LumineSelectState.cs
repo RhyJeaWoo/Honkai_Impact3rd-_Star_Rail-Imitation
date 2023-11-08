@@ -16,7 +16,6 @@ public class LumineSelectState : EnemyState
     {
         this.lumine = lumine;
        
-     
     }
 
     public override void Enter()
@@ -29,7 +28,7 @@ public class LumineSelectState : EnemyState
     public override void Exit()
     {
         base.Exit();
-        Debug.Log("RandoPattern");
+        //Debug.Log("RandoPattern");
     }
 
     public override void Update()
@@ -43,11 +42,13 @@ public class LumineSelectState : EnemyState
                 stateMachine.ChangeState(lumine.norAtkState);
             }else if(RandoPattern == 1) 
             {
-                stateMachine.ChangeState(lumine.strAtkState);
+                stateMachine.ChangeState(lumine.norAtkState);
+                //stateMachine.ChangeState(lumine.strAtkState);
             }
             else if(RandoPattern == 2)
             {
-                stateMachine.ChangeState(lumine.str2AtkState);
+                stateMachine.ChangeState(lumine.norAtkState);
+                //stateMachine.ChangeState(lumine.str2AtkState);
             }
 
         }
