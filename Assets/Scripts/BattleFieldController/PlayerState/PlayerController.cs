@@ -347,7 +347,7 @@ public class PlayerController : Entity
 
         curhp = curhp - SumDamage;
 
-      TakeDamageText((int)SumDamage);
+        TakeDamageText((int)SumDamage);
 
         // 이 메서드에서 데미지 값을 받아 처리
         // Debug.Log("데미지를 전달 받았습니다!" + damage);

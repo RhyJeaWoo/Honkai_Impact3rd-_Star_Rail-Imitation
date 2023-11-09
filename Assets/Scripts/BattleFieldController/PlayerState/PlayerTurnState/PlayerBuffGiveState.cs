@@ -15,6 +15,8 @@ public class PlayerBuffGiveState : PlayerState
         base.Enter();
         player.vircam[3].MoveToTopOfPrioritySubqueue();
 
+        TurnManager.Instance.SkillStackUse();
+
 
     }
 
@@ -22,6 +24,7 @@ public class PlayerBuffGiveState : PlayerState
     {
         base.Exit();
         TurnManager.Instance.Enemy_target_simbol.SetActive(false); // È°¼ºÈ­
+    
     }
 
     public override void Update()

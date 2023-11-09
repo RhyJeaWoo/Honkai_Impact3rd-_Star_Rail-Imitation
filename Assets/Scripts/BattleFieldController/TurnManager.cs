@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
@@ -13,7 +14,14 @@ public class TurnManager : MonoBehaviour
 
     private static TurnManager instance = null;
 
-    [SerializeField] private int SkillStack = 3;
+    public GameObject[] StackFullUi = null;
+
+    public TextMeshProUGUI text;
+
+    public int SkillStack = 3;
+
+    public string[] participatePlayer;
+    public string[] participateEnemy;
 
 
 
@@ -141,6 +149,7 @@ public class TurnManager : MonoBehaviour
 
         TurnTime();
 
+        SkillStackCheck();
 
     }
 
@@ -156,6 +165,12 @@ public class TurnManager : MonoBehaviour
         enemys.AddRange(FindObjectsOfType<EnemyAIController>());
 
         playable.AddRange(FindObjectsOfType<PlayerController>());
+
+        for (int i = 0; i < playable.Count; i++)
+            participatePlayer[i] = playable[i].name;
+
+        for (int j = 0; j < enemys.Count; j++)
+            participateEnemy[j] = playable[j].name;
     }
 
     public void PlayerHealPos()
@@ -238,7 +253,7 @@ public class TurnManager : MonoBehaviour
     {
 
 
-       
+
 
         if (playable[0].cureng == playable[0].maxeng && Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -281,7 +296,7 @@ public class TurnManager : MonoBehaviour
             playable[2].cureng = 0;
             Debug.Log(KeyCode.Alpha3 + "번 키가 눌렸음");
         }
-        
+
         else if (playable[3].cureng == playable[3].maxeng && Input.GetKeyDown(KeyCode.Alpha4))
         {
 
@@ -340,9 +355,10 @@ public class TurnManager : MonoBehaviour
                     all_obj[i].currentTurnSpeed = all_obj[i].baseTurnSpeed;
                 }
             }
-        }else
+        }
+        else
         {
-            
+
         }
 
     }
@@ -470,8 +486,76 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    public void SkillStackCheck()
+    {
 
+        text.text = SkillStack.ToString();
+
+
+        if (SkillStack > 0 && SkillStack <= StackFullUi.Length)
+        {
+            for (int i = 0; i < StackFullUi.Length; i++)
+            {
+                StackFullUi[i].SetActive(i < SkillStack); //가 < skill스텍보다 작다면 참
+            }
+        }
+
+        /*
+        if (SkillStack > 0)
+        {
+
+
+            if (SkillStack >= 1)
+            {
+                StackFullUi[0].SetActive(true); //i랑 숫자랑 일치하면,
+            }else
+            {
+                StackFullUi[0].SetActive(false);
+            }
+
+            if (SkillStack >= 2)
+            {
+                StackFullUi[1].SetActive(true); //i랑 숫자랑 일치하면,
+            }
+            else
+            {
+                StackFullUi[0].SetActive(false);
+            }
+
+            if (SkillStack >= 3)
+            {
+                StackFullUi[2].SetActive(true); //i랑 숫자랑 일치하면,
+            }
+            else
+            {
+                StackFullUi[0].SetActive(false);
+            }
+
+            if (SkillStack >= 4)
+            {
+                StackFullUi[3].SetActive(true); //i랑 숫자랑 일치하면,
+            }
+            else
+            {
+                StackFullUi[0].SetActive(false);
+            }
+
+            if (SkillStack >= 5)
+            {
+                StackFullUi[4].SetActive(true); //i랑 숫자랑 일치하면,
+            }
+            else
+            {
+                StackFullUi[0].SetActive(false);
+            }
+        }
+        */
+
+
+    }
 }
+
+
 
 
 // 여기에서 궁극기 예약 및 큐에 추가 로직을 유지
