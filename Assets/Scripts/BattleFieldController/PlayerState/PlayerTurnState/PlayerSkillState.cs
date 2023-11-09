@@ -15,6 +15,7 @@ public class PlayerSkillState : PlayerState
 
     public override void Enter()
     {
+        TurnManager.Instance.SkillStackUse();
         time = 0;
         if (player.CompareTag("Durandal"))
         {

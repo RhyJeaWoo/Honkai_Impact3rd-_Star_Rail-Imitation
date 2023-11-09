@@ -15,6 +15,7 @@ public class PlayerBuffGiveState : PlayerState
         base.Enter();
         player.vircam[3].MoveToTopOfPrioritySubqueue();
 
+        TurnManager.Instance.SkillStackUse();
 
     }
 

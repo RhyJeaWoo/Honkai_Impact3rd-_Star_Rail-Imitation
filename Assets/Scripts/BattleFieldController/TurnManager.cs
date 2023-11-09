@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
@@ -13,7 +15,12 @@ public class TurnManager : MonoBehaviour
 
     private static TurnManager instance = null;
 
-    [SerializeField] private int SkillStack = 3;
+    public int SkillStack = 3;
+
+    public GameObject[] StackFullUi = null;
+    public GameObject SkillStackCheckimg = null;
+
+    public TextMeshProUGUI text;
 
 
 
@@ -140,8 +147,7 @@ public class TurnManager : MonoBehaviour
         TargetMove();// 타겟을 정하고 그 타겟이 어디에 있는지 저장하려는 함수
 
         TurnTime();
-
-
+        SkillStackCheck();
     }
 
 
@@ -468,6 +474,40 @@ public class TurnManager : MonoBehaviour
         {
             SkillStack = 5;
         }
+    }
+    private void SkillStackCheck()
+    {
+        if (SkillStack > 0 && SkillStack <= StackFullUi.Length)
+        {
+            for (int i = 0; i < StackFullUi.Length; i++)
+            {
+                if (i < SkillStack)
+                {
+                    StackFullUi[i].SetActive(true);
+                }
+                else if(SkillStack == 0)
+                {
+                    StackFullUi[0].SetActive(false);
+                }
+                else
+                {
+                        StackFullUi[i].SetActive(false);                 
+                }
+
+
+
+            }
+        }
+
+        if(SkillStack == 0)
+        {
+            SkillStackCheckimg.SetActive(false);
+        }else
+        {
+            SkillStackCheckimg.SetActive(true);
+        }
+
+       text.text = SkillStack.ToString();
     }
 
 
