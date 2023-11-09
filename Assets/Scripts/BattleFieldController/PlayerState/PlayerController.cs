@@ -2,10 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class PlayerController : Entity
 {
 
+    public Image eng;
 
     public List<PlayerController> playerList = new List<PlayerController>(new PlayerController[4]);
     //좋은 방법이 아님 그냥 턴매니저의 값을 받아와서 그걸로 처리하는게 좋아보임.
@@ -158,6 +160,8 @@ public class PlayerController : Entity
         {
             cureng = maxeng;
         }
+
+        eng.fillAmount = cureng / maxeng;
 
         //플레이어 방어력 계수
         //최종 방어계수 = ((현재 레벨 * 100) + 100) / (((전달 받은 상대 레벨 * 10) +200 )  +((현재 레벨 * 10 ) + 200 + 내 현재 방어력));

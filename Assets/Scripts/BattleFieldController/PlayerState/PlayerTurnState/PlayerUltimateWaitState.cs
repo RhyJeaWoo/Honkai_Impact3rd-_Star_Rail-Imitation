@@ -13,6 +13,7 @@ public class PlayerUltimateWaitState : PlayerState //¿©±â¼­ ±Ã±Ø±â¸¦ ¹ßµ¿ÇÒ Å¸°Ù
         base.Enter();
 
         player.vircam[0].MoveToTopOfPrioritySubqueue();
+
         if(player.CompareTag("Mei"))
         player.anims.UltimateWaitEffect();
 

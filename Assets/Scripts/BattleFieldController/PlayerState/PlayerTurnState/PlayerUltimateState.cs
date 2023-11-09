@@ -17,8 +17,8 @@ public class PlayerUltimateState : PlayerState
     {
         time = 0;
 
-
         player.cureng = 0;
+
 
         player.playableDirector[0].enabled = true;
 

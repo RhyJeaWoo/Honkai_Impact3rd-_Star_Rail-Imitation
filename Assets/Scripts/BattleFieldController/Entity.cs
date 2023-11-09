@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Entity : MonoBehaviour
 {
+    public Image hp;
+
+
     //델리게이트
 
     public delegate void DamageDealtHandler(float damage); //데미지에 관한 델리게이트로 선언
@@ -147,6 +150,8 @@ public class Entity : MonoBehaviour
     protected virtual void Update()
     {
         time -= Time.deltaTime;
+
+        hp.fillAmount = curhp / maxhp;
     }
 
     public void ObjectStatCal() //초기 수치 계산
@@ -162,6 +167,8 @@ public class Entity : MonoBehaviour
         //크리티컬 적용전 데미지   (공격력 * 스킬 계수) * (1 + 피해 증가 배수) 
 
         defaultDamage = (atk) * (1 + increasedDamage);
+
+       
     }
 
     public void DamageDelegate(float damage)
