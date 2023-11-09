@@ -12,7 +12,6 @@ public class PlayerAttackState : PlayerState
     {
         base.Enter();
         player.transform.LookAt(player.toEnemyPos);
-        TurnManager.Instance.SkillStackAdd();
 
         //player.ExecuteAttack(this.player);//전략 패턴 실행.
         //player.isAtackOn = true;
@@ -22,7 +21,6 @@ public class PlayerAttackState : PlayerState
     {
         base.Exit();
         //player.isAtackOn = false;
-    
 
 
     }

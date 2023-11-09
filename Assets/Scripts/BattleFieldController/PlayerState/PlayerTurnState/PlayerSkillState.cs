@@ -16,11 +16,6 @@ public class PlayerSkillState : PlayerState
     public override void Enter()
     {
         time = 0;
-
-
-        TurnManager.Instance.SkillStackUse();
-
-
         if (player.CompareTag("Durandal"))
         {
             player.playableDirector[1].enabled = true;
@@ -45,7 +40,7 @@ public class PlayerSkillState : PlayerState
     {
         base.Exit();
         //player.isSkillOn = false;
-        if (player.CompareTag("Durandal"))
+        if(player.CompareTag("Durandal"))
         {
             player.playableDirector[1].enabled = false;
         }

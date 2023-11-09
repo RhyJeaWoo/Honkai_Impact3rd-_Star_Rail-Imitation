@@ -42,7 +42,7 @@ public class PlayerAttackWaitState : PlayerState
           
         
         }
-        if (Input.GetKeyDown(KeyCode.E) && TurnManager.Instance.SkillStack > 0)
+        if (Input.GetKeyDown(KeyCode.E))
         {
             //키변경시 스킬 준비 모션으로 이동
             
