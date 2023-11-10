@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
@@ -244,7 +243,7 @@ public class TurnManager : MonoBehaviour
     {
 
 
-       
+
 
         if (playable[0].cureng == playable[0].maxeng && Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -287,7 +286,7 @@ public class TurnManager : MonoBehaviour
             playable[2].cureng = 0;
             Debug.Log(KeyCode.Alpha3 + "번 키가 눌렸음");
         }
-        
+
         else if (playable[3].cureng == playable[3].maxeng && Input.GetKeyDown(KeyCode.Alpha4))
         {
 
@@ -346,9 +345,10 @@ public class TurnManager : MonoBehaviour
                     all_obj[i].currentTurnSpeed = all_obj[i].baseTurnSpeed;
                 }
             }
-        }else
+        }
+        else
         {
-            
+
         }
 
     }
@@ -477,7 +477,7 @@ public class TurnManager : MonoBehaviour
     }
     private void SkillStackCheck()
     {
-        if (SkillStack > 0 && SkillStack <= StackFullUi.Length)
+        if (SkillStack <= StackFullUi.Length)
         {
             for (int i = 0; i < StackFullUi.Length; i++)
             {
@@ -485,29 +485,21 @@ public class TurnManager : MonoBehaviour
                 {
                     StackFullUi[i].SetActive(true);
                 }
-                else if(SkillStack == 0)
+                /*else if (SkillStack == 0)
                 {
                     StackFullUi[0].SetActive(false);
-                }
+                }*/
                 else
                 {
-                        StackFullUi[i].SetActive(false);                 
+                    StackFullUi[i].SetActive(false);
                 }
 
-
-
             }
+
+           
         }
 
-        if(SkillStack == 0)
-        {
-            SkillStackCheckimg.SetActive(false);
-        }else
-        {
-            SkillStackCheckimg.SetActive(true);
-        }
-
-       text.text = SkillStack.ToString();
+        text.text = SkillStack.ToString();
     }
 
 

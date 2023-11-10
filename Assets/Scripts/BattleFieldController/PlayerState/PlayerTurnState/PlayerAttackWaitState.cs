@@ -42,6 +42,7 @@ public class PlayerAttackWaitState : PlayerState
           
         
         }
+
         if (Input.GetKeyDown(KeyCode.E) && TurnManager.Instance.SkillStack > 0)
         {
             //키변경시 스킬 준비 모션으로 이동
@@ -49,7 +50,11 @@ public class PlayerAttackWaitState : PlayerState
             player.stateMachine.ChangeState(player.skillWaitState);
 
       
+        }else if(TurnManager.Instance.SkillStack == 0 && Input.GetKeyDown(KeyCode.E)) 
+        { 
+            Debug.Log("스킬 포인트가 모자랍니다."); 
         }
+        
 
     }
 }

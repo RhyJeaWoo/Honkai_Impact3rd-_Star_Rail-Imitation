@@ -53,10 +53,8 @@ public class PlayerSkillWaitState : PlayerState
             {
                 //확정 키 버튼 입력시 작동
                 player.stateMachine.ChangeState(player.targetMoveState);
-            }else
-            {
-                Debug.Log("스킬 포인트가 모자랍니다.");
             }
+      
         }
 
      

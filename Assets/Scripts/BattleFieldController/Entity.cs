@@ -200,8 +200,10 @@ public class Entity : MonoBehaviour
     
     public void TakeDamageText(int damage)
     {
+        float x = Random.Range(-1, 2);
+
         GameObject hudText = Instantiate(hudDamageText); // 생성할 텍스트 오브젝트
-        hudText.transform.position = hudPos.position + new Vector3(0,0.5f,0); // 표시될 위치
+        hudText.transform.position = hudPos.position + new Vector3(x, 1f,0); // 표시될 위치
         hudText.GetComponent<DamageText>().damage = damage; // 데미지 전달
         //base.TakeDamage(damage);
     }
