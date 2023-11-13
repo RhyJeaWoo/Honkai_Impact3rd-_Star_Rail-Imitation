@@ -9,6 +9,8 @@ public class PlayerController : Entity
 
     public Image eng;
 
+    public Color engColorA;
+
     public List<PlayerController> playerList = new List<PlayerController>(new PlayerController[4]);
     //좋은 방법이 아님 그냥 턴매니저의 값을 받아와서 그걸로 처리하는게 좋아보임.
 
@@ -69,6 +71,8 @@ public class PlayerController : Entity
 
     public PlayerUltimateEndState ultimateEndState { get; private set; }// 궁극기 종료후 데미지 정산
 
+    public PlayerTurnEndState turnEndState { get; private set; }//턴이 완전히 종료되고 정리되는 상태 -> 모든 상태에서 반드시 거쳐가는 상태
+
 
 
 
@@ -125,7 +129,7 @@ public class PlayerController : Entity
         buffgiveState = new PlayerBuffGiveState(this, stateMachine, "BuffGive"); //버프(힐)을 주는 상태
         whereGiveBuffState = new PlayerWhereGiveBuffState(this, stateMachine, "WhereGiveBuff");
 
-       
+        turnEndState = new PlayerTurnEndState(this, stateMachine, "TurnEnd");
 
     }
 
@@ -147,6 +151,8 @@ public class PlayerController : Entity
         //Debug.Log(TurnManager.Instance.healTarget.Length);
         
         ListSort(); //한번 인위적으로 정렬 해줌. 
+
+        engColorA = eng.color;
 
     
     }
@@ -338,6 +344,11 @@ public class PlayerController : Entity
         // 궁극기 예약 처리 로직 추가
         // ...
         IsReservingUltimate = true; //이 캐릭터가 예약 되었는가?
+
+        engColorA.a = 1f; //알베도를 최대값으로 바꿈
+
+         eng.color = engColorA;//알베도를 변경해서 궁극기 예약 상태로 만듬.
+
         Debug.Log(name + "이(가) 궁극기를 예약했습니다.");
     }
 

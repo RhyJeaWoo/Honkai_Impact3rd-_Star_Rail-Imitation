@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class TurnManager : MonoBehaviour
 
     public TextMeshProUGUI text;
 
+    public CinemachineVirtualCamera startCam;
 
 
     public string targetPlayerName;
@@ -78,6 +80,8 @@ public class TurnManager : MonoBehaviour
 
     Vector3 ResetTargetRot;
 
+    public Vector3[] EnemyInitialPosition = null;
+
 
     private void Awake()
     {
@@ -125,6 +129,7 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
 
+        startCam.MoveToTopOfPrioritySubqueue();
 
         ListAddRange();
 
@@ -134,12 +139,26 @@ public class TurnManager : MonoBehaviour
 
         SetStrategy();
 
+        EnemyInitialPos(); //게임 시작시 적들의 초기 위치를 저장(다시 되돌아 가기 위함임)
 
         Enemy_target_simbol.transform.position = new Vector3(enemys[0].transform.position.x, Enemy_target_simbol.transform.position.y, Enemy_target_simbol.transform.position.z);
 
         ResetTargetRot = Enemy_target_simbol.transform.eulerAngles;
+
+        for(int i = 0; i<playable.Count; i++)
+        {
+            playable[i].skin[0].enabled = false;
+            playable[i].skin[1].enabled = false;
+        }
     }
 
+    private void EnemyInitialPos() //기초 위치 저장
+    {
+        for (int i = 0; i < enemys.Count && i < EnemyInitialPosition.Length; i++)
+        {
+            EnemyInitialPosition[i] = enemys[i].transform.position;
+        }
+    }
 
     private void Update()
     {
@@ -159,6 +178,7 @@ public class TurnManager : MonoBehaviour
     {
         all_obj.AddRange(FindObjectsOfType<Entity>());
         enemys.AddRange(FindObjectsOfType<EnemyAIController>());
+
 
         playable.AddRange(FindObjectsOfType<PlayerController>());
     }
@@ -257,7 +277,7 @@ public class TurnManager : MonoBehaviour
             playable[0].isUltimate = true; //여기서 궁극기가 사용가능한가.
             playable[0].HandleUltimateReservations(); //플레이어에게 궁극기를 입력하였다고 알려줌
             playerUltimate.Add(playable[0]);
-            playable[0].cureng = 0;
+            //playable[0].cureng = 0;
 
             Debug.Log(KeyCode.Alpha1 + "번 키가 눌렸음");
             //여기서 만약 예약만 한다고 치면 
@@ -272,7 +292,7 @@ public class TurnManager : MonoBehaviour
             playable[1].isUltimate = true; //여기서 궁극기가 사용가능한가.
             playable[1].HandleUltimateReservations();
             playerUltimate.Add(playable[1]);
-            playable[1].cureng = 0;
+            //playable[1].cureng = 0;
             Debug.Log(KeyCode.Alpha2 + "번 키가 눌렸음");
         }
         else if (playable[2].cureng == playable[2].maxeng && Input.GetKeyDown(KeyCode.Alpha3))
@@ -283,7 +303,7 @@ public class TurnManager : MonoBehaviour
             playable[2].isUltimate = true; //여기서 궁극기가 사용가능한가.
             playable[2].HandleUltimateReservations();
             playerUltimate.Add(playable[2]);
-            playable[2].cureng = 0;
+            //playable[2].cureng = 0;
             Debug.Log(KeyCode.Alpha3 + "번 키가 눌렸음");
         }
 
@@ -293,7 +313,7 @@ public class TurnManager : MonoBehaviour
             playable[3].isUltimate = true; //여기서 궁극기가 사용가능한가.
             playable[3].HandleUltimateReservations();
             playerUltimate.Add(playable[3]);
-            playable[3].cureng = 0;
+            //playable[3].cureng = 0;
             Debug.Log(KeyCode.Alpha4 + "번 키가 눌렸음");
         }
 

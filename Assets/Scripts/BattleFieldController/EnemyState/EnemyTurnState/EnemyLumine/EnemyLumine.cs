@@ -28,7 +28,7 @@ public class EnemyLumine : EnemyAIController
 
     public LumineIdleState idleState { get; private set; } //루미네가 자기 턴이 오기 전까지 기다리는 상태
 
-    public LumineHitState hitState { get; private set; }//루미네가 피격 당했을때 실행될 상태(이 상태는 어디서든지 발동 될 수 있음)
+    public LumineHitState hitState { get; private set; } //루미네가 피격 당했을때 실행될 상태(이 상태는 어디서든지 발동 될 수 있음)
     //주로 idle에서 발동됨
     public LumineDeadState deadState { get; private set; }
     //루미네가 피격 당했고 죽었을때 실행될 상태(이 상태는 어디서든지 발동 될 수 있음)
@@ -75,6 +75,7 @@ public class EnemyLumine : EnemyAIController
 
         //OnDamageDealt?.Invoke(damage); 데미지를 보낸다.
     }
+
     /*
     public void deliveryLevel()
     {

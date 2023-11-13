@@ -15,6 +15,8 @@ public class PlayerIsMyUltimateTurnState : PlayerState
     {
         //base.Enter();
         Debug.Log(player.name + "이 궁대기 상태에 진입하였음");
+    
+
     }
 
     public override void Exit()
@@ -28,6 +30,7 @@ public class PlayerIsMyUltimateTurnState : PlayerState
 
         if (player.isUltimate)
         {
+           
             stateMachine.ChangeState(player.ultimateWaitState);
             return;
         }

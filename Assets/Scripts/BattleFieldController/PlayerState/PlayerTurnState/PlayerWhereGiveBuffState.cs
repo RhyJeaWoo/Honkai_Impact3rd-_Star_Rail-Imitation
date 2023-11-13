@@ -17,7 +17,7 @@ public class PlayerWhereGiveBuffState : PlayerState
 
         Debug.Log("버프를 줄 수 있는 상태에 진입하였음.");
 
-        player.vircam[1].MoveToTopOfPrioritySubqueue();
+        player.vircam[2].MoveToTopOfPrioritySubqueue();
         //player.CastDefensiveSkill();
 
 

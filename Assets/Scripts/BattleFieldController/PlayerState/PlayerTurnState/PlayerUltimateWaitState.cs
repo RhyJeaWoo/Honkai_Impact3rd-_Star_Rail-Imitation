@@ -14,6 +14,43 @@ public class PlayerUltimateWaitState : PlayerState //여기서 궁극기를 발동할 타겟
 
         player.vircam[0].MoveToTopOfPrioritySubqueue();
 
+        player.skin[0].enabled = true; //캐릭터
+        player.skin[1].enabled = true; //캐릭터가 들고 있는 무기들 을 자기턴일때, 활성화
+
+        player.vircam[0].transform.position = player.transform.position + new Vector3(2, 1.5f, -3.5f);
+   
+     
+
+
+            for (int i = 0; i < TurnManager.Instance.playable.Count; i++)
+            {
+                if (!TurnManager.Instance.playable[i].isUltimate) //만약 내 턴이 아닌 플레이어블들이 있다면.
+                {
+                    TurnManager.Instance.playable[i].skin[0].enabled = false;
+                    TurnManager.Instance.playable[i].skin[1].enabled = false; //그 턴에 한해 비화성화
+
+                }
+            }
+        
+
+        for (int i = 0; i < TurnManager.Instance.enemys.Count && i < TurnManager.Instance.EnemyInitialPosition.Length; i++)
+        {
+            if (!TurnManager.Instance.enemys[i].isMyTurn)
+            {
+                TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.EnemyInitialPosition[i];
+            }
+        }
+
+
+        for (int i = 0; i < TurnManager.Instance.enemys.Count; i++)
+        {
+            if (!TurnManager.Instance.enemys[i].isMyTurn)
+            {
+                TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.enemys[i].transform.position
+                    + new Vector3(player.transform.position.x, 0, 0);
+            }
+        }
+
         if(player.CompareTag("Mei"))
         player.anims.UltimateWaitEffect();
 
@@ -30,6 +67,7 @@ public class PlayerUltimateWaitState : PlayerState //여기서 궁극기를 발동할 타겟
     public override void Exit()
     {
         base.Exit();
+
     }
 
     public override void Update()

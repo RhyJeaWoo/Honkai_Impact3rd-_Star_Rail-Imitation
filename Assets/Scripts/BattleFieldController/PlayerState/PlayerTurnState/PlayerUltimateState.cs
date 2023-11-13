@@ -17,7 +17,7 @@ public class PlayerUltimateState : PlayerState
     {
         time = 0;
 
-        player.cureng = 0;
+      
 
 
         player.playableDirector[0].enabled = true;
@@ -25,6 +25,14 @@ public class PlayerUltimateState : PlayerState
         player.LevelDelegate();
 
 
+        if (player.CompareTag("Elysia"))
+        {
+            for (int i = 0; i < TurnManager.Instance.playable.Count; i++)
+            {
+                TurnManager.Instance.playable[i].skin[0].enabled = true;
+                TurnManager.Instance.playable[i].skin[1].enabled = true; //그 턴에 한해 비화성화
+            }
+        }
 
     }
 
@@ -36,6 +44,26 @@ public class PlayerUltimateState : PlayerState
       
         time = 0;
 
+        player.playableDirector[0].time = 0;
+
+        player.playableDirector[0].enabled = false;
+
+        player.engColorA.a = 0.64f;
+
+        player.eng.color = player.engColorA;
+
+        //필드위 모든 적들 검사
+
+        for (int i = 0; i < TurnManager.Instance.enemys.Count && i < TurnManager.Instance.EnemyInitialPosition.Length; i++)
+        {
+
+            //턴을 잡은 Enemy가 없을 경우
+            if (!TurnManager.Instance.enemys[i].isMyTurn)
+            {
+                //모든 적의 위치를 기존에 턴 매니저에 저장한 적의 기존 위치로 변경.
+                TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.EnemyInitialPosition[i];
+            }
+        }
 
 
     }

@@ -46,6 +46,14 @@ public class PlayerSkillState : PlayerState
             player.playableDirector[1].enabled = false;
         }
 
+      
+
+        player.vircam[1].transform.position = player.vircam[0].transform.position;
+
+        player.vircam[1].MoveToTopOfPrioritySubqueue();
+
+
+
     }
 
     public override void Update()
@@ -64,7 +72,7 @@ public class PlayerSkillState : PlayerState
             {
 
                 player.playableDirector[1].Stop();
-                player.isMyTurn = false;
+           
                 stateMachine.ChangeState(player.comeBackState);
 
             }
@@ -77,7 +85,7 @@ public class PlayerSkillState : PlayerState
 
                 player.cureng += 30;
 
-                player.isMyTurn = false;
+                //player.isMyTurn = false;
                 player.stateMachine.ChangeState(player.comeBackState);
 
             }

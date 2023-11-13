@@ -36,9 +36,8 @@ public class PlayerComeBackState : PlayerState
         if (player.anim.GetCurrentAnimatorStateInfo(0).IsName("ComeBack")
          && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
-            player.isMyTurn = false;
-            TurnManager.Instance.TurnEnd();
-            player.stateMachine.ChangeState(player.idleState);
+          
+            player.stateMachine.ChangeState(player.turnEndState);
 
         }
       

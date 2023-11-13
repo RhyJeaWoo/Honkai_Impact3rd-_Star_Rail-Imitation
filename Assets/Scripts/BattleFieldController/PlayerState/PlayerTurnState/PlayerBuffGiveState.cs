@@ -23,6 +23,14 @@ public class PlayerBuffGiveState : PlayerState
     {
         base.Exit();
         TurnManager.Instance.Enemy_target_simbol.SetActive(false); // 활성화
+
+        for (int i = 0; i < TurnManager.Instance.enemys.Count && i < TurnManager.Instance.EnemyInitialPosition.Length; i++)
+        {
+            if (!TurnManager.Instance.enemys[i].isMyTurn)
+            {
+                TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.EnemyInitialPosition[i];
+            }
+        }
     }
 
     public override void Update()
@@ -39,7 +47,7 @@ public class PlayerBuffGiveState : PlayerState
             player.isMyTurn = false;
             TurnManager.Instance.TurnEnd(); //로직을 다시 짜야된다.
             //TurnManager.Instance.target_simbol.SetActive(false);
-            player.stateMachine.ChangeState(player.idleState);
+            player.stateMachine.ChangeState(player.turnEndState);
         }
 
 

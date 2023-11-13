@@ -11,7 +11,7 @@ public class PlayerBeforeUltimateExcute : PlayerState //여기서 애니메이션 체크
     public override void Enter()
     {
 
-        
+        player.cureng = 0;
 
         if (player.CompareTag("Kiana") || player.CompareTag("Elysia") || player.CompareTag("Durandal")) 
         { 

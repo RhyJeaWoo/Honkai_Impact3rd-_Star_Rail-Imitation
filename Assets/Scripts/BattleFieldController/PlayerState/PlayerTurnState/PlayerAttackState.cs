@@ -23,6 +23,18 @@ public class PlayerAttackState : PlayerState
         base.Exit();
         //player.isAtackOn = false;
 
+        /*
+        for (int i = 0; i < TurnManager.Instance.enemys.Count && i < TurnManager.Instance.EnemyInitialPosition.Length; i++)
+        {
+            if (!TurnManager.Instance.enemys[i].isMyTurn)
+            {
+                TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.EnemyInitialPosition[i];
+            }
+        }*/
+        player.vircam[1].transform.position = player.vircam[0].transform.position;
+
+        player.vircam[1].MoveToTopOfPrioritySubqueue();
+
 
     }
 

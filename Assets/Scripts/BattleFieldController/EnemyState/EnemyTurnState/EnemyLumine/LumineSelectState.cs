@@ -21,6 +21,16 @@ public class LumineSelectState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        for(int i = 0; i< TurnManager.Instance.playable.Count; i++) 
+        {
+            if (!TurnManager.Instance.playable[i].isMyTurn)
+            {
+                TurnManager.Instance.playable[i].skin[0].enabled = true;
+                TurnManager.Instance.playable[i].skin[1].enabled = true;
+            }
+        }
+
         RandoPattern = Random.Range(0, 3);
         lumine.vircam[0].MoveToTopOfPrioritySubqueue();
     }
