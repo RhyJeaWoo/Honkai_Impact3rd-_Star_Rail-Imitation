@@ -106,9 +106,8 @@ public class KianaSkill : PlayerSkillStrategy
 
 
     }
-    public void PlayAnimation(PlayerController player)
-    { }
+    public void PlayVoice(PlayerController player)
+    {
 
-    public void SkillToTarget(Transform target)
-    { }
+    }
 }

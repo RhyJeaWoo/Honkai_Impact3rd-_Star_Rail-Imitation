@@ -10287,6 +10287,7 @@ MonoBehaviour:
   playerList: []
   playableDirector:
   - {fileID: 1014930203}
+  playerSound: []
 --- !u!137 &728644943 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2892900334550054236, guid: 9c60e9f1470954b41832e5e8db92f915, type: 3}
@@ -16308,6 +16309,7 @@ MonoBehaviour:
   playableDirector:
   - {fileID: 1097453084}
   - {fileID: 395820086}
+  playerSound: []
 --- !u!95 &1483505004 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 4d1b02fd23284d84db87fd869cc0d271, type: 3}
@@ -17103,6 +17105,7 @@ MonoBehaviour:
   playerList: []
   playableDirector:
   - {fileID: 2085608296}
+  playerSound: []
 --- !u!95 &1638222036 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: a197325c15a33734aaa6a7d742ee78af, type: 3}
@@ -19998,7 +20001,7 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   ultimateWaitEffect: {fileID: 0}
   BladeHitPos: {fileID: 0}
-  particleUltimate: {fileID: 0}
+  VoiceClip: []
 --- !u!4 &1781196359 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7683926027605265932, guid: a197325c15a33734aaa6a7d742ee78af, type: 3}
@@ -22436,6 +22439,42 @@ PrefabInstance:
       propertyPath: vircam.Array.data[1]
       value: 
       objectReference: {fileID: 2271529}
+    - target: {fileID: 56132368471635740, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: playerSound.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 56132368471635740, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: playerSound.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 44d118b39e790dd46ad2f7d4c699940f, type: 3}
+    - target: {fileID: 56132368471635740, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: playerSound.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: b47c56ff81d3ff34499ebbdd62a82606, type: 3}
+    - target: {fileID: 56132368471635740, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: playerSound.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 684b9294c9a627b45985fefa0671bd15, type: 3}
+    - target: {fileID: 56132368471635740, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: playerSound.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 32a99e1742774654fb3a36252f43b0a1, type: 3}
+    - target: {fileID: 56132368471635740, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: playerSound.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 62def7609bdd6644eaa877aa1433f30d, type: 3}
+    - target: {fileID: 56132368471635740, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: playerSound.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 29ef7c705e1165f49ac68da00f50eda9, type: 3}
+    - target: {fileID: 56132368471635740, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: playerSound.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: aa6ad68eabc313443a4746975c88d7ed, type: 3}
+    - target: {fileID: 56132368471635740, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: playerSound.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 018a43d72d14af445ad6b59d849c9efa, type: 3}
     - target: {fileID: 153318515525598806, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
       propertyPath: m_Avatar
       value: 
@@ -22532,6 +22571,42 @@ PrefabInstance:
       propertyPath: particleUltimate
       value: 
       objectReference: {fileID: 198737036799047812, guid: 1674caf6f46ca1c41b000b2203b9e476, type: 3}
+    - target: {fileID: 6059149754559085687, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: VoiceClip.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6059149754559085687, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: VoiceClip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 44d118b39e790dd46ad2f7d4c699940f, type: 3}
+    - target: {fileID: 6059149754559085687, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: VoiceClip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: b47c56ff81d3ff34499ebbdd62a82606, type: 3}
+    - target: {fileID: 6059149754559085687, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: VoiceClip.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 684b9294c9a627b45985fefa0671bd15, type: 3}
+    - target: {fileID: 6059149754559085687, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: VoiceClip.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 32a99e1742774654fb3a36252f43b0a1, type: 3}
+    - target: {fileID: 6059149754559085687, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: VoiceClip.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 62def7609bdd6644eaa877aa1433f30d, type: 3}
+    - target: {fileID: 6059149754559085687, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: VoiceClip.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 29ef7c705e1165f49ac68da00f50eda9, type: 3}
+    - target: {fileID: 6059149754559085687, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: VoiceClip.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: aa6ad68eabc313443a4746975c88d7ed, type: 3}
+    - target: {fileID: 6059149754559085687, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: VoiceClip.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 018a43d72d14af445ad6b59d849c9efa, type: 3}
     - target: {fileID: 8627565112603744366, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
       propertyPath: m_Name
       value: Mei

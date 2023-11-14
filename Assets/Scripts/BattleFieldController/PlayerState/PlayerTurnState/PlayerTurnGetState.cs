@@ -24,21 +24,8 @@ public class PlayerTurnGetState : PlayerState
 
             }
         }
-
-        ////필드위 모든 적들 검사
-
-        //for (int i = 0; i < TurnManager.Instance.enemys.Count && i < TurnManager.Instance.EnemyInitialPosition.Length; i++)
-        //{
-
-        //    //턴을 잡은 Enemy가 없을 경우
-        //    if (!TurnManager.Instance.enemys[i].isMyTurn)
-        //    {
-        //        //모든 적의 위치를 기존에 턴 매니저에 저장한 적의 기존 위치로 변경.
-        //        TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.EnemyInitialPosition[i];
-        //    }
-        //}
-
-
+        
+      
         for (int i = 0; i < TurnManager.Instance.enemys.Count; i++) 
         {
             if (!TurnManager.Instance.enemys[i].isMyTurn)

@@ -22,6 +22,7 @@ public class MeiSkill : PlayerSkillStrategy
                 //데미지 공식도 여기서 생각하자.
 
                 player.criticalDamage = player.defaultDamage * (1 + player.criticalPower) * meiSkillDamage1;
+                
 
                 // critical hit!
 
@@ -100,13 +101,8 @@ public class MeiSkill : PlayerSkillStrategy
       
     }
 
-
-
-    public void PlayAnimation(PlayerController player)
-    { }
-
-    public void SkillToTarget(Transform target) //Entity 가 아니라 클래스 Transform이었는데, 실험하려고 바꿈.
+    public void PlayVoice(PlayerController player)
     {
-     
+
     }
 }

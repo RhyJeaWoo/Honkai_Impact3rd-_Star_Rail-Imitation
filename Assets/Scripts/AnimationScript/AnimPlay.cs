@@ -12,10 +12,9 @@ public class AnimPlay : MonoBehaviour
     public GameObject ultimateWaitEffect;
 
     public GameObject BladeHitPos;
-
-    public ParticleSystem particleUltimate;
-
     private GameObject instantiatedPrefab;
+
+    public AudioClip[] VoiceClip;
 
     private void Start()
     {

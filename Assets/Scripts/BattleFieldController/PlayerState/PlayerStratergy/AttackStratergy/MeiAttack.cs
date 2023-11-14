@@ -13,6 +13,7 @@ public class MeiAttack : PlayerAttackStrategy
             //데미지 공식도 여기서 생각하자.
 
             player.criticalDamage = player.defaultDamage * (1 + player.criticalPower) * attackDamage;
+           
 
             // critical hit!
 

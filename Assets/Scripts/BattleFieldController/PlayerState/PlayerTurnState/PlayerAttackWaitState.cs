@@ -17,9 +17,28 @@ public class PlayerAttackWaitState : PlayerState
         Debug.Log(player.name + "턴 선택(일반공격) 상태임");
 
         //여기서 심볼 타겟 다시 잡기.
+        StartVoice();
 
-        
+    }
 
+    private void StartVoice()
+    {
+        if (player.CompareTag("Mei"))
+        {
+            SoundManager.instance.SFXPlay("TurnStart", player.playerSound[0]);
+        }
+        else if (player.CompareTag("Kiana"))
+        {
+            SoundManager.instance.SFXPlay("TurnStart", player.playerSound[0]);
+        }
+        else if (player.CompareTag("Elysia"))
+        {
+            SoundManager.instance.SFXPlay("TurnStart", player.playerSound[0]);
+        }
+        else if (player.CompareTag("Durandal"))
+        {
+            SoundManager.instance.SFXPlay("TurnStart", player.playerSound[0]);
+        }
     }
 
     public override void Exit()

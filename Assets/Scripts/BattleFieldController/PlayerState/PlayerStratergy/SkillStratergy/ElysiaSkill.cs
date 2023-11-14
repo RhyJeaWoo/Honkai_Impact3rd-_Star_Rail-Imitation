@@ -21,10 +21,9 @@ public class ElysiaSkill : PlayerSkillStrategy
        
    
     }
-    
-    public void PlayAnimation(PlayerController player)
-    { }
 
-    public void SkillToTarget(Transform target)
-    { }
+    public void PlayVoice(PlayerController player)
+    {
+
+    }
 }
