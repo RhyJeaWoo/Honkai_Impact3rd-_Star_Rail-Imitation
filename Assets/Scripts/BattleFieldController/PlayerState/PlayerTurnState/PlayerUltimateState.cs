@@ -23,6 +23,7 @@ public class PlayerUltimateState : PlayerState
         player.playableDirector[0].enabled = true;
 
         player.LevelDelegate();
+        //델리게이트로 레벨부터 전달함.
 
 
         if (player.CompareTag("Elysia"))
@@ -39,7 +40,8 @@ public class PlayerUltimateState : PlayerState
     public override void Exit()
     {
         base.Exit();
-      
+        player.UltimateDamageEvent();
+
         player.cureng += 5;
       
         time = 0;
@@ -51,6 +53,9 @@ public class PlayerUltimateState : PlayerState
         player.engColorA.a = 0.64f;
 
         player.eng.color = player.engColorA;
+
+       
+
 
         //필드위 모든 적들 검사
 

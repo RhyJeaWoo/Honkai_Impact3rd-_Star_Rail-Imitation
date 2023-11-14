@@ -19,8 +19,16 @@ public class PlayerHitState : PlayerState
             {
                 //player.isDamaged = true; 이건 Idle에서 처리하자.
                 player.HandleDamageDealt(TurnManager.Instance.enemys[i].atk);
+                /*
+                 * 지금보니 상당히 조잡하고, 단순하게 만들어졌음.
+                 * 이 부분에서는 수정이 필요해보임, 이중 전략을 쓰던,
+                 * 전략을 쓰던
+                 * 
+                 * 
+                 * 
+                 * 
+                 */
 
-                
             }
         }
 

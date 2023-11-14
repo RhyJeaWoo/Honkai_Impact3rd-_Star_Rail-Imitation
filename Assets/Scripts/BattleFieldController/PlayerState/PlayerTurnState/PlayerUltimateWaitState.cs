@@ -51,8 +51,12 @@ public class PlayerUltimateWaitState : PlayerState //¿©±â¼­ ±Ã±Ø±â¸¦ ¹ßµ¿ÇÒ Å¸°Ù
             }
         }
 
-        if(player.CompareTag("Mei"))
-        player.anims.UltimateWaitEffect();
+        if (player.CompareTag("Mei"))
+        {
+            //¸ÞÀÌ±Ã´ë±â¸ð¼Ç Å×½ºÆ®Áß
+            player.anims.UltimateWaitEffect();
+            //player.anims.ParticleUltimateStart(); << ÀÌ°Å ¾ÈµÊ
+        }
 
         TurnManager.Instance.Enemy_target_simbol.SetActive(true);
 
@@ -67,6 +71,14 @@ public class PlayerUltimateWaitState : PlayerState //¿©±â¼­ ±Ã±Ø±â¸¦ ¹ßµ¿ÇÒ Å¸°Ù
     public override void Exit()
     {
         base.Exit();
+        if(player.CompareTag("Mei"))
+        {
+            player.anims.DestroyUltimate();
+            //player.anims.DestroyUltimate();
+            //player.anims.StopParticleUltimate();
+        }
+       
+
 
     }
 

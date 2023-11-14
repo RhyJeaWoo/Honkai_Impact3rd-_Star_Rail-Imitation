@@ -23,7 +23,7 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
 
-    public AnimPlay anims;
+    public AnimPlay anims; //여기서 모순 발생.
      
     public SkinnedMeshRenderer[] skin;
 

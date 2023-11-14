@@ -6,6 +6,8 @@ public class MeiAnimPlay : AnimPlay
 {
     int countatk = 0;
 
+    private GameObject ultimateWaiteffect; //직관적으로 삭제하기 힘들다면, 이 방법으로 채택.
+
     public override void Skill() //메이 전용 값임
     {
         GameObject skilleffect = Instantiate(skillEffect, BladeHitPos.transform.position, skillEffect.transform.rotation);
@@ -80,15 +82,15 @@ public class MeiAnimPlay : AnimPlay
 
     public override void Ultimate()
     {
-        GameObject ultimateeffect = Instantiate(ultimateEffect, transform.position, transform.rotation);
+        /*GameObject UltimateEffect =*/ Instantiate(ultimateEffect, transform.position, transform.rotation);
         // Destroy(ultimateeffect, 3f);
     }
 
     public override void UltimateWaitEffect()
     {
-        GameObject ultimateWaiteffect = Instantiate(ultimateWaitEffect, transform.position, ultimateWaitEffect.transform.rotation);
-        Debug.Log("생성되었음");
-        Destroy(ultimateWaiteffect, 6f);
+        ultimateWaiteffect = Instantiate(ultimateWaitEffect, transform.position, ultimateWaitEffect.transform.rotation);
+       // Debug.Log("생성되었음");
+       // Destroy(ultimateWaiteffect, 6f);
     }
 
     public override void HitEffect()
@@ -97,5 +99,16 @@ public class MeiAnimPlay : AnimPlay
         Destroy(hiteffect, 1f);
 
     }
+
+    public override void DestroyUltimate()
+    {
+        if (ultimateWaiteffect != null)
+        {
+            Destroy(ultimateWaiteffect);
+            //Debug.Log("자식에 있는 이 함수가 실행 되었음");
+        }
+    }
+
+   
 
 }

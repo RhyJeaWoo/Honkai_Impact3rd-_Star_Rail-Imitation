@@ -277,7 +277,7 @@ public class TurnManager : MonoBehaviour
             playable[0].isUltimate = true; //여기서 궁극기가 사용가능한가.
             playable[0].HandleUltimateReservations(); //플레이어에게 궁극기를 입력하였다고 알려줌
             playerUltimate.Add(playable[0]);
-            //playable[0].cureng = 0;
+            //playable[0].cureng = 0; //여기서 0으로 처리하면 안됨.
 
             Debug.Log(KeyCode.Alpha1 + "번 키가 눌렸음");
             //여기서 만약 예약만 한다고 치면 

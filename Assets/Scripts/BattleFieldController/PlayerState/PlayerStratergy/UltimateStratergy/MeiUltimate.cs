@@ -11,6 +11,8 @@ public class MeiUltimate : PlayerUltimateStrategy
         {
             player.criticalDamage = player.defaultDamage * (1 + player.criticalPower) * ultimate_Coefficient;
 
+            Debug.Log("메이 궁데미지 : " + player.criticalDamage);
+
             return player.criticalDamage;
         }
         else

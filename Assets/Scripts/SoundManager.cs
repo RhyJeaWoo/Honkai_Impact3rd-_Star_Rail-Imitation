@@ -26,6 +26,10 @@ public class SoundManager : MonoBehaviour
     }
     
 
+    //자 그럼 이제, 과제1 효과음은 어떻게 처리할거임???
+    //일단 그나마 다행인건, 사운드 매니저에는 싱글톤을 사용했음
+    //그 말은 난 일단 여기서 코드를 짯으면 그걸 활용할 수 있다는 소리임.
+
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         for(int i = 0; i< bglist.Length; i++) 
@@ -36,6 +40,9 @@ public class SoundManager : MonoBehaviour
       
     }
 
+
+    //사용법 Public AudioClip[] 으로 선언해서 넣고 이 함수로 호출하면 될듯함.
+    //생각보다 간단하네
     public void SFXPlay(string sfxName, AudioClip clip)
     {
         GameObject go = new GameObject(sfxName+"Sound");

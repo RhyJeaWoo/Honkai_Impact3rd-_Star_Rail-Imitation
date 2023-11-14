@@ -13,10 +13,32 @@ public class PlayerController : Entity
 
     public List<PlayerController> playerList = new List<PlayerController>(new PlayerController[4]);
     //좋은 방법이 아님 그냥 턴매니저의 값을 받아와서 그걸로 처리하는게 좋아보임.
+    // 삭제 예정, 관련된 모든 리스트 삭제하고, 힐 관련 리스트는 여기서가 아닌, 턴 매니저에서 받아와서 사용할 것.
+
 
 
     //내 시점에서 바라볼 수 있는 플레이어 리스트
     public PlayableDirector[] playableDirector; //각자의 스킬이나, 궁극기를 타임라인에 삽입.
+
+
+    /* 오디오 클립은 그냥 쓰면 뒤지게 햇갈릴 것이니, 용도에 맞게 정의를 해서 쓰자.
+     * 1. 턴을 잡았을 경우[0] 에 할당
+     * 2. 스킬이나 공격 전환 중에는 사운드 할당 X
+     * 3. 공격 & 스킬 시전 중에 사용 O 공격[1], 스킬[2] 
+     * -> 여기서 공격과 스킬이 시전하는 사운드에 수에 따라
+     * 적재되는 클립의 수가 다를거니 적절하게 쓸것
+     * 
+     * 4. 궁극기 시전 중에도 사운드를 사용할 거임 궁극기 대기[3]
+     * 5. 히트 당할때 사운드
+     * 순서만 지킬것
+     * 
+     * 
+     * 
+     */
+    public AudioClip[] playerSound; //여기서 타임 라인을 제외한 나머지 사운드들을 사용할 것임.
+    
+    //이거랑 별개로, 무기 전환 효과를 다른 클립으로 관리 해야될듯?
+
 
     #region Design Patterns
 
@@ -242,15 +264,32 @@ public class PlayerController : Entity
         if (skillStrategy != null)
         {
 
-            float skillDamage = skillStrategy.ExcuteSkill(this); //델리게이트에 전략에서 받아온 정보값을 지역 변수에 저장
+            float skillDamage = skillStrategy.ExcuteSkill(this); //전략에서 받아온 정보값을 지역 변수에 저장
 
             // 데미지 이벤트 발생
             //OnDamageDealt?.Invoke(skillDamage);
-            DamageDelegate(skillDamage);
+            DamageDelegate(skillDamage); //델리게이트에 저장된 지역 변수 값을 전달 하는 원리
 
 
         }
     }
+
+    public void SetOnlyOneDmageEvent()
+    {
+        if(skillStrategy != null)
+        {
+            float skillDamage = skillStrategy.ExcuteSkill(this);//
+            for (int i = 0; i < TurnManager.Instance.enemys.Count; i++)
+            {
+                if (TurnManager.Instance.targetEnemyName == TurnManager.Instance.enemys[i].name)
+                {
+                    TurnManager.Instance.enemys[i].HandleDamageDealt(skillDamage);
+                }
+            }
+        }
+    }
+
+    //여기서 이걸로 데미지를 전달할거임.
 
     public void AttackDamageEnvet()
     {
@@ -362,7 +401,7 @@ public class PlayerController : Entity
 
         curhp = curhp - SumDamage;
 
-      TakeDamageText((int)SumDamage);
+        TakeDamageText((int)SumDamage);
 
         // 이 메서드에서 데미지 값을 받아 처리
         // Debug.Log("데미지를 전달 받았습니다!" + damage);
@@ -372,7 +411,7 @@ public class PlayerController : Entity
         Debug.Log(transform.name + "데미지를 받았습니다: " + SumDamage);
         //  Debug.Log("현재 hp : " + curhp);
 
-    }
+    }//전달하는 방법도 간단함.
 
     /* 용도 -> 상대방이 공격할때, 데미지 를 산정하기전 내 방어율 계산을 위한 방어계수 단일 공격이면 이 함수 호출하면됨.*/
     public void HandleLevelDealt(float level)

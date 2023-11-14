@@ -17,7 +17,7 @@ public class PlayerUltimateEndState : PlayerState
         //base.Enter(); 애니메이션을 쓰지 않을거기 때문에 잠금
 
  
-        player.UltimateDamageEvent();
+       
 
         player.playableDirector[0].enabled = false;
 

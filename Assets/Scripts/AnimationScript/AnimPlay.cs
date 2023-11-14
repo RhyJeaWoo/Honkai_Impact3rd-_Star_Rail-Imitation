@@ -13,6 +13,15 @@ public class AnimPlay : MonoBehaviour
 
     public GameObject BladeHitPos;
 
+    public ParticleSystem particleUltimate;
+
+    private GameObject instantiatedPrefab;
+
+    private void Start()
+    {
+       
+    }
+
     //int countatk = 0;
 
     public virtual void Skill() //메이 전용 값임
@@ -37,11 +46,16 @@ public class AnimPlay : MonoBehaviour
         // Destroy(ultimateeffect, 3f);
     }
 
+    public virtual void DestroyUltimate()
+    {
+       // Debug.Log("부모가 호출되었음");
+    }
+
     public virtual void UltimateWaitEffect()
     {
-        GameObject ultimateWaiteffect = Instantiate(ultimateWaitEffect, transform.position, ultimateWaitEffect.transform.rotation);
-        Debug.Log("생성되었음");
-        Destroy(ultimateWaiteffect, 6f);
+        instantiatedPrefab = Instantiate(ultimateWaitEffect, transform.position, ultimateWaitEffect.transform.rotation);
+       // Debug.Log("생성되었음");
+        
     }
 
     public virtual void HitEffect()
@@ -51,6 +65,8 @@ public class AnimPlay : MonoBehaviour
 
     }
 
+
+    
 }
 
 
