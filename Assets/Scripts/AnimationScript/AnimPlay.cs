@@ -64,8 +64,15 @@ public class AnimPlay : MonoBehaviour
 
     }
 
+    public virtual void Damaged()
+    { }
 
-    
+    public virtual void Died()
+    {
+
+    }
+
+
 }
 
 

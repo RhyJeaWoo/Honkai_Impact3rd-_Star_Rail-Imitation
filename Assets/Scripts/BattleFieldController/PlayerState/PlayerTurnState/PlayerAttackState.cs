@@ -16,6 +16,9 @@ public class PlayerAttackState : PlayerState
 
         //player.ExecuteAttack(this.player);//전략 패턴 실행.
         //player.isAtackOn = true;
+
+     
+
     }
 
     public override void Exit()

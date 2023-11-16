@@ -11,6 +11,7 @@ public class PlayerTurnGetState : PlayerState
     {
         //base.Enter();
 
+        SoundManager.instance.SFXPlay("TurnStart", player.PlayerVoice[0]);
 
         player.skin[0].enabled = true; //캐릭터
         player.skin[1].enabled = true; //캐릭터가 들고 있는 무기들 을 자기턴일때, 활성화
@@ -38,7 +39,7 @@ public class PlayerTurnGetState : PlayerState
         player.vircam[0].MoveToTopOfPrioritySubqueue();
 
         //여기서 실험.
-        player.vircam[0].transform.position = player.transform.position + new Vector3(2, 1.5f, -3.5f);
+        player.vircam[0].transform.position = player.transform.position + new Vector3(1, 1.5f, -2.5f);
 
         TurnManager.Instance.Enemy_target_simbol.SetActive(true); //적 마크
         TurnManager.Instance.Player_target_simbol.SetActive(false);//아군 마크
@@ -54,6 +55,9 @@ public class PlayerTurnGetState : PlayerState
         //base.Exit();
         // player.vircam.transform.position = player.virCamPos;
         Debug.Log("attackWait로 빠졌음");
+
+
+
 
     }
 

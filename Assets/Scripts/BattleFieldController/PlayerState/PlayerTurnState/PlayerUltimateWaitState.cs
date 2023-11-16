@@ -31,6 +31,8 @@ public class PlayerUltimateWaitState : PlayerState //여기서 궁극기를 발동할 타겟
 
                 }
             }
+
+            //이게 뭔 코드고
         
 
         for (int i = 0; i < TurnManager.Instance.enemys.Count && i < TurnManager.Instance.EnemyInitialPosition.Length; i++)
@@ -46,8 +48,7 @@ public class PlayerUltimateWaitState : PlayerState //여기서 궁극기를 발동할 타겟
         {
             if (!TurnManager.Instance.enemys[i].isMyTurn)
             {
-                TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.enemys[i].transform.position
-                    + new Vector3(player.transform.position.x, 0, 0);
+                TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.enemys[i].transform.position + new Vector3(player.transform.position.x, 0, 0);
             }
         }
 
@@ -55,8 +56,11 @@ public class PlayerUltimateWaitState : PlayerState //여기서 궁극기를 발동할 타겟
         {
             //메이궁대기모션 테스트중
             player.anims.UltimateWaitEffect();
+
             //player.anims.ParticleUltimateStart(); << 이거 안됨
         }
+
+        SoundManager.instance.SFXPlay("", player.PlayerVoice[2]);
 
         TurnManager.Instance.Enemy_target_simbol.SetActive(true);
 
@@ -64,7 +68,7 @@ public class PlayerUltimateWaitState : PlayerState //여기서 궁극기를 발동할 타겟
 
 
         // 타겟 방향으로 회전함
-        player.transform.LookAt(player.toEnemyPos);
+        //player.transform.LookAt(player.toEnemyPos);
 
     }
 

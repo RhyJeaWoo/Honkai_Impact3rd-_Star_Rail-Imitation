@@ -16,30 +16,13 @@ public class PlayerAttackWaitState : PlayerState
 
         Debug.Log(player.name + "턴 선택(일반공격) 상태임");
 
-        //여기서 심볼 타겟 다시 잡기.
-        StartVoice();
+        player.vircam[0].LookAt = TurnManager.Instance.EnemyTarget;
 
+
+        player.vircam[0].LookAt = null;
     }
 
-    private void StartVoice()
-    {
-        if (player.CompareTag("Mei"))
-        {
-            SoundManager.instance.SFXPlay("TurnStart", player.playerSound[0]);
-        }
-        else if (player.CompareTag("Kiana"))
-        {
-            SoundManager.instance.SFXPlay("TurnStart", player.playerSound[0]);
-        }
-        else if (player.CompareTag("Elysia"))
-        {
-            SoundManager.instance.SFXPlay("TurnStart", player.playerSound[0]);
-        }
-        else if (player.CompareTag("Durandal"))
-        {
-            SoundManager.instance.SFXPlay("TurnStart", player.playerSound[0]);
-        }
-    }
+  
 
     public override void Exit()
     {
@@ -52,6 +35,14 @@ public class PlayerAttackWaitState : PlayerState
         base.Update();
 
         //TurnManager.Instance.ChangeEnemyTarget();
+
+        if(TurnManager.Instance.enemys.Count > 0) 
+        {
+            
+        
+        }
+        
+      
 
         if (Input.GetKeyDown(KeyCode.Q))
         {

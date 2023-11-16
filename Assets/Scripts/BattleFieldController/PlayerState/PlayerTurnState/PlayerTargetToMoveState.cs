@@ -15,6 +15,9 @@ public class PlayerTargetToMoveState : PlayerState
         // 타겟 방향으로 회전함
         player.transform.LookAt(player.toEnemyPos);
 
+        player.vircam[0].LookAt = null;
+        player.vircam[0].transform.rotation = Quaternion.identity;
+
         //Vector3 l_vector = toEnemyPos - player.transform.position;
         //player.transform.rotation = Quaternion.LookRotation(l_vector).normalized;
 

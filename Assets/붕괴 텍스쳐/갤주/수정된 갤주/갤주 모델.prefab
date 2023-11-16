@@ -11406,7 +11406,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4937939151522102583}
   - component: {fileID: 65886825276769709}
-  - component: {fileID: 9169147253163777003}
   m_Layer: 0
   m_Name: "\uAC24\uC8FC \uBAA8\uB378"
   m_TagString: Untagged
@@ -11431,7 +11430,7 @@ Transform:
   - {fileID: 3781767050239521463}
   - {fileID: 3993119866032185157}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &65886825276769709
 Animator:
@@ -11454,21 +11453,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &9169147253163777003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4231675881518472442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1837744a1093054f8a81b8dbbce0397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atkEffect: {fileID: 6234818455853893159, guid: 96c30f207bdbb3243abb88e8d5255d1e, type: 3}
-  skillEffect: {fileID: 5615511609105345146, guid: 45844c2f40560304f91d70f1d34d1d54, type: 3}
-  ultimate: {fileID: 0}
 --- !u!1 &4236905682963736553
 GameObject:
   m_ObjectHideFlags: 0

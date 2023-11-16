@@ -78,6 +78,8 @@ public class TurnManager : MonoBehaviour
 
     public Transform[] healTarget; // 힐 대상을 저장하는 변수 , 사실상 플레이어들의 트랜스폼을 저장하는 변수임.
 
+    public Transform EnemyTarget; //적의 위치와 그것을 추적할 카메라 트랜스폼
+
     Vector3 ResetTargetRot;
 
     public Vector3[] EnemyInitialPosition = null;
@@ -141,6 +143,8 @@ public class TurnManager : MonoBehaviour
 
         EnemyInitialPos(); //게임 시작시 적들의 초기 위치를 저장(다시 되돌아 가기 위함임)
 
+      
+
         Enemy_target_simbol.transform.position = new Vector3(enemys[0].transform.position.x, Enemy_target_simbol.transform.position.y, Enemy_target_simbol.transform.position.z);
 
         ResetTargetRot = Enemy_target_simbol.transform.eulerAngles;
@@ -166,6 +170,11 @@ public class TurnManager : MonoBehaviour
 
         TurnTime();
         SkillStackCheck();
+    }
+
+    private void FixedUpdate()
+    {
+        TraceCamPos(); //적의 위치를 카메라가 계속 저장하기 위해 두는 변수임, 일단 테스트 코드임
     }
 
 
@@ -196,9 +205,37 @@ public class TurnManager : MonoBehaviour
 
     }
 
+    public void TraceCamPos()
+    {
+
+        // EnemyTarget 변수가 초기화되어 있지 않다면 초기화
+        if (EnemyTarget == null)
+        {
+            EnemyTarget = enemys[1].transform;// 여기에 초기화할 값 또는 로직을 추가하세요.
+        }else
+        {
+            EnemyTarget = enemys[0].transform;
+        }
+
+        for (int i = 0; i < enemys.Count; i++)
+        {
+            if (enemys[i].transform != null && enemys[i].name == targetEnemyName)
+            {
+                EnemyTarget = enemys[i].transform;
+            }
+        }
+    }
+
+
     public void ListSort()
     {
         List<PlayerController> sortedPlayers = new List<PlayerController>(playable);
+
+        List<EnemyAIController> sortEnemy = new List<EnemyAIController>(enemys);
+
+        sortEnemy.Sort((enemy1, enemy2) => enemy1.transform.position.x.CompareTo(enemy2.transform.position.x));
+
+        enemys = sortEnemy;
 
         //원하는 순서대로 정렬
         sortedPlayers.Sort((player1, player2) => player1.transform.position.x.CompareTo(player2.transform.position.x));
@@ -388,7 +425,6 @@ public class TurnManager : MonoBehaviour
         {
             curEnemyIndex--;
             curPlayerIndex++;
-
 
             Debug.Log("키 입력은 됬음");
         }

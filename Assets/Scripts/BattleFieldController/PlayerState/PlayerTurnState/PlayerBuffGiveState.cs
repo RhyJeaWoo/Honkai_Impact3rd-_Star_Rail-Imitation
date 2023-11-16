@@ -22,7 +22,8 @@ public class PlayerBuffGiveState : PlayerState
     public override void Exit()
     {
         base.Exit();
-        TurnManager.Instance.Enemy_target_simbol.SetActive(false); // 활성화
+        TurnManager.Instance.Enemy_target_simbol.SetActive(true); // 활성화
+        
 
         for (int i = 0; i < TurnManager.Instance.enemys.Count && i < TurnManager.Instance.EnemyInitialPosition.Length; i++)
         {
@@ -31,6 +32,18 @@ public class PlayerBuffGiveState : PlayerState
                 TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.EnemyInitialPosition[i];
             }
         }
+
+
+        for (int i = 0; i < TurnManager.Instance.playable.Count; i++)
+        {
+            if (!TurnManager.Instance.playable[i].isMyTurn) //만약 내 턴이 아닌 플레이어블들이 있다면.
+            {
+                TurnManager.Instance.playable[i].skin[0].enabled = false;
+                TurnManager.Instance.playable[i].skin[1].enabled = false; //그 턴에 한해 비화성화
+
+            }
+        }
+
     }
 
     public override void Update()
@@ -44,10 +57,11 @@ public class PlayerBuffGiveState : PlayerState
 
             player.cureng += 30;
 
-            player.isMyTurn = false;
-            TurnManager.Instance.TurnEnd(); //로직을 다시 짜야된다.
+            //player.isMyTurn = false;
+            //TurnManager.Instance.TurnEnd(); //로직을 다시 짜야된다.
             //TurnManager.Instance.target_simbol.SetActive(false);
-            player.stateMachine.ChangeState(player.turnEndState);
+            player.stateMachine.ChangeState(player.turnEndState); //여기서 끝내지 말고, 누가 힐을 받았는지 카메라 전환이 필요함.
+
         }
 
 

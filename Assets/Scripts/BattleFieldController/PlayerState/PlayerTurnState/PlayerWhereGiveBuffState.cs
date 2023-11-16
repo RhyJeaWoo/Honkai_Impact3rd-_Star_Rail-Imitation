@@ -15,6 +15,17 @@ public class PlayerWhereGiveBuffState : PlayerState
         TurnManager.Instance.Player_target_simbol.SetActive(true); // 활성화
         TurnManager.Instance.Enemy_target_simbol.SetActive(false);
 
+
+        for (int i = 0; i < TurnManager.Instance.playable.Count; i++)
+        {
+            if (!TurnManager.Instance.playable[i].isMyTurn) //만약 내 턴이 아닌 플레이어블들이 있다면.
+            {
+                TurnManager.Instance.playable[i].skin[0].enabled = true;
+                TurnManager.Instance.playable[i].skin[1].enabled = true; //그 턴에 한해 비화성화
+
+            }
+        }
+
         Debug.Log("버프를 줄 수 있는 상태에 진입하였음.");
 
         player.vircam[2].MoveToTopOfPrioritySubqueue();
@@ -27,6 +38,8 @@ public class PlayerWhereGiveBuffState : PlayerState
     public override void Exit()
     {
         base.Exit();
+
+        TurnManager.Instance.Player_target_simbol.SetActive(false); // 활성화
     }
 
     public override void Update()

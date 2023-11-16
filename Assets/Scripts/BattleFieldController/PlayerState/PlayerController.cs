@@ -35,7 +35,7 @@ public class PlayerController : Entity
      * 
      * 
      */
-    public AudioClip[] playerSound; //여기서 타임 라인을 제외한 나머지 사운드들을 사용할 것임.
+    public AudioClip[] PlayerVoice; //여기서 타임 라인을 제외한 나머지 사운드들을 사용할 것임.
     
     //이거랑 별개로, 무기 전환 효과를 다른 클립으로 관리 해야될듯?
 

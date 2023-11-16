@@ -6,13 +6,14 @@ public class MeiAnimPlay : AnimPlay
 {
     int countatk = 0;
 
+    int count = 1;
+
     private GameObject ultimateWaiteffect; //직관적으로 삭제하기 힘들다면, 이 방법으로 채택.
 
     public override void Skill() //메이 전용 값임
     {
         GameObject skilleffect = Instantiate(skillEffect, BladeHitPos.transform.position, skillEffect.transform.rotation);
 
-        int count = 1;
 
         // 회전 각도를 설정할 때, Y축을 중심으로 회전하도록 설정
         //float rotationAngle = count * 45f; // 예시: 45도 간격으로 회전
@@ -24,9 +25,10 @@ public class MeiAnimPlay : AnimPlay
 
             // 스킬 이펙트에 회전 적용
             skillEffect.transform.rotation = rotation;
-            count += 1;
+            SoundManager.instance.SFXPlay("", VoiceClip[2]);
+            count = 2;
         }
-        if (count == 2)
+        else  if (count == 2)
         {
             // 회전 각도를 설정할 때, Y축을 중심으로 회전하도록 설정
             //rotationAngle = count * 45f; // 예시: 45도 간격으로 회전
@@ -34,6 +36,8 @@ public class MeiAnimPlay : AnimPlay
 
             // 스킬 이펙트에 회전 적용
             skillEffect.transform.rotation = rotation;
+            count = 3;
+            SoundManager.instance.SFXPlay("", VoiceClip[3]);
         }
         else if (count == 3)
         {
@@ -43,6 +47,9 @@ public class MeiAnimPlay : AnimPlay
 
             // 스킬 이펙트에 회전 적용
             skillEffect.transform.rotation = rotation;
+
+            SoundManager.instance.SFXPlay("", VoiceClip[4]);
+
 
             count = 1;
         }
@@ -63,6 +70,7 @@ public class MeiAnimPlay : AnimPlay
 
             // 스킬 이펙트에 회전 적용
             atkEffect.transform.rotation = rotation;
+            SoundManager.instance.SFXPlay("", VoiceClip[0]);
             countatk = 1;
         }
         else
@@ -72,6 +80,7 @@ public class MeiAnimPlay : AnimPlay
 
             // 스킬 이펙트에 회전 적용
             atkEffect.transform.rotation = rotation;
+            SoundManager.instance.SFXPlay("", VoiceClip[1]);
             countatk = 0;
         }
 
@@ -109,6 +118,15 @@ public class MeiAnimPlay : AnimPlay
         }
     }
 
+    public override void Damaged()
+    {
+        SoundManager.instance.SFXPlay("", VoiceClip[5]); //피격 당했을때,
+    }
+    
+    public override void Died()
+    {
+        SoundManager.instance.SFXPlay("", VoiceClip[6]);//죽었을때 호출
+    }
    
 
 }
