@@ -300,7 +300,7 @@ public class PlayerController : Entity
 
             // 데미지 이벤트 발생
             //OnDamageDealt?.Invoke(norAtkDamage);
-            DamageDelegate(norAtkDamage);
+            //DamageDelegate(norAtkDamage);
             for (int i = 0; i < TurnManager.Instance.enemys.Count; i++)
             {
                 if (TurnManager.Instance.targetEnemyName == TurnManager.Instance.enemys[i].name)

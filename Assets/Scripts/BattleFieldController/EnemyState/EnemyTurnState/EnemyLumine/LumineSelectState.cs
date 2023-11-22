@@ -32,6 +32,7 @@ public class LumineSelectState : EnemyState
         }
 
         RandoPattern = Random.Range(0, 3);
+
         lumine.vircam[0].MoveToTopOfPrioritySubqueue();
     }
 

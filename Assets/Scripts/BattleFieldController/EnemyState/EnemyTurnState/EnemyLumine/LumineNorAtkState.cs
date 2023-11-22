@@ -21,6 +21,7 @@ public class LumineNorAtkState : EnemyState
 
         TurnManager.Instance.PlayerNum = x;
 
+
         lumine.isAttack = true;
 
         //누굴 공격할지 랜덤으로 바라봄
@@ -37,8 +38,10 @@ public class LumineNorAtkState : EnemyState
             
             //좋은 방법은 아님.
             TurnManager.Instance.playable[x].HandleLevelDealt(lumine.curLevel); //방어 계수 계산을 위해 레벨 직접 전달.
-            
+
             //TurnManager.Instance.playable[x].isDamaged = true; //상대가 데미지를 입었다고 직접 전달.
+
+            lumine.vircam[1].transform.position = TurnManager.Instance.playable[x].transform.position + new Vector3(1.5f, 1.5f, -4.5f);
 
 
             Debug.Log("루미네가 "+ TurnManager.Instance.playable[x].name  + " 를 공격");
@@ -50,8 +53,10 @@ public class LumineNorAtkState : EnemyState
             TurnManager.Instance.PlayerTransForm = TurnManager.Instance.playable[x].transform.position;
 
             TurnManager.Instance.playable[x].HandleLevelDealt(lumine.curLevel);
-            
+
             //TurnManager.Instance.playable[x].isDamaged = true;
+
+            lumine.vircam[1].transform.position = TurnManager.Instance.playable[x].transform.position + new Vector3(1.5f, 1.5f, -3f);
 
 
             //lumine.anims.Atk();
@@ -67,6 +72,8 @@ public class LumineNorAtkState : EnemyState
 
             //TurnManager.Instance.playable[x].isDamaged = true;
 
+            lumine.vircam[1].transform.position = TurnManager.Instance.playable[x].transform.position + new Vector3(1.5f, 1.5f, -4.5f);
+
             //lumine.anims.Atk();
             Debug.Log("루미네가 " + TurnManager.Instance.playable[x].name + " 를 공격");
         }
@@ -80,11 +87,15 @@ public class LumineNorAtkState : EnemyState
 
             //TurnManager.Instance.playable[x].isDamaged = true;
 
+            lumine.vircam[1].transform.position = TurnManager.Instance.playable[x].transform.position + new Vector3(1.5f, 1.5f, -4.5f);
+
             //lumine.anims.Atk();
 
 
             Debug.Log("루미네가 " + TurnManager.Instance.playable[x].name + " 를 공격");
         }
+
+        lumine.vircam[1].MoveToTopOfPrioritySubqueue();
 
         //Debug.Log(lumine.enemyTr);
 
@@ -115,6 +126,8 @@ public class LumineNorAtkState : EnemyState
         }
 
         lumine.transform.rotation = Quaternion.Euler(0,180,0);
+
+        lumine.vircam[1].transform.position = new Vector3(0, 0, 0);
         //패턴 후 원래 회전값으로 복원.
 
     }

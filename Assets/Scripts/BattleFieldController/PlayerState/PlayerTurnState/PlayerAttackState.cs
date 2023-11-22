@@ -34,6 +34,8 @@ public class PlayerAttackState : PlayerState
                 TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.EnemyInitialPosition[i];
             }
         }*/
+
+
         player.vircam[1].transform.position = player.vircam[0].transform.position;
 
         player.vircam[1].MoveToTopOfPrioritySubqueue();
@@ -47,7 +49,6 @@ public class PlayerAttackState : PlayerState
         if (/*player.isAtackOn &&*/ player.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") && player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
 
-          
             player.cureng += 20;
 
          
