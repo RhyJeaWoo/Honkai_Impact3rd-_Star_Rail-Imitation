@@ -174,7 +174,7 @@ public class TurnManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        TraceCamPos(); //적의 위치를 카메라가 계속 저장하기 위해 두는 변수임, 일단 테스트 코드임
+        //TraceCamPos(); //적의 위치를 카메라가 계속 저장하기 위해 두는 변수임, 일단 테스트 코드임
     }
 
 

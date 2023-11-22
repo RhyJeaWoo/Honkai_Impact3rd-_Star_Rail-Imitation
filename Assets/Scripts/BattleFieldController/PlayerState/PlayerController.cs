@@ -259,7 +259,7 @@ public class PlayerController : Entity
 
     //애니메이션으로 실행 , 이코드 다시한번 다듬어야 될거 같음, 지금은 그냥 이 델리게이트를 가진 애들한테 다 보내는 코드가 되는데,
     //다중 공격이면 그냥 보내면 되긴함. 근데, 일단 단일이거나, 내가 지정해서 때리는거에 있어서, 그 부분이 들어가야 되지 않나 싶음.
-    public void SkillDamageEvent() 
+    public void SkillDamageEvent() //광역 공격임. 
     {
         if (skillStrategy != null)
         {
@@ -274,7 +274,7 @@ public class PlayerController : Entity
         }
     }
 
-    public void SetOnlyOneDmageEvent()
+    public void SetOnlyOneDmageEvent() //eks
     {
         if(skillStrategy != null)
         {
@@ -284,6 +284,7 @@ public class PlayerController : Entity
                 if (TurnManager.Instance.targetEnemyName == TurnManager.Instance.enemys[i].name)
                 {
                     TurnManager.Instance.enemys[i].HandleDamageDealt(skillDamage);
+                    TurnManager.Instance.enemys[i].isDamaged = true;
                 }
             }
         }
@@ -300,7 +301,15 @@ public class PlayerController : Entity
             // 데미지 이벤트 발생
             //OnDamageDealt?.Invoke(norAtkDamage);
             DamageDelegate(norAtkDamage);
+            for (int i = 0; i < TurnManager.Instance.enemys.Count; i++)
+            {
+                if (TurnManager.Instance.targetEnemyName == TurnManager.Instance.enemys[i].name)
+                {
+                    TurnManager.Instance.enemys[i].HandleDamageDealt(norAtkDamage);
+                    TurnManager.Instance.enemys[i].isDamaged = true;
 
+                }
+            }
         }
     }
 
@@ -357,12 +366,17 @@ public class PlayerController : Entity
             else if (TurnManager.Instance.targetPlayerName == playerList[1].name)
             {
                 playerList[1].Heal(heal);
-                Debug.Log(playerList[0].name + "이(가) 힐을 " + heal + " 만큼 받았습니다.");
+                Debug.Log(playerList[1].name + "이(가) 힐을 " + heal + " 만큼 받았습니다.");
             }
             else if (TurnManager.Instance.targetPlayerName == playerList[2].name)
             {
                 playerList[2].Heal(heal);
-                Debug.Log(playerList[0].name + "이(가) 힐을 " + heal + " 만큼 받았습니다.");
+                Debug.Log(playerList[2].name + "이(가) 힐을 " + heal + " 만큼 받았습니다.");
+            }
+            else if (TurnManager.Instance.targetPlayerName == playerList[3].name)
+            {
+                playerList[3].Heal(heal);
+                Debug.Log(playerList[3].name + "이(가) 힐을 " + heal + " 만큼 받았습니다.");
             }
             else
             {
@@ -386,7 +400,7 @@ public class PlayerController : Entity
 
         engColorA.a = 1f; //알베도를 최대값으로 바꿈
 
-         eng.color = engColorA;//알베도를 변경해서 궁극기 예약 상태로 만듬.
+        eng.color = engColorA;//알베도를 변경해서 궁극기 예약 상태로 만듬.
 
         Debug.Log(name + "이(가) 궁극기를 예약했습니다.");
     }

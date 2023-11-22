@@ -95,6 +95,8 @@ public class LumineNorAtkState : EnemyState
     {
         base.Exit();
 
+        //회전을 원래대로 돌리는 코드가 = 없음.
+
         if (x == 0)
         {
             TurnManager.Instance.playable[x].isDamaged = false;
@@ -111,6 +113,9 @@ public class LumineNorAtkState : EnemyState
         {
             TurnManager.Instance.playable[x].isDamaged = false;
         }
+
+        lumine.transform.rotation = Quaternion.Euler(0,180,0);
+        //패턴 후 원래 회전값으로 복원.
 
     }
 

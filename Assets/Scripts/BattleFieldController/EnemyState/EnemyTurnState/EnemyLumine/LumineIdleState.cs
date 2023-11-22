@@ -30,10 +30,17 @@ public class LumineIdleState : EnemyState
 
       
 
-        if (enemy.isMyTurn)
+        if (lumine.isMyTurn)
         {
             stateMachine.ChangeState(lumine.selectState);
         }
+        
+        if(lumine.isDamaged  && !lumine.isMyTurn)
+        {
+            stateMachine.ChangeState(lumine.hitState);
+        }
+
+
     }
 
     
