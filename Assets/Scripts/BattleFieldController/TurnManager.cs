@@ -9,13 +9,13 @@ public class TurnManager : MonoBehaviour
     public PlayerSkillStrategy currentSkill; //전략 인터페이스 할당
 
 
-    public GameObject Enemy_target_simbol;
+    public GameObject Enemy_target_simbol; //적 타겟 심볼
 
-    public GameObject Player_target_simbol;
+    public GameObject Player_target_simbol;//아군 타겟 심볼
 
     private static TurnManager instance = null;
 
-    public int SkillStack = 3;
+    public int SkillStack = 3; //스킬 스텍
 
     public GameObject[] StackFullUi = null;
     public GameObject SkillStackCheckimg = null;
