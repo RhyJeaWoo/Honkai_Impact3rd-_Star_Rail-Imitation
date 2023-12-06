@@ -439,11 +439,7 @@ public class PlayerController : Entity
         liciveOpponentLevel = level;
     }
 
-    public void HandPropertyDealt(property equal)
-    {
-        Debug.Log("속성 보냄 : " + equal);
-        
-    }
+
 
 
     // 이벤트 구독
@@ -460,7 +456,7 @@ public class PlayerController : Entity
                 //playerController.OnDamageDealt += HandleDamageDealt;
                 enemy.OnLevelDealt += HandleLevelDealt;
                 enemy.OnDamageDealt += HandleDamageDealt;
-                enemy.OnPropertyDealt += HandPropertyDealt; 
+               
                 //그리고 그 적들에게 이 정보를 보냄.
             }
         }
@@ -480,7 +476,7 @@ public class PlayerController : Entity
             //playerController.OnDamageDealt -= HandleDamageDealt;
             enemy.OnLevelDealt -= HandleLevelDealt;
             enemy.OnDamageDealt -= HandleDamageDealt;
-            enemy.OnPropertyDealt -= HandPropertyDealt;
+          
         }
 
 

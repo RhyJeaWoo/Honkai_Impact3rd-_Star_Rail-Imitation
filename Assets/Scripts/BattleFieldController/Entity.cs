@@ -243,21 +243,7 @@ public class Entity : MonoBehaviour
         OnPropertyDealt?.Invoke(character_attributes);
     }
 
-    /*
-    private void OnParticleCollision(GameObject other)
-    {
-        if(other != null)
-        {
-            if(other.CompareTag("Lumine"))
-            {
-                curhp = curhp - TurnManager.Instance.enemys[0].atk;
-
-                Debug.Log("데미지를 받았습니다.");
-            }
-        }
-        else if (other == null) return;
-
-    }*/
+   
 
     
     public void TakeDamageText(int damage)

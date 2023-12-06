@@ -4826,6 +4826,9 @@ MonoBehaviour:
   isWeakness: 0
   isAttack: 0
   propertieDamage: 1
+  curStrongGauge: 1
+  MaxStringGauge: 1
+  strongGauge: {fileID: 0}
   properties: 
 --- !u!4 &480543576
 Transform:
@@ -6561,6 +6564,9 @@ MonoBehaviour:
   isWeakness: 0
   isAttack: 0
   propertieDamage: 1
+  curStrongGauge: 1
+  MaxStringGauge: 1
+  strongGauge: {fileID: 0}
   properties: 
 --- !u!4 &715550632
 Transform:
@@ -11715,6 +11721,9 @@ MonoBehaviour:
   isWeakness: 0
   isAttack: 0
   propertieDamage: 1
+  curStrongGauge: 1
+  MaxStringGauge: 1
+  strongGauge: {fileID: 0}
   properties: 
 --- !u!4 &814090968
 Transform:
@@ -13495,6 +13504,9 @@ MonoBehaviour:
   isWeakness: 0
   isAttack: 0
   propertieDamage: 1
+  curStrongGauge: 1
+  MaxStringGauge: 1
+  strongGauge: {fileID: 0}
   properties: 
 --- !u!1001 &1073359016
 PrefabInstance:
@@ -14926,7 +14938,7 @@ GameObject:
   - component: {fileID: 1185695983}
   - component: {fileID: 1185695982}
   m_Layer: 0
-  m_Name: Gaze
+  m_Name: Gauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18508,7 +18520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1724170528}
   m_Layer: 0
-  m_Name: ' StrongGaze'
+  m_Name: ' StrongGauge'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21159,6 +21171,9 @@ MonoBehaviour:
   isWeakness: 0
   isAttack: 0
   propertieDamage: 1
+  curStrongGauge: 1
+  MaxStringGauge: 1
+  strongGauge: {fileID: 0}
   properties: 
 --- !u!114 &1757154048
 MonoBehaviour:

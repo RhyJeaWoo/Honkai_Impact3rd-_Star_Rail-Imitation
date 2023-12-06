@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAIController : Entity
 {
     public bool isAttack = false;
-    public float propertieDamage = 1f;
+    public float propertieDamage = 1f; //속성 저항 계수
+    public float curStrongGauge = 1f;
+    public float MaxStringGauge = 1f;
+
+    public Image strongGauge;
 
     public List<property> properties = new List<property>(); //Entity 위에 선언된 프로퍼티에 넣을 리스트
 
@@ -114,6 +119,7 @@ public class EnemyAIController : Entity
         stateMachine.currentState.Update();
         //최종 방어계수 = ((현재 레벨 * 100) + 100) / (((전달 받은 상대 레벨 * 10) +200 )  +((현재 레벨 * 10 ) + 200));
         defenseCoefficient = ((curLevel * 10) + 200) / (((liciveOpponentLevel * 10) + 200) + ((curLevel * 10) + 200));
+        strongGauge.fillAmount = curStrongGauge / MaxStringGauge;
 
         //Debug.Log("현재 실시간 방어율 계수" + defenseCoefficient);
     }

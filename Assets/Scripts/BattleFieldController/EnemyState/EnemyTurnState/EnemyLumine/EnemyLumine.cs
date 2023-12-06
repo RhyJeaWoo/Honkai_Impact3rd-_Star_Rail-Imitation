@@ -14,6 +14,7 @@ public class EnemyLumine : EnemyAIController
 
     #region States
 
+    public LumineDefeatedState defeatedState {  get; private set; } //약점 격파 상태일 경우.
 
     public LumineTurnState turnState { get; private set; }//루미네가 idle에서 턴을 받았을떄 상태
     public LumineSelectState selectState { get; private set; } //루미네가 턴을 잡고 norAtk, strAtk1, strAtk2, ulitimateState 에서 공격을 고민하는 상태
@@ -49,6 +50,7 @@ public class EnemyLumine : EnemyAIController
         idleState = new LumineIdleState(this, stateMachine, "Idle",this);
         hitState = new LumineHitState(this, stateMachine, "Hit", this);
         deadState = new LumineDeadState(this, stateMachine, "Dead", this);
+        defeatedState = new LumineDefeatedState(this, stateMachine, "Defeat", this);
        
     }
 
@@ -56,6 +58,9 @@ public class EnemyLumine : EnemyAIController
     {
         base.Start();
         stateMachine.Initialize(idleState);
+
+        MaxStringGauge = 450f;
+        curStrongGauge = MaxStringGauge;
 
         SubscribeToPlayerDamageEvent();
 
