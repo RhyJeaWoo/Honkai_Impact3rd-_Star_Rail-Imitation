@@ -35,6 +35,9 @@ public class Entity : MonoBehaviour
     public delegate void PropertyDealtHandler(property equal);//속성에 관한 델리게이트(내 속성을 쏴서, 적 속성하고 일치하는지 판단할거임)
     public event PropertyDealtHandler OnPropertyDealt;
 
+    public delegate void StrongGaugeHandler(float strongGauge);
+    public event StrongGaugeHandler OnStrongGaugeDealt;
+
     public  property character_attributes;
 
     public Animator anim { get; private set; }
@@ -154,6 +157,8 @@ public class Entity : MonoBehaviour
     public float liciveOpponentLevel;//전달 받은 상대 레벨 계수
     public float ignoredDefense;//방어 무시 받는 계수
 
+    //public float strongGaugePower = 0;
+
     [Header("플레이어의 힐 관련 정리")]
     public float sumHeal; //힐 총합 수치
 
@@ -243,9 +248,16 @@ public class Entity : MonoBehaviour
         OnPropertyDealt?.Invoke(character_attributes);
     }
 
-   
-
     
+    public void StrongGaugeDelegate(float strongGaugePower)
+    {
+        OnStrongGaugeDealt?.Invoke(strongGaugePower);
+    }
+    
+
+
+
+
     public void TakeDamageText(int damage)
     {
         float x = Random.Range(-1, 2);

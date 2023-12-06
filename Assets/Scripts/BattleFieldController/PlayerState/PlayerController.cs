@@ -196,8 +196,7 @@ public class PlayerController : Entity
         //최종 방어계수 = ((현재 레벨 * 100) + 100) / (((전달 받은 상대 레벨 * 10) +200 )  +((현재 레벨 * 10 ) + 200 + 내 현재 방어력));
         defenseCoefficient = ((curLevel * 10) + 200) / (((liciveOpponentLevel * 10) + 200) + ((curLevel * 10) + 200) + def);
 
-        // Debug.Log(stateMachine.currentState);
-        //  2200 / 900 + 1000
+      
 
     }
   
@@ -234,30 +233,6 @@ public class PlayerController : Entity
 
 
 
-    // 플레이어블 캐릭터의 스킬 실행시 연결될 전략
-    // 무늬만 존재하고 사용되지는 않음.
-    /*
-    public void ExecuteSkill(PlayerController player)
-    {
-        if (skillStrategy != null)
-        {
-
-        }
-    }
-    public void ExecuteAttack(PlayerController player)
-    {
-        if (attackStrategy != null) { }
-    }
-     
-
-    public void ExecuteUltimate(PlayerController player)
-    {
-        if(skillStrategy != null) 
-        {
-            
-        }
-    }*/
-
     //애니메이션으로 실행 , 이코드 다시한번 다듬어야 될거 같음, 지금은 그냥 이 델리게이트를 가진 애들한테 다 보내는 코드가 되는데,
     //다중 공격이면 그냥 보내면 되긴함. 근데, 일단 단일이거나, 내가 지정해서 때리는거에 있어서, 그 부분이 들어가야 되지 않나 싶음.
     public void SkillDamageEvent() //광역 공격임. 
@@ -266,12 +241,13 @@ public class PlayerController : Entity
         {
 
             float skillDamage = skillStrategy.ExcuteSkill(this); //전략에서 받아온 정보값을 지역 변수에 저장
+            float strongGaugePower = skillStrategy.ExcuteStrongGaugePower(this);
 
             // 데미지 이벤트 발생
             //OnDamageDealt?.Invoke(skillDamage);
             DamageDelegate(skillDamage); //델리게이트에 저장된 지역 변수 값을 전달 하는 원리
 
-
+            StrongGaugeDelegate(strongGaugePower);
         }
     }
 
@@ -280,12 +256,15 @@ public class PlayerController : Entity
         if(skillStrategy != null)
         {
             float skillDamage = skillStrategy.ExcuteSkill(this);//
+            float strongGaugePower = skillStrategy.ExcuteStrongGaugePower(this);
             for (int i = 0; i < TurnManager.Instance.enemys.Count; i++)
             {
                 if (TurnManager.Instance.targetEnemyName == TurnManager.Instance.enemys[i].name)
                 {
                     TurnManager.Instance.enemys[i].HandleDamageDealt(skillDamage);
                     TurnManager.Instance.enemys[i].isDamaged = true;
+
+                    StrongGaugeDelegate(strongGaugePower);
                 }
             }
         }
@@ -329,13 +308,9 @@ public class PlayerController : Entity
         }
     }
 
-    /*
-    public void DeligateLevel()
-    {
-        //OnLevelDealt?.Invoke(curLevel); //레벨을 전달 해야 계수 계산이 가능함.
-        LevelDelegate(curLevel);
+    
+    
 
-    }*/
 
 
     public void Heal(float healAmount)

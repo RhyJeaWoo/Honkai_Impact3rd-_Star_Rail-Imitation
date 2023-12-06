@@ -192,8 +192,8 @@ public class DurandalSkill : PlayerSkillStrategy
 
     }
 
-    public void PlayVoice(PlayerController player)
+    public float ExcuteStrongGaugePower(PlayerController player)
     {
-
+        return 12;
     }
 }

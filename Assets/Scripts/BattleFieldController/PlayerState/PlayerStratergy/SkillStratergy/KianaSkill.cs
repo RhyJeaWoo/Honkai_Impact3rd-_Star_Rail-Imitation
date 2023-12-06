@@ -106,8 +106,8 @@ public class KianaSkill : PlayerSkillStrategy
 
 
     }
-    public void PlayVoice(PlayerController player)
+    public float ExcuteStrongGaugePower(PlayerController player)
     {
-
+        return 20;
     }
 }

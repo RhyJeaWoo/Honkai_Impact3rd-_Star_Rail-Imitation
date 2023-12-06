@@ -69,6 +69,11 @@ public class EnemyAIController : Entity
 
     }
 
+    public void HandStrongGaugeDealt(float strongGauge)
+    {
+        curStrongGauge -= strongGauge;
+    }
+
 
     // 이벤트 구독 
     public void SubscribeToPlayerDamageEvent() //플레이어에게 전달 받을것을 구독하는거
@@ -83,6 +88,7 @@ public class EnemyAIController : Entity
                 playerController.OnDamageDealt += HandleDamageDealt;
                 playerController.OnLevelDealt += HandleLevelDealt;
                 playerController.OnPropertyDealt += HandPropertyDealt;
+                playerController.OnStrongGaugeDealt += HandStrongGaugeDealt;
             }
         }
         else
@@ -101,6 +107,7 @@ public class EnemyAIController : Entity
             playerController.OnDamageDealt -= HandleDamageDealt;
             playerController.OnLevelDealt -= HandleLevelDealt;
             playerController.OnPropertyDealt -= HandPropertyDealt;
+            playerController.OnStrongGaugeDealt -= HandStrongGaugeDealt;
         }
 
 
@@ -119,6 +126,7 @@ public class EnemyAIController : Entity
         stateMachine.currentState.Update();
         //최종 방어계수 = ((현재 레벨 * 100) + 100) / (((전달 받은 상대 레벨 * 10) +200 )  +((현재 레벨 * 10 ) + 200));
         defenseCoefficient = ((curLevel * 10) + 200) / (((liciveOpponentLevel * 10) + 200) + ((curLevel * 10) + 200));
+
         strongGauge.fillAmount = curStrongGauge / MaxStringGauge;
 
         //Debug.Log("현재 실시간 방어율 계수" + defenseCoefficient);
