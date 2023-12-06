@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyAIController : Entity
 {
     public bool isAttack = false;
+    public float propertieDamage = 1f;
+
+    public List<property> properties = new List<property>(); //Entity 위에 선언된 프로퍼티에 넣을 리스트
 
     public EnemyStateMachine2 stateMachine { get; private set; }
 
@@ -15,16 +18,16 @@ public class EnemyAIController : Entity
     // 그것에 대한 정보가 없기 때문이고, 동시에 처리하면, 첫 데이터에는 누락하는 현상이 발생해서, 호출 순서를 주었음.
     public void HandleDamageDealt(float damage)//
     {
-         SumDamage = damage * defenseCoefficient;
+         SumDamage = damage * defenseCoefficient * propertieDamage;
 
          curhp = curhp - SumDamage;
 
         TakeDamageText((int)SumDamage);
 
-        // 이 메서드에서 데미지 값을 받아 처리
-       // Debug.Log("데미지를 전달 받았습니다!" + damage);
-       // Debug.Log("현재 방어율 계수 : " + defenseCoefficient);
-       // Debug.Log("현재 레벨" + curLevel);
+      // 이 메서드에서 데미지 값을 받아 처리
+      // Debug.Log("데미지를 전달 받았습니다!" + damage);
+      // Debug.Log("현재 방어율 계수 : " + defenseCoefficient);
+      // Debug.Log("현재 레벨" + curLevel);
         
       //  Debug.Log("데미지를 받았습니다: " + SumDamage);
       //  Debug.Log("현재 hp : " + curhp);
@@ -40,12 +43,32 @@ public class EnemyAIController : Entity
         liciveOpponentLevel = level;
     }
 
-
-    // 이벤트 구독
-    public void SubscribeToPlayerDamageEvent()
+    public void HandPropertyDealt(property equal)
     {
-      //  PlayerController[] playerController = FindObjectsOfType<PlayerController>(); // 혹은 다른 방식으로 플레이어 컨트롤러를 찾습니다.
+        Debug.Log("전달 받은 속성 : " + equal);
 
+        for(int i = 0; i < properties.Count; ++i) 
+        {
+            if (properties[i] == equal)
+            {
+                propertieDamage = 1f;
+                Debug.Log("속성이 일치함");
+                break;
+            }
+            else
+            {
+                propertieDamage = 0.8f;
+                Debug.Log("속성이 일치하지 않음");
+            }
+        }
+
+    }
+
+
+    // 이벤트 구독 
+    public void SubscribeToPlayerDamageEvent() //플레이어에게 전달 받을것을 구독하는거
+    {
+  
         PlayerController[] playerControllers = FindObjectsOfType<PlayerController>(); // 모든 플레이어 컨트롤러를 찾습니다.
 
         if (playerControllers != null)
@@ -54,6 +77,7 @@ public class EnemyAIController : Entity
             {
                 playerController.OnDamageDealt += HandleDamageDealt;
                 playerController.OnLevelDealt += HandleLevelDealt;
+                playerController.OnPropertyDealt += HandPropertyDealt;
             }
         }
         else
@@ -71,6 +95,7 @@ public class EnemyAIController : Entity
         {
             playerController.OnDamageDealt -= HandleDamageDealt;
             playerController.OnLevelDealt -= HandleLevelDealt;
+            playerController.OnPropertyDealt -= HandPropertyDealt;
         }
 
 

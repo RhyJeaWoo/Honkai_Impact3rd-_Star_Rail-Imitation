@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
@@ -305,6 +306,8 @@ public class PlayerController : Entity
             {
                 if (TurnManager.Instance.targetEnemyName == TurnManager.Instance.enemys[i].name)
                 {
+                    //if (TurnManager.Instance.enemys[i].properties == TurnManager.Instance.playable[i])
+
                     TurnManager.Instance.enemys[i].HandleDamageDealt(norAtkDamage);
                     TurnManager.Instance.enemys[i].isDamaged = true;
 
@@ -436,13 +439,19 @@ public class PlayerController : Entity
         liciveOpponentLevel = level;
     }
 
+    public void HandPropertyDealt(property equal)
+    {
+        Debug.Log("속성 보냄 : " + equal);
+        
+    }
+
 
     // 이벤트 구독
     public void SubscribeToPlayerDamageEvent()
     {
-        //  PlayerController[] playerController = FindObjectsOfType<PlayerController>(); // 혹은 다른 방식으로 플레이어 컨트롤러를 찾습니다.
+        
 
-        EnemyAIController[] enemys = FindObjectsOfType<EnemyAIController>(); // 모든 플레이어 컨트롤러를 찾습니다.
+        EnemyAIController[] enemys = FindObjectsOfType<EnemyAIController>(); // 모든 적 컨트롤러를 찾습니다.
 
         if (enemys != null)
         {
@@ -451,6 +460,8 @@ public class PlayerController : Entity
                 //playerController.OnDamageDealt += HandleDamageDealt;
                 enemy.OnLevelDealt += HandleLevelDealt;
                 enemy.OnDamageDealt += HandleDamageDealt;
+                enemy.OnPropertyDealt += HandPropertyDealt; 
+                //그리고 그 적들에게 이 정보를 보냄.
             }
         }
         else
@@ -469,6 +480,7 @@ public class PlayerController : Entity
             //playerController.OnDamageDealt -= HandleDamageDealt;
             enemy.OnLevelDealt -= HandleLevelDealt;
             enemy.OnDamageDealt -= HandleDamageDealt;
+            enemy.OnPropertyDealt -= HandPropertyDealt;
         }
 
 

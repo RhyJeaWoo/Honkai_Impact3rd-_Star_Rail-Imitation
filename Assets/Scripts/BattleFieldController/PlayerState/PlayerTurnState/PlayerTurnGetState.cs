@@ -50,7 +50,7 @@ public class PlayerTurnGetState : PlayerState
         Debug.Log("턴을 잡았음");
     }
 
-    public override void Exit()
+    public override void Exit() 
     {
         //base.Exit();
         // player.vircam.transform.position = player.virCamPos;

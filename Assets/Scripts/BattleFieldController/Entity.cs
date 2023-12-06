@@ -5,6 +5,20 @@ using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
+public enum property //강인도 시스템에 사용될 속성(캐릭터의 기본 속성과 적의 약점을 위해 사용될거임)
+{
+    fire, //불 
+    thunder, //번개
+    physical, //물리
+    ice, //빙결
+    quantum, //양자
+    imaginary, //허수
+    without_weakness//약점이 없는 상태(주로 몬스터가 사용)
+
+    //위 상태들은 약점 격파시 특정 상태로 진입하기 위해
+};
+
 public class Entity : MonoBehaviour
 {
     public Image hp;
@@ -18,7 +32,10 @@ public class Entity : MonoBehaviour
     public delegate void LevelDealtHandler(float level); //레벨에 관한 델리게이트
     public event LevelDealtHandler OnLevelDealt;
 
-    
+    public delegate void PropertyDealtHandler(property equal);//속성에 관한 델리게이트(내 속성을 쏴서, 적 속성하고 일치하는지 판단할거임)
+    public event PropertyDealtHandler OnPropertyDealt;
+
+    public  property character_attributes;
 
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
@@ -38,6 +55,10 @@ public class Entity : MonoBehaviour
     public GameObject hudDamageText;
 
     public Transform hudPos;
+
+   
+
+
 
     [Header("플레이어의 스테이터스")]
     public float curLevel;//현재 레벨
@@ -63,17 +84,57 @@ public class Entity : MonoBehaviour
     public float baseTurnSpeed; // 기초 행동 수치
     public float currentTurnSpeed; // 현재 행동 수치
 
+    
+
     /* 속성 예정 스타레일 식이 아닌 내 마개조 버전으로 생각중.
+     * 
+     * 약점이 반응하는 방식
+     * 내 플레이어블 캐릭터가 턴을 잡았을때, 얘가 가진 속성에 대응되는 약점을 가진 오브젝트들이 다 빛남.
      * 
      * 물리 <-> (원소) 화염 빙결 번개
      * 
      * 기계 생물 물리 허수 양자
      * 
+     * 이넘 타입으로 만들면 될듯
+     * 
+     * 
+     * 4. 저항 계수(아 안만듬 ㅡㅡ) ㅅㅂ
+
+        (1 - 저항성 + 저항관통)
+
+        적은 속성에 따라 다른 저항성을 보유함
+
+
+
+        약점 속성: 0%
+
+        일반 속성: 20%
+
+        같은 속성: 40%  ex) 얼음몹은 얼음 저항, 화염몹은 화염 저항
+
+        저항관통은 제레의 베어가르기, 단항의 특성
      * 
      * 
      */
+
+
+    /*
+    * 여기서 플레이어가 가지는 속성을 정함
+    * 물, 번개, 얼음 , 허수, 양자 ,물리 만 다루려고함.
+    * 일단 키아나 불
+    * 메이 번개 확정
+    * 엘리시아는 양자
+    * 듀란달은 허수로 생각중
+    * 
+    * 루미네는 약점 속성 불 번개 그리고 물리만 생각중
+    * 
+    * 슬라임이야 그냥 불 번개 양자로 넣으면 될듯 아이콘 표현은 음... 몰것네
+    * 
+    */
     [Header("이 오브젝트가 가지는 속성")]
-    public string s = "s";
+   
+
+
 
 
     [Header("플레이어의 데미지 관련 정리")]
@@ -96,17 +157,7 @@ public class Entity : MonoBehaviour
     [Header("플레이어의 힐 관련 정리")]
     public float sumHeal; //힐 총합 수치
 
-    /*
-     * 여기서 플레이어가 가지는 속성을 정함
-     * 물, 번개, 얼음 , 허수, 양자 ,물리 만 다루려고함.
-     * 일단 키아나 불
-     * 메이 번개 확정
-     * 엘리시아는 양자
-     * 듀란달은 허수로 생각중
-     * 
-     * 루미네는 약점 속성 불 번개 그리고 물리만 생각중
-     * 
-     */
+   
    
 
     [Header("잡다한거")]
@@ -125,6 +176,10 @@ public class Entity : MonoBehaviour
 
     public bool canAct = true; //HP가 0이 되어서 활동할 수 있는지 체크
 
+    public bool isWeakness = false; //약점이 격파된 상태인가...?
+
+    //이게 True를 받을 경우 새로운 상태로 진입.
+
 
     //public bool StopTurn;
     // public bool isAtackOn = false; //내가 공격 준비 상태에서 공격할 준비가 되었는지 체크
@@ -132,6 +187,8 @@ public class Entity : MonoBehaviour
     //되었는지 체크하고 넘어가는걸로
 
     // Start 함수에서 초기화를 수행합니다.
+
+  
 
     protected virtual void Start()
     {
@@ -179,6 +236,11 @@ public class Entity : MonoBehaviour
     public void LevelDelegate() 
     {
         OnLevelDealt?.Invoke(curLevel);
+    }
+
+    public void PropertyDelegate()
+    {
+        OnPropertyDealt?.Invoke(character_attributes);
     }
 
     /*

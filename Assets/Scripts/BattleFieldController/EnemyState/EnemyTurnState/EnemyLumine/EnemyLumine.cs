@@ -59,6 +59,9 @@ public class EnemyLumine : EnemyAIController
 
         SubscribeToPlayerDamageEvent();
 
+        properties.Add(property.fire);//이 오브젝트의 속성 설정 세팅
+        properties.Add(property.physical);
+        properties.Add(property.thunder);
 
     }
 
@@ -69,17 +72,7 @@ public class EnemyLumine : EnemyAIController
 
     public void deliveryNorDamage()
     {
-        //여기서 이 오브젝트가 실행한 상태에 따라서 다른 데미지가 들어가게 세팅 해야됨.
-
-        //float lumineDamage = 루미네가 계산한 데미지
-
-        //OnDamageDealt?.Invoke(damage); 데미지를 보낸다.
+      
     }
 
-    /*
-    public void deliveryLevel()
-    {
-        OnLevelDealt?.Invoke(curLevel);
-    }
-    */
 }
