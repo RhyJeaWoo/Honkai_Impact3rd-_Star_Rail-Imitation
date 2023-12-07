@@ -84,10 +84,12 @@ public class Entity : MonoBehaviour
     public float flatSpeed; // 장비로 받을 수 있는 속도
     public float currentSpeed; // 현재 속도
 
+    public float finalSpeed;
+
     public float baseTurnSpeed; // 기초 행동 수치
     public float currentTurnSpeed; // 현재 행동 수치
 
-    
+
 
     /* 속성 예정 스타레일 식이 아닌 내 마개조 버전으로 생각중.
      * 
@@ -134,9 +136,25 @@ public class Entity : MonoBehaviour
     * 슬라임이야 그냥 불 번개 양자로 넣으면 될듯 아이콘 표현은 음... 몰것네
     * 
     */
-    [Header("이 오브젝트가 가지는 속성")]
-   
 
+
+    [Header("이 오브젝트가 가지는 상태이상")]
+    public bool isBurned = false;//화상 상태 - 불
+    public bool isElectrocuted = false;//감전 상태 - 번개
+    public bool isFreeze = false;//빙결 상태 - 빙결
+    public bool isLaceration = false;//열상 상태 - 물리
+    public bool is_Be_Quantized = false;//얽힘 상태 - 양자
+    public bool is_Be_In_bondage = false;//속박 상태 - 허수
+    public bool isStun = false;//기절 상태
+
+    [Header("이 오브젝트가 받은 공격 속성의 종류")] 
+    //이 bool값으로 내 상태가 어떤 상태에서 격파를 당했는지 체크하고 거기에 맞는상태로 넘어갈거임
+    public bool isFireDamaged = false;
+    public bool isIceDamaged = false;
+    public bool isThunderDamaged = false;
+    public bool isPhysicalDamaged = false;
+    public bool isQuantumDanaged = false;
+    public bool isImaginary = false;
 
 
 
@@ -181,7 +199,7 @@ public class Entity : MonoBehaviour
 
     public bool canAct = true; //HP가 0이 되어서 활동할 수 있는지 체크
 
-    public bool isWeakness = false; //약점이 격파된 상태인가...?
+   
 
     //이게 True를 받을 경우 새로운 상태로 진입.
 
@@ -219,7 +237,7 @@ public class Entity : MonoBehaviour
     public void ObjectStatCal() //초기 수치 계산
     {
         // 최종 속도 계산    
-        float finalSpeed = baseSpeed * (1 + buffSpeed / 100) + flatSpeed;
+        finalSpeed = baseSpeed * (1 + buffSpeed / 100) + flatSpeed;
         // 기초 행동 수치 계산
         baseTurnSpeed = 10000 / finalSpeed;
         // 초기화 혹은 턴 시작 시 현재 속도와 행동 수치를 설정

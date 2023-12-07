@@ -73,11 +73,9 @@ public class EnemyLumine : EnemyAIController
     protected override void Update()
     {
         base.Update();
+
+    
     }
 
-    public void deliveryNorDamage()
-    {
-      
-    }
 
 }

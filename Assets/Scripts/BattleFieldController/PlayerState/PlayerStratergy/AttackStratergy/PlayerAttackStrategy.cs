@@ -4,7 +4,7 @@
 public interface PlayerAttackStrategy
 {
     float ExcuteAttack(PlayerController player);
-    void PlayAnimation(PlayerController player);
-    void SkillToTarget(Transform target);
+    float ExcuteAtkStrongGaugePower(PlayerController player);
+ 
 }
 

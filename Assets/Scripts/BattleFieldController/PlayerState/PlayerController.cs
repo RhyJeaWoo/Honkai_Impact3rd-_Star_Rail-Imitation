@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -241,30 +242,44 @@ public class PlayerController : Entity
         {
 
             float skillDamage = skillStrategy.ExcuteSkill(this); //전략에서 받아온 정보값을 지역 변수에 저장
-            float strongGaugePower = skillStrategy.ExcuteStrongGaugePower(this);
+            float strongGaugePower = skillStrategy.ExcuteSkillStrongGaugePower(this);
 
             // 데미지 이벤트 발생
             //OnDamageDealt?.Invoke(skillDamage);
             DamageDelegate(skillDamage); //델리게이트에 저장된 지역 변수 값을 전달 하는 원리
 
-            StrongGaugeDelegate(strongGaugePower);
+
+            for(int i = 0; TurnManager.Instance.enemys.Count > i; i++) //먼저 모든 적을 기준으로 보고
+            {
+                for(int j = 0; TurnManager.Instance.enemys[i].properties.Count > j; j++) //적이 가진 속성을 대조해서
+                {
+                    if (TurnManager.Instance.enemys[i].properties[j] == character_attributes ) //이 코드는 모든 적에 대해서 광역 공격을 발생시킴
+                    {
+                        StrongGaugeDelegate(strongGaugePower);
+                    }
+                }
+            }
+          
         }
     }
 
-    public void SetOnlyOneDmageEvent() //eks
+    public void SetOnlyOneDmageEvent() //단일 공격임
     {
         if(skillStrategy != null)
         {
             float skillDamage = skillStrategy.ExcuteSkill(this);//
-            float strongGaugePower = skillStrategy.ExcuteStrongGaugePower(this);
+            float strongGaugePower = skillStrategy.ExcuteSkillStrongGaugePower(this);
             for (int i = 0; i < TurnManager.Instance.enemys.Count; i++)
             {
-                if (TurnManager.Instance.targetEnemyName == TurnManager.Instance.enemys[i].name)
+                for (int j = 0; TurnManager.Instance.enemys[i].properties.Count > j; j++) //적이 가진 속성을 대조해서
                 {
-                    TurnManager.Instance.enemys[i].HandleDamageDealt(skillDamage);
-                    TurnManager.Instance.enemys[i].isDamaged = true;
+                    if (TurnManager.Instance.targetEnemyName == TurnManager.Instance.enemys[i].name && TurnManager.Instance.enemys[i].properties[j] == character_attributes)
+                    {
+                        TurnManager.Instance.enemys[i].HandleDamageDealt(skillDamage);
+                        TurnManager.Instance.enemys[i].isDamaged = true;
 
-                    StrongGaugeDelegate(strongGaugePower);
+                        StrongGaugeDelegate(strongGaugePower);
+                    }
                 }
             }
         }
@@ -272,30 +287,36 @@ public class PlayerController : Entity
 
     //여기서 이걸로 데미지를 전달할거임.
 
-    public void AttackDamageEnvet()
+    public void AttackDamageEnvet() //평타임
     {
         if (attackStrategy != null)
         {
             float norAtkDamage = attackStrategy.ExcuteAttack(this); //델리게이트에 전략에서 받아온 정보값을 지역 변수에 저장
+
+            float strongAtkGaugePower = attackStrategy.ExcuteAtkStrongGaugePower(this);
 
             // 데미지 이벤트 발생
             //OnDamageDealt?.Invoke(norAtkDamage);
             //DamageDelegate(norAtkDamage);
             for (int i = 0; i < TurnManager.Instance.enemys.Count; i++)
             {
-                if (TurnManager.Instance.targetEnemyName == TurnManager.Instance.enemys[i].name)
+                for (int j = 0; TurnManager.Instance.enemys[i].properties.Count > j; j++) //적이 가진 속성을 대조해서
                 {
-                    //if (TurnManager.Instance.enemys[i].properties == TurnManager.Instance.playable[i])
+                    if (TurnManager.Instance.targetEnemyName == TurnManager.Instance.enemys[i].name && TurnManager.Instance.enemys[i].properties[j] == character_attributes)
+                    {
+                        //if (TurnManager.Instance.enemys[i].properties == TurnManager.Instance.playable[i])
 
-                    TurnManager.Instance.enemys[i].HandleDamageDealt(norAtkDamage);
-                    TurnManager.Instance.enemys[i].isDamaged = true;
+                        TurnManager.Instance.enemys[i].HandleDamageDealt(norAtkDamage);
+                        TurnManager.Instance.enemys[i].isDamaged = true;
+                        StrongGaugeDelegate(strongAtkGaugePower);
 
+                    }
                 }
             }
         }
     }
 
-    public void UltimateDamageEvent()
+    public void UltimateDamageEvent() //궁인데 상태 패턴에서 사용하는 중.
     {
         if(skillStrategy != null)
         {

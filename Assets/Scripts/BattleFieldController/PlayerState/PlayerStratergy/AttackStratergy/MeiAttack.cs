@@ -35,9 +35,10 @@ public class MeiAttack : PlayerAttackStrategy
 
     }
 
-    public void PlayAnimation(PlayerController player)
-    { }
+    public float ExcuteAtkStrongGaugePower(PlayerController player)
+    {
+        return 15;
+    }
 
-    public void SkillToTarget(Transform target)
-    { }
+
 }

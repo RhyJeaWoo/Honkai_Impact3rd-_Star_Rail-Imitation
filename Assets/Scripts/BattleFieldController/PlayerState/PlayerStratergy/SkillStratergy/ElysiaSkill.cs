@@ -22,7 +22,7 @@ public class ElysiaSkill : PlayerSkillStrategy
    
     }
 
-    public float ExcuteStrongGaugePower(PlayerController player)
+    public float ExcuteSkillStrongGaugePower(PlayerController player)
     {
         return 0;
     }

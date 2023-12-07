@@ -106,7 +106,7 @@ public class KianaSkill : PlayerSkillStrategy
 
 
     }
-    public float ExcuteStrongGaugePower(PlayerController player)
+    public float ExcuteSkillStrongGaugePower(PlayerController player)
     {
         return 20;
     }

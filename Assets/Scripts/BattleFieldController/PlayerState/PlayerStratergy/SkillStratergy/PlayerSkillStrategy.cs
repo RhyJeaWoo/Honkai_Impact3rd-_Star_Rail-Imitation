@@ -4,7 +4,7 @@
 public interface PlayerSkillStrategy
 {
     float ExcuteSkill(PlayerController player);
-    float ExcuteStrongGaugePower(PlayerController player);
+    float ExcuteSkillStrongGaugePower(PlayerController player);
 
 
    

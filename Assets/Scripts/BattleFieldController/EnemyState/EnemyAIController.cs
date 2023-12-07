@@ -5,12 +5,26 @@ using UnityEngine.UI;
 
 public class EnemyAIController : Entity
 {
+    [Header("이 오브젝트가 가지는 약점 격파 상태이상")]
+    public bool isWeaknessBurned = false;//화상 상태 - 불
+    public bool isWeaknessElectrocuted = false;//감전 상태 - 번개
+    public bool isWeaknessFreeze = false;//빙결 상태 - 빙결
+    public bool isWeaknessLaceration = false;//열상 상태 - 물리
+    public bool is_Weakness_Be_Quantized = false;//얽힘 상태 - 양자
+    public bool is_Weakness_Be_In_bondage = false;//속박 상태 - 허수
+
+
+
+
     public bool isAttack = false;
     public float propertieDamage = 1f; //속성 저항 계수
+    public float WeaknessIncreasedDamage = 1f; //격파 상태일때, 받는 데미지 증가계수
     public float curStrongGauge = 1f;
     public float MaxStringGauge = 1f;
 
     public Image strongGauge;
+
+    public bool isWeakness = false; //약점이 격파된 상태인가...?
 
     public List<property> properties = new List<property>(); //Entity 위에 선언된 프로퍼티에 넣을 리스트
 
@@ -23,7 +37,7 @@ public class EnemyAIController : Entity
     // 그것에 대한 정보가 없기 때문이고, 동시에 처리하면, 첫 데이터에는 누락하는 현상이 발생해서, 호출 순서를 주었음.
     public void HandleDamageDealt(float damage)//
     {
-         SumDamage = damage * defenseCoefficient * propertieDamage;
+         SumDamage = damage * defenseCoefficient * propertieDamage * WeaknessIncreasedDamage;
 
          curhp = curhp - SumDamage;
 
@@ -48,7 +62,7 @@ public class EnemyAIController : Entity
         liciveOpponentLevel = level;
     }
 
-    public void HandPropertyDealt(property equal)
+    public void HandPropertyDealt(property equal) //여기서 델리게이트를 매개변수로 받기 때문에, 여기서 처리를 해야될듯함.
     {
         Debug.Log("전달 받은 속성 : " + equal);
 
@@ -58,6 +72,7 @@ public class EnemyAIController : Entity
             {
                 propertieDamage = 1f;
                 Debug.Log("속성이 일치함");
+
                 break;
             }
             else
@@ -66,6 +81,65 @@ public class EnemyAIController : Entity
                 Debug.Log("속성이 일치하지 않음");
             }
         }
+
+
+
+        if (equal == property.fire)//불속성인가?
+        {
+            isFireDamaged = true;
+            isIceDamaged = false;
+            isThunderDamaged = false;
+            isPhysicalDamaged = false;
+            isQuantumDanaged = false;
+            isImaginary = false;
+        }
+        else if (equal == property.thunder)//번개 속성인가?
+        {
+            isFireDamaged = false;
+            isIceDamaged = false;
+            isThunderDamaged = true;
+            isPhysicalDamaged = false;
+            isQuantumDanaged = false;
+            isImaginary = false;
+        }
+        else if (equal == property.quantum)//양자 속성인가?
+        {
+            isFireDamaged = false;
+            isIceDamaged = false;
+            isThunderDamaged = false;
+            isPhysicalDamaged = false;
+            isQuantumDanaged = true;
+            isImaginary = false;
+        }
+        else if (equal == property.physical)//물리 속성인가?
+        {
+            isFireDamaged = false;
+            isIceDamaged = false;
+            isThunderDamaged = false;
+            isPhysicalDamaged = true;
+            isQuantumDanaged = false;
+            isImaginary = false;
+        }
+        else if (equal == property.ice)//빙결 속성인가?
+        {
+            isFireDamaged = false;
+            isIceDamaged = true;
+            isThunderDamaged = false;
+            isPhysicalDamaged = false;
+            isQuantumDanaged = false;
+            isImaginary = false;
+        }
+        else if (equal == property.imaginary)//허수 속성인가?
+        {
+            isFireDamaged = false;
+            isIceDamaged = false;
+            isThunderDamaged = false;
+            isPhysicalDamaged = false;
+            isQuantumDanaged = false;
+            isImaginary = true;
+        }
+
+
 
     }
 
@@ -128,6 +202,12 @@ public class EnemyAIController : Entity
         defenseCoefficient = ((curLevel * 10) + 200) / (((liciveOpponentLevel * 10) + 200) + ((curLevel * 10) + 200));
 
         strongGauge.fillAmount = curStrongGauge / MaxStringGauge;
+
+        if(curStrongGauge <= 0)
+        {
+            curStrongGauge = 0;
+            isWeakness = true;
+        }
 
         //Debug.Log("현재 실시간 방어율 계수" + defenseCoefficient);
     }

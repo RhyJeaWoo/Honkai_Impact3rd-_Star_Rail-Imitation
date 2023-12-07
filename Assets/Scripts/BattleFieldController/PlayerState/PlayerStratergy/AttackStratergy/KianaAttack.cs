@@ -30,9 +30,10 @@ public class KianaAttack : PlayerAttackStrategy
 
     }
 
-    public void PlayAnimation(PlayerController player)
-    { }
+    public float ExcuteAtkStrongGaugePower(PlayerController player)
+    {
+        return 30;
+    }
 
-    public void SkillToTarget(Transform target)
-    { }
+  
 }
