@@ -16,7 +16,6 @@ public class PlayerTurnEndState : PlayerState
     public override void Enter()
     {
         //base.Enter();
-
         player.time = 1;
     }
 

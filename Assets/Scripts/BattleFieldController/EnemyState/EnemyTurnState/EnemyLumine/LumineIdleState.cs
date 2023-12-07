@@ -54,9 +54,14 @@ public class LumineIdleState : EnemyState
                 lumine.TakeDamageText( (int)(17 * (lumine.curhp/100)) + 3000);
             }
 
-            lumine.isMyTurn = false;
+            if (lumine.isMyTurn)
+            {
+                TurnManager.Instance.TurnEnd(); //턴매니저의 턴 엔드도 풀어 버려야함.(다시 돌려야되니까)
 
-            TurnManager.Instance.TurnEnd(); //턴매니저의 턴 엔드도 풀어 버려야함.(다시 돌려야되니까)
+                lumine.isMyTurn = false;
+            }
+
+          
 
             stateMachine.ChangeState(lumine.defeatedState);
             //여기서 루미네 속도 깎고, 자기 턴일경우가 문제인데 턴을 강제로 꺼버리고. 상태를 아예 전환 시켜버림.

@@ -41,6 +41,7 @@ public class PlayerSkillState : PlayerState
     {
         base.Exit();
         //player.isSkillOn = false;
+
         if(player.CompareTag("Durandal"))
         {
             player.playableDirector[1].enabled = false;

@@ -130,6 +130,8 @@ public class LumineNorAtkState : EnemyState
         lumine.vircam[1].transform.position = new Vector3(0, 0, 0);
         //패턴 후 원래 회전값으로 복원.
 
+        lumine.isAttack = false;
+
     }
 
     public override void Update()

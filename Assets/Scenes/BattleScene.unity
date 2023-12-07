@@ -377,11 +377,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 5000
-  field of view: 40
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60.000004
   orthographic: 0
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -404,8 +404,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 30580140}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 2.15, y: 1.406, z: -0.5}
+  m_LocalRotation: {x: 0, y: -0.9848078, z: 0.17364816, w: 0}
+  m_LocalPosition: {x: -2.5, y: 1.5, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4804,8 +4804,22 @@ MonoBehaviour:
   buffSpeed: 0
   flatSpeed: 0
   currentSpeed: 0
+  finalSpeed: 0
   baseTurnSpeed: 0
   currentTurnSpeed: 0
+  isBurned: 0
+  isElectrocuted: 0
+  isFreeze: 0
+  isLaceration: 0
+  is_Be_Quantized: 0
+  is_Be_In_bondage: 0
+  isStun: 0
+  isFireDamaged: 0
+  isIceDamaged: 0
+  isThunderDamaged: 0
+  isPhysicalDamaged: 0
+  isQuantumDanaged: 0
+  isImaginary: 0
   defaultDamage: 0
   norAtkDamage: 0
   criticalDamage: 0
@@ -4823,12 +4837,19 @@ MonoBehaviour:
   IsReservingUltimate: 0
   firstUltimate: 0
   canAct: 1
-  isWeakness: 0
+  isWeaknessBurned: 0
+  isWeaknessElectrocuted: 0
+  isWeaknessFreeze: 0
+  isWeaknessLaceration: 0
+  is_Weakness_Be_Quantized: 0
+  is_Weakness_Be_In_bondage: 0
   isAttack: 0
   propertieDamage: 1
+  WeaknessIncreasedDamage: 1
   curStrongGauge: 1
   MaxStringGauge: 1
   strongGauge: {fileID: 0}
+  isWeakness: 0
   properties: 
 --- !u!4 &480543576
 Transform:
@@ -6545,8 +6566,22 @@ MonoBehaviour:
   buffSpeed: 0
   flatSpeed: 0
   currentSpeed: 0
+  finalSpeed: 0
   baseTurnSpeed: 0
   currentTurnSpeed: 0
+  isBurned: 0
+  isElectrocuted: 0
+  isFreeze: 0
+  isLaceration: 0
+  is_Be_Quantized: 0
+  is_Be_In_bondage: 0
+  isStun: 0
+  isFireDamaged: 0
+  isIceDamaged: 0
+  isThunderDamaged: 0
+  isPhysicalDamaged: 0
+  isQuantumDanaged: 0
+  isImaginary: 0
   defaultDamage: 0
   norAtkDamage: 0
   criticalDamage: 0
@@ -6564,12 +6599,19 @@ MonoBehaviour:
   IsReservingUltimate: 0
   firstUltimate: 0
   canAct: 1
-  isWeakness: 0
+  isWeaknessBurned: 0
+  isWeaknessElectrocuted: 0
+  isWeaknessFreeze: 0
+  isWeaknessLaceration: 0
+  is_Weakness_Be_Quantized: 0
+  is_Weakness_Be_In_bondage: 0
   isAttack: 0
   propertieDamage: 1
+  WeaknessIncreasedDamage: 1
   curStrongGauge: 1
   MaxStringGauge: 1
   strongGauge: {fileID: 0}
+  isWeakness: 0
   properties: 
 --- !u!4 &715550632
 Transform:
@@ -10548,8 +10590,22 @@ MonoBehaviour:
   buffSpeed: 0
   flatSpeed: 0
   currentSpeed: 0
+  finalSpeed: 0
   baseTurnSpeed: 0
   currentTurnSpeed: 0
+  isBurned: 0
+  isElectrocuted: 0
+  isFreeze: 0
+  isLaceration: 0
+  is_Be_Quantized: 0
+  is_Be_In_bondage: 0
+  isStun: 0
+  isFireDamaged: 0
+  isIceDamaged: 0
+  isThunderDamaged: 0
+  isPhysicalDamaged: 0
+  isQuantumDanaged: 0
+  isImaginary: 0
   defaultDamage: 0
   norAtkDamage: 0
   criticalDamage: 0
@@ -10567,7 +10623,6 @@ MonoBehaviour:
   IsReservingUltimate: 0
   firstUltimate: 0
   canAct: 0
-  isWeakness: 0
   eng: {fileID: 11758599}
   engColorA: {r: 0, g: 0, b: 0, a: 0}
   playerList: []
@@ -11702,8 +11757,22 @@ MonoBehaviour:
   buffSpeed: 0
   flatSpeed: 0
   currentSpeed: 0
+  finalSpeed: 0
   baseTurnSpeed: 0
   currentTurnSpeed: 0
+  isBurned: 0
+  isElectrocuted: 0
+  isFreeze: 0
+  isLaceration: 0
+  is_Be_Quantized: 0
+  is_Be_In_bondage: 0
+  isStun: 0
+  isFireDamaged: 0
+  isIceDamaged: 0
+  isThunderDamaged: 0
+  isPhysicalDamaged: 0
+  isQuantumDanaged: 0
+  isImaginary: 0
   defaultDamage: 0
   norAtkDamage: 0
   criticalDamage: 0
@@ -11721,12 +11790,19 @@ MonoBehaviour:
   IsReservingUltimate: 0
   firstUltimate: 0
   canAct: 1
-  isWeakness: 0
+  isWeaknessBurned: 0
+  isWeaknessElectrocuted: 0
+  isWeaknessFreeze: 0
+  isWeaknessLaceration: 0
+  is_Weakness_Be_Quantized: 0
+  is_Weakness_Be_In_bondage: 0
   isAttack: 0
   propertieDamage: 1
+  WeaknessIncreasedDamage: 1
   curStrongGauge: 1
   MaxStringGauge: 1
   strongGauge: {fileID: 0}
+  isWeakness: 0
   properties: 
 --- !u!4 &814090968
 Transform:
@@ -13561,8 +13637,22 @@ MonoBehaviour:
   buffSpeed: 0
   flatSpeed: 0
   currentSpeed: 0
+  finalSpeed: 0
   baseTurnSpeed: 0
   currentTurnSpeed: 0
+  isBurned: 0
+  isElectrocuted: 0
+  isFreeze: 0
+  isLaceration: 0
+  is_Be_Quantized: 0
+  is_Be_In_bondage: 0
+  isStun: 0
+  isFireDamaged: 0
+  isIceDamaged: 0
+  isThunderDamaged: 0
+  isPhysicalDamaged: 0
+  isQuantumDanaged: 0
+  isImaginary: 0
   defaultDamage: 0
   norAtkDamage: 0
   criticalDamage: 0
@@ -13580,12 +13670,19 @@ MonoBehaviour:
   IsReservingUltimate: 0
   firstUltimate: 0
   canAct: 1
-  isWeakness: 0
+  isWeaknessBurned: 0
+  isWeaknessElectrocuted: 0
+  isWeaknessFreeze: 0
+  isWeaknessLaceration: 0
+  is_Weakness_Be_Quantized: 0
+  is_Weakness_Be_In_bondage: 0
   isAttack: 0
   propertieDamage: 1
+  WeaknessIncreasedDamage: 1
   curStrongGauge: 1
   MaxStringGauge: 1
   strongGauge: {fileID: 0}
+  isWeakness: 0
   properties: 
 --- !u!1001 &1073359016
 PrefabInstance:
@@ -17188,8 +17285,22 @@ MonoBehaviour:
   buffSpeed: 0
   flatSpeed: 0
   currentSpeed: 0
+  finalSpeed: 0
   baseTurnSpeed: 0
   currentTurnSpeed: 0
+  isBurned: 0
+  isElectrocuted: 0
+  isFreeze: 0
+  isLaceration: 0
+  is_Be_Quantized: 0
+  is_Be_In_bondage: 0
+  isStun: 0
+  isFireDamaged: 0
+  isIceDamaged: 0
+  isThunderDamaged: 0
+  isPhysicalDamaged: 0
+  isQuantumDanaged: 0
+  isImaginary: 0
   defaultDamage: 0
   norAtkDamage: 0
   criticalDamage: 0
@@ -17207,7 +17318,6 @@ MonoBehaviour:
   IsReservingUltimate: 0
   firstUltimate: 0
   canAct: 0
-  isWeakness: 0
   eng: {fileID: 789143847}
   engColorA: {r: 0, g: 0, b: 0, a: 0}
   playerList: []
@@ -18239,8 +18349,22 @@ MonoBehaviour:
   buffSpeed: 0
   flatSpeed: 0
   currentSpeed: 0
+  finalSpeed: 0
   baseTurnSpeed: 0
   currentTurnSpeed: 0
+  isBurned: 0
+  isElectrocuted: 0
+  isFreeze: 0
+  isLaceration: 0
+  is_Be_Quantized: 0
+  is_Be_In_bondage: 0
+  isStun: 0
+  isFireDamaged: 0
+  isIceDamaged: 0
+  isThunderDamaged: 0
+  isPhysicalDamaged: 0
+  isQuantumDanaged: 0
+  isImaginary: 0
   defaultDamage: 0
   norAtkDamage: 0
   criticalDamage: 0
@@ -18258,7 +18382,6 @@ MonoBehaviour:
   IsReservingUltimate: 0
   firstUltimate: 0
   canAct: 0
-  isWeakness: 0
   eng: {fileID: 910562731}
   engColorA: {r: 0, g: 0, b: 0, a: 0}
   playerList: []
@@ -21252,8 +21375,22 @@ MonoBehaviour:
   buffSpeed: 0
   flatSpeed: 0
   currentSpeed: 0
+  finalSpeed: 0
   baseTurnSpeed: 0
   currentTurnSpeed: 0
+  isBurned: 0
+  isElectrocuted: 0
+  isFreeze: 0
+  isLaceration: 0
+  is_Be_Quantized: 0
+  is_Be_In_bondage: 0
+  isStun: 0
+  isFireDamaged: 0
+  isIceDamaged: 0
+  isThunderDamaged: 0
+  isPhysicalDamaged: 0
+  isQuantumDanaged: 0
+  isImaginary: 0
   defaultDamage: 0
   norAtkDamage: 0
   criticalDamage: 0
@@ -21271,12 +21408,19 @@ MonoBehaviour:
   IsReservingUltimate: 0
   firstUltimate: 0
   canAct: 0
-  isWeakness: 0
+  isWeaknessBurned: 0
+  isWeaknessElectrocuted: 0
+  isWeaknessFreeze: 0
+  isWeaknessLaceration: 0
+  is_Weakness_Be_Quantized: 0
+  is_Weakness_Be_In_bondage: 0
   isAttack: 0
   propertieDamage: 1
-  curStrongGauge: 1
-  MaxStringGauge: 1
+  WeaknessIncreasedDamage: 1
+  curStrongGauge: 120
+  MaxStringGauge: 450
   strongGauge: {fileID: 1185695982}
+  isWeakness: 0
   properties: 
 --- !u!114 &1757154048
 MonoBehaviour:

@@ -59,8 +59,6 @@ public class EnemyLumine : EnemyAIController
         base.Start();
         stateMachine.Initialize(idleState);
 
-        MaxStringGauge = 450f;
-        curStrongGauge = MaxStringGauge;
 
         SubscribeToPlayerDamageEvent();
 
