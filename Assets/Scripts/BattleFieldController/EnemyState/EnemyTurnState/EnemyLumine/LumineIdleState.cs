@@ -54,13 +54,14 @@ public class LumineIdleState : EnemyState
                 lumine.TakeDamageText( (int)(17 * (lumine.curhp/100)) + 3000);
             }
 
+            /*
             if (lumine.isMyTurn)
             {
                 TurnManager.Instance.TurnEnd(); //턴매니저의 턴 엔드도 풀어 버려야함.(다시 돌려야되니까)
 
                 lumine.isMyTurn = false;
             }
-
+            */
           
 
             stateMachine.ChangeState(lumine.defeatedState);

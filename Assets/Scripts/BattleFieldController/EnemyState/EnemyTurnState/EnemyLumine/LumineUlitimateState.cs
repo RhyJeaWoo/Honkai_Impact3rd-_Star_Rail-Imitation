@@ -24,12 +24,7 @@ public class LumineUlitimateState : EnemyState
     {
         base.Update();
 
-        if (lumine.isMyTurn)
-        {
-            TurnManager.Instance.TurnEnd(); //턴매니저의 턴 엔드도 풀어 버려야함.(다시 돌려야되니까)
-
-            lumine.isMyTurn = false;
-        }
+       
     }
 
     

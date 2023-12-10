@@ -13,6 +13,8 @@ public class LumineHitState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        SoundManager.instance.SFXPlay("", lumine.anims.VoiceClip[0]);
     }
 
     public override void Exit()

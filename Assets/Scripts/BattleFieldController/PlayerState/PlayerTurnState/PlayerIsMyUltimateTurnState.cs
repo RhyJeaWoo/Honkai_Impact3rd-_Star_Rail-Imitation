@@ -30,8 +30,9 @@ public class PlayerIsMyUltimateTurnState : PlayerState
 
         if (player.isUltimate)
         {
-           
-            stateMachine.ChangeState(player.ultimateWaitState);
+
+            //stateMachine.ChangeState(player.ultimateWaitState);
+            stateMachine.ChangeState(player.ulimateCutSceneState);
             return;
         }
 

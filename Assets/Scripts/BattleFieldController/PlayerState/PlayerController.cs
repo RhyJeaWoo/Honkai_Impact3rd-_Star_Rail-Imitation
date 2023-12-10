@@ -11,7 +11,11 @@ public class PlayerController : Entity
 
     public Image eng;
 
+    public Image ultimateScene;
+
     public Color engColorA;
+    public Color ultimateDefaultAlbedo;
+    public Color ultimatePlusAlbedo;
 
     public List<PlayerController> playerList = new List<PlayerController>(new PlayerController[4]);
     //좋은 방법이 아님 그냥 턴매니저의 값을 받아와서 그걸로 처리하는게 좋아보임.
@@ -61,6 +65,8 @@ public class PlayerController : Entity
 
 
     #region States
+
+    public PlayerUlimateCutSceneState ulimateCutSceneState { get; private set; }
     public PlayerStateMachine stateMachine { get; private set; }//스테이트 머신
 
     public PlayerIdleState idleState { get; private set; }//내 턴이 아닐 경우 유지할 상태
@@ -111,6 +117,10 @@ public class PlayerController : Entity
         base.Awake();
 
         stateMachine = new PlayerStateMachine();
+
+        ulimateCutSceneState= new PlayerUlimateCutSceneState(this, stateMachine, "UltimateCutScene");
+
+
 
         turnGetState = new PlayerTurnGetState(this, stateMachine, "Idle"); //턴을 겟했지만 Idle로 쓸거임.
 
@@ -178,7 +188,18 @@ public class PlayerController : Entity
 
         engColorA = eng.color;
 
-    
+        ultimatePlusAlbedo = ultimateScene.color;
+
+        ultimateDefaultAlbedo = ultimateScene.color;
+
+        ultimateDefaultAlbedo.a = 0;
+
+        ultimatePlusAlbedo.a = 0;
+
+        ultimateScene.color = ultimateDefaultAlbedo;
+
+      
+
     }
 
     protected override void Update()

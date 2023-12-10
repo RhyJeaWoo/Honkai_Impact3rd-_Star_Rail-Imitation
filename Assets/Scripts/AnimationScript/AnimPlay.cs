@@ -16,6 +16,8 @@ public class AnimPlay : MonoBehaviour
 
     public AudioClip[] VoiceClip;
 
+    public AudioClip UltimatePlayClip;
+
     private void Start()
     {
        

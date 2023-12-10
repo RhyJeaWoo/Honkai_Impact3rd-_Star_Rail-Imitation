@@ -16,7 +16,7 @@ public class LumineDefeatedState : EnemyState
         base.Enter();
         lumine.currentSpeed = lumine.currentSpeed + (lumine.finalSpeed * 0.25f); //이상태에 진입시 루미네의 스피드가 떨어짐.
 
-
+        SoundManager.instance.SFXPlay("", lumine.anims.VoiceClip[1]);
 
     }
 
