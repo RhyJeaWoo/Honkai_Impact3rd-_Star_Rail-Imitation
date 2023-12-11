@@ -13,13 +13,18 @@ public class PlayerUlimateCutSceneState : PlayerState
     public override void Enter()
     {
         SoundManager.instance.SFXPlay("", player.anims.UltimatePlayClip);
+        player.cutScene.SetActive(true);
+
+        
     }
 
     public override void Exit()
     {
         //여기서 컷신을 종료함.
         player.ultimateScene.color = player.ultimateDefaultAlbedo;
+        player.cutScene.SetActive(false);
     }
+        
 
     public override void Update()
     {

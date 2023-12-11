@@ -11059,6 +11059,7 @@ MonoBehaviour:
   canAct: 0
   eng: {fileID: 11758599}
   ultimateScene: {fileID: 1321932818}
+  cutScene: {fileID: 1321932816}
   engColorA: {r: 0, g: 0, b: 0, a: 0}
   ultimateDefaultAlbedo: {r: 0, g: 0, b: 0, a: 0}
   ultimatePlusAlbedo: {r: 0, g: 0, b: 0, a: 0}
@@ -18320,6 +18321,7 @@ MonoBehaviour:
   canAct: 0
   eng: {fileID: 789143847}
   ultimateScene: {fileID: 226980122}
+  cutScene: {fileID: 226980120}
   engColorA: {r: 0, g: 0, b: 0, a: 0}
   ultimateDefaultAlbedo: {r: 0, g: 0, b: 0, a: 0}
   ultimatePlusAlbedo: {r: 0, g: 0, b: 0, a: 0}
@@ -19466,6 +19468,7 @@ MonoBehaviour:
   canAct: 0
   eng: {fileID: 910562731}
   ultimateScene: {fileID: 109637945}
+  cutScene: {fileID: 109637943}
   engColorA: {r: 0, g: 0, b: 0, a: 0}
   ultimateDefaultAlbedo: {r: 0, g: 0, b: 0, a: 0}
   ultimatePlusAlbedo: {r: 0, g: 0, b: 0, a: 0}
@@ -26159,6 +26162,14 @@ PrefabInstance:
       propertyPath: eng
       value: 
       objectReference: {fileID: 1138292370}
+    - target: {fileID: 56132368471635740, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1692249342}
+    - target: {fileID: 56132368471635740, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
+      propertyPath: cutScene
+      value: 
+      objectReference: {fileID: 1692249338}
     - target: {fileID: 56132368471635740, guid: 74f20620aeff4c44ca13334e15f51b16, type: 3}
       propertyPath: UltimateScene
       value: 

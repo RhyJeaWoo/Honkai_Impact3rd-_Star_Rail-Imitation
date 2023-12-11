@@ -13,6 +13,8 @@ public class PlayerController : Entity
 
     public Image ultimateScene;
 
+    public GameObject cutScene;
+
     public Color engColorA;
     public Color ultimateDefaultAlbedo;
     public Color ultimatePlusAlbedo;
@@ -198,6 +200,7 @@ public class PlayerController : Entity
 
         ultimateScene.color = ultimateDefaultAlbedo;
 
+        cutScene.SetActive(false);
       
 
     }
