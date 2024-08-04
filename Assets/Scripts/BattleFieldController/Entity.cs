@@ -1,7 +1,6 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,11 +20,16 @@ public enum property //강인도 시스템에 사용될 속성(캐릭터의 기본 속성과 적의 약�
 
 public class Entity : MonoBehaviour
 {
+    private TurnManager turnManager;
+
+
     public Image hp;
 
 
-    //델리게이트
+    
+    public event Action<Entity> OnTurnSpeedChanged;
 
+    //델리게이트
     public delegate void DamageDealtHandler(float damage); //데미지에 관한 델리게이트로 선언
     public event DamageDealtHandler OnDamageDealt;//델리게이트
 
@@ -59,11 +63,20 @@ public class Entity : MonoBehaviour
 
     public Transform hudPos;
 
-   
+    public GameObject turn_Ui_Image;
+
+    public RectTransform turnUiImageRectTransform => turn_Ui_Image.GetComponent<RectTransform>(); // RectTransform 가져오기
+
+    public TextMeshProUGUI curspdText;
+
+    public Sprite CharSprite;
+
+
 
 
 
     [Header("플레이어의 스테이터스")]
+    public string names;
     public float curLevel;//현재 레벨
     public float maxLevel;//최대 레벨
 
@@ -77,7 +90,9 @@ public class Entity : MonoBehaviour
     public float maxeng;//최대 에너지
 
     public float curCrt;//현재 치명타 수치
-    public float criticalPower;//크리티컬 데미지 증가 배율 
+    public float criticalPower;//크리티컬 데미지 증가 배율 기본이 0.5임
+    public float baseCrtPow = 0.5f;
+    public float addCrtPow;
 
     public float baseSpeed; // 기초 속도x
     public float buffSpeed; // 버프로 증가할 수 있는 속도
@@ -89,53 +104,8 @@ public class Entity : MonoBehaviour
     public float baseTurnSpeed; // 기초 행동 수치
     public float currentTurnSpeed; // 현재 행동 수치
 
+    public int curSpeedText;
 
-
-    /* 속성 예정 스타레일 식이 아닌 내 마개조 버전으로 생각중.
-     * 
-     * 약점이 반응하는 방식
-     * 내 플레이어블 캐릭터가 턴을 잡았을때, 얘가 가진 속성에 대응되는 약점을 가진 오브젝트들이 다 빛남.
-     * 
-     * 물리 <-> (원소) 화염 빙결 번개
-     * 
-     * 기계 생물 물리 허수 양자
-     * 
-     * 이넘 타입으로 만들면 될듯
-     * 
-     * 
-     * 4. 저항 계수(아 안만듬 ㅡㅡ) ㅅㅂ
-
-        (1 - 저항성 + 저항관통)
-
-        적은 속성에 따라 다른 저항성을 보유함
-
-
-
-        약점 속성: 0%
-
-        일반 속성: 20%
-
-        같은 속성: 40%  ex) 얼음몹은 얼음 저항, 화염몹은 화염 저항
-
-        저항관통은 제레의 베어가르기, 단항의 특성
-     * 
-     * 
-     */
-
-
-    /*
-    * 여기서 플레이어가 가지는 속성을 정함
-    * 물, 번개, 얼음 , 허수, 양자 ,물리 만 다루려고함.
-    * 일단 키아나 불
-    * 메이 번개 확정
-    * 엘리시아는 양자
-    * 듀란달은 허수로 생각중
-    * 
-    * 루미네는 약점 속성 불 번개 그리고 물리만 생각중
-    * 
-    * 슬라임이야 그냥 불 번개 양자로 넣으면 될듯 아이콘 표현은 음... 몰것네
-    * 
-    */
 
 
     [Header("이 오브젝트가 가지는 상태이상")]
@@ -153,7 +123,7 @@ public class Entity : MonoBehaviour
     public bool isIceDamaged = false;
     public bool isThunderDamaged = false;
     public bool isPhysicalDamaged = false;
-    public bool isQuantumDanaged = false;
+    public bool isQuantumDamaged = false;
     public bool isImaginary = false;
 
 
@@ -199,10 +169,7 @@ public class Entity : MonoBehaviour
 
     public bool canAct = true; //HP가 0이 되어서 활동할 수 있는지 체크
 
-   
-
     //이게 True를 받을 경우 새로운 상태로 진입.
-
 
     //public bool StopTurn;
     // public bool isAtackOn = false; //내가 공격 준비 상태에서 공격할 준비가 되었는지 체크
@@ -211,13 +178,14 @@ public class Entity : MonoBehaviour
 
     // Start 함수에서 초기화를 수행합니다.
 
-  
-
     protected virtual void Start()
     {
         skin = GetComponentsInChildren<SkinnedMeshRenderer>();
 
+        //curspdText = turn_Ui_Image.GetComponentInChildren<TextMeshProUGUI>();//여기서 문제 발생하는듯
+
         ObjectStatCal();
+
 
     }
 
@@ -232,7 +200,43 @@ public class Entity : MonoBehaviour
         time -= Time.deltaTime;
 
         hp.fillAmount = curhp / maxhp;
+
+        curSpeedText = Mathf.RoundToInt(currentTurnSpeed);
+
+        if (curspdText.text != curSpeedText.ToString())
+        {
+            curspdText.text = curSpeedText.ToString();
+            OnTurnSpeedChanged?.Invoke(this);
+        }
+        //curspdText.text = curSpeedText.ToString();
     }
+
+    public void SetTurnManager(TurnManager manager)
+    {
+        turnManager = manager; 
+    }
+
+    // 속도를 업데이트 해서 UI턴 정렬을 이벤트로 보내는 함수
+    public void UpdateSpeed(float newSpeed)
+    {
+        if (currentTurnSpeed != newSpeed)
+        {
+            Debug.Log($"Updating speed from {currentTurnSpeed} to {newSpeed} for {gameObject.name}");
+
+            currentTurnSpeed = newSpeed;
+            OnTurnSpeedChanged?.Invoke(this);
+        }
+    }
+
+    // 속도를 업데이트 해서 남은 속도를 상시 갱신하는것을 이벤트하는 함수
+
+    public void UpdateTurnSpeed(float newSpeed)
+    {
+        currentTurnSpeed = newSpeed;
+        curspdText.text = currentTurnSpeed.ToString();
+        turnManager.SortPanels();
+    }
+
 
     public void ObjectStatCal() //초기 수치 계산
     {
@@ -242,14 +246,34 @@ public class Entity : MonoBehaviour
         baseTurnSpeed = 10000 / finalSpeed;
         // 초기화 혹은 턴 시작 시 현재 속도와 행동 수치를 설정
         currentSpeed = finalSpeed;
+
         currentTurnSpeed = baseTurnSpeed;
+
         curhp = maxhp;
+
+        //크리티컬 증가량 계산
+
+        criticalPower = baseCrtPow + addCrtPow;
+
         //크리티컬 적용전 데미지   (공격력 * 스킬 계수) * (1 + 피해 증가 배수) 
-
         defaultDamage = (atk) * (1 + increasedDamage);
-
-       
     }
+
+    /*구조체 관련 함수 테스트*/
+    public PlayerStruct GetCharacterInfo()
+    {
+        return new PlayerStruct(this);
+    }
+
+    public void SetCharacterInfo(PlayerStruct info)
+    {
+        info.ApplyToEntity(this);
+    }
+
+    //여기까지가 구조체
+
+
+ 
 
     public void DamageDelegate(float damage)
     {
@@ -272,13 +296,9 @@ public class Entity : MonoBehaviour
         OnStrongGaugeDealt?.Invoke(strongGaugePower);
     }
     
-
-
-
-
     public void TakeDamageText(int damage)
     {
-        float x = Random.Range(-1, 2);
+        float x = UnityEngine.Random.Range(-1, 2);
 
         GameObject hudText = Instantiate(hudDamageText); // 생성할 텍스트 오브젝트
         hudText.transform.position = hudPos.position + new Vector3(x, 1f,0); // 표시될 위치

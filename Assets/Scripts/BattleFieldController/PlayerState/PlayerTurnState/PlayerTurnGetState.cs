@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class PlayerTurnGetState : PlayerState
 {
+    int count = 0;
     //턴을 받으면 실행되는 상태
     public PlayerTurnGetState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
+
     }
 
     public override void Enter()
@@ -25,14 +27,18 @@ public class PlayerTurnGetState : PlayerState
 
             }
         }
-        
-      
-        for (int i = 0; i < TurnManager.Instance.enemys.Count; i++) 
+
+        //여러번 실행되는걸 방지할거임 1이면실행 안됨
+        if (player.skillPositionStack != 1)
         {
-            if (!TurnManager.Instance.enemys[i].isMyTurn)
+
+            for (int i = 0; i < TurnManager.Instance.enemys.Count; i++)
             {
-                TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.enemys[i].transform.position
-                    + new Vector3(player.transform.position.x, 0 ,0);
+                if (!TurnManager.Instance.enemys[i].isMyTurn)
+                {
+                    TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.enemys[i].transform.position
+                        + new Vector3(player.transform.position.x, 0, 0);
+                }
             }
         }
 

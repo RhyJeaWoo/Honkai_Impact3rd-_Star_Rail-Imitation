@@ -17,6 +17,7 @@ public class PlayerTurnEndState : PlayerState
     {
         //base.Enter();
         player.time = 1;
+        
     }
 
     public override void Exit()
@@ -30,6 +31,11 @@ public class PlayerTurnEndState : PlayerState
                 TurnManager.Instance.enemys[i].transform.position = TurnManager.Instance.EnemyInitialPosition[i];
             }
         }
+
+        player.currentTurnSpeed = player.baseTurnSpeed;
+
+        player.skillPositionStack = 0;
+       
 
     }
 

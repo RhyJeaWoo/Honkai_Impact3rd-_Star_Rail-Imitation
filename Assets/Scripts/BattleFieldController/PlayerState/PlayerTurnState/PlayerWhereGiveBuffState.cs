@@ -12,6 +12,8 @@ public class PlayerWhereGiveBuffState : PlayerState
     {
         base.Enter();
 
+        player.skillPositionStack = 1;
+
         TurnManager.Instance.Player_target_simbol.SetActive(true); // È°¼ºÈ­
         TurnManager.Instance.Enemy_target_simbol.SetActive(false);
 

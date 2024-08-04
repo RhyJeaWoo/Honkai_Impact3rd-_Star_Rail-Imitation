@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class PlayerController : Entity
 {
+    public int skillPositionStack = 0;
 
     public Image eng;
 
@@ -47,13 +48,18 @@ public class PlayerController : Entity
     
     //이거랑 별개로, 무기 전환 효과를 다른 클립으로 관리 해야될듯?
 
+    public struct CharacterInfo
+    {
+
+    }
+
+
+
 
     #region Design Patterns
 
-    
 
-
-    //전략
+    //전략 패턴
     private PlayerSkillStrategy skillStrategy;
     private PlayerAttackStrategy attackStrategy;
     private PlayerUltimateStrategy ultimateStrategy;
@@ -182,9 +188,9 @@ public class PlayerController : Entity
 
         stateMachine.Initialize(idleState);
 
-        // TurnManager 스크립트로부터 healTarget 배열을 가져와서 playerList 리스트에 저장
+        
         playerList.AddRange(TurnManager.Instance.healTarget.Select(transform => transform.GetComponent<PlayerController>()));
-        //Debug.Log(TurnManager.Instance.healTarget.Length);
+      
         
         ListSort(); //한번 인위적으로 정렬 해줌. 
 

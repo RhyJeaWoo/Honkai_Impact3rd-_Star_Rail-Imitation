@@ -132,6 +132,8 @@ public class LumineNorAtkState : EnemyState
 
         lumine.isAttack = false;
 
+        lumine.currentTurnSpeed = lumine.baseTurnSpeed;
+
     }
 
     public override void Update()

@@ -90,7 +90,7 @@ public class EnemyAIController : Entity
             isIceDamaged = false;
             isThunderDamaged = false;
             isPhysicalDamaged = false;
-            isQuantumDanaged = false;
+            isQuantumDamaged = false;
             isImaginary = false;
         }
         else if (equal == property.thunder)//번개 속성인가?
@@ -99,7 +99,7 @@ public class EnemyAIController : Entity
             isIceDamaged = false;
             isThunderDamaged = true;
             isPhysicalDamaged = false;
-            isQuantumDanaged = false;
+            isQuantumDamaged = false;
             isImaginary = false;
         }
         else if (equal == property.quantum)//양자 속성인가?
@@ -108,7 +108,7 @@ public class EnemyAIController : Entity
             isIceDamaged = false;
             isThunderDamaged = false;
             isPhysicalDamaged = false;
-            isQuantumDanaged = true;
+            isQuantumDamaged = true;
             isImaginary = false;
         }
         else if (equal == property.physical)//물리 속성인가?
@@ -117,7 +117,7 @@ public class EnemyAIController : Entity
             isIceDamaged = false;
             isThunderDamaged = false;
             isPhysicalDamaged = true;
-            isQuantumDanaged = false;
+            isQuantumDamaged = false;
             isImaginary = false;
         }
         else if (equal == property.ice)//빙결 속성인가?
@@ -126,7 +126,7 @@ public class EnemyAIController : Entity
             isIceDamaged = true;
             isThunderDamaged = false;
             isPhysicalDamaged = false;
-            isQuantumDanaged = false;
+            isQuantumDamaged = false;
             isImaginary = false;
         }
         else if (equal == property.imaginary)//허수 속성인가?
@@ -135,7 +135,7 @@ public class EnemyAIController : Entity
             isIceDamaged = false;
             isThunderDamaged = false;
             isPhysicalDamaged = false;
-            isQuantumDanaged = false;
+            isQuantumDamaged = false;
             isImaginary = true;
         }
 
