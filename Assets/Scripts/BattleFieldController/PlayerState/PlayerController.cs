@@ -16,6 +16,8 @@ public class PlayerController : Entity
 
     public GameObject cutScene;
 
+    public GameObject[] gameobj;//프레팹이나 스킬 쉐이더 효과 소환용
+
     public Color engColorA;
     public Color ultimateDefaultAlbedo;
     public Color ultimatePlusAlbedo;
@@ -73,6 +75,8 @@ public class PlayerController : Entity
 
 
     #region States
+
+    public PlayerSkillGivingState playerSkillGivingState {  get; private set; }
 
     public PlayerUlimateCutSceneState ulimateCutSceneState { get; private set; }
     public PlayerStateMachine stateMachine { get; private set; }//스테이트 머신
@@ -169,6 +173,9 @@ public class PlayerController : Entity
 
 
         buffgiveState = new PlayerBuffGiveState(this, stateMachine, "BuffGive"); //버프(힐)을 주는 상태
+
+        playerSkillGivingState = new PlayerSkillGivingState(this, stateMachine, "SkillGiving"); //애니메이션으론 사용하지 않을거지만 유지보수 가능성이 있어 작성[
+
         whereGiveBuffState = new PlayerWhereGiveBuffState(this, stateMachine, "WhereGiveBuff");
 
         turnEndState = new PlayerTurnEndState(this, stateMachine, "TurnEnd");

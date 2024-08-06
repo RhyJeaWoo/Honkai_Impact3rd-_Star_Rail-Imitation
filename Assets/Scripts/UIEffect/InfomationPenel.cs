@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ public class InfomationPenel : MonoBehaviour
 
     public Button[] actionButtons; // 캐릭터 정보를 표시할 버튼 배열
     public Image[] ImgactionButtons;//이미지 갱신 버튼 배열
+
+    public Image changeInFoImg;
+    public Image hpBarUi;
 
     public Button closeButton; // 닫기 버튼
 
@@ -102,6 +106,13 @@ public class InfomationPenel : MonoBehaviour
     {
         playableCharacters = players; // 플레이어 리스트 저장
         uiPanel.SetActive(true); // 패널 활성화
+
+        if (ImgactionButtons.Length > 0 && ImgactionButtons[0].sprite != null)
+        {
+            changeInFoImg.sprite = ImgactionButtons[0].sprite;
+        }
+
+
         UpdateCharacterButtons(); // 버튼 업데이트
 
         ShowDefaultCharacterInfo();
@@ -155,9 +166,13 @@ public class InfomationPenel : MonoBehaviour
                 if (entity != null && entity.CharSprite != null)
                 {
                     button.sprite = entity.CharSprite; // 스프라이트 할당
+
+                    int index = i; // 람다 표현식에서 사용할 변수
+
                     // 버튼 클릭 시 호출될 메서드를 등록
                     actionButtons[i].onClick.RemoveAllListeners();
-                    actionButtons[i].onClick.AddListener(() => OnCharacterButtonClicked(player));
+                    actionButtons[i].onClick.AddListener(() 
+                        => OnCharacterButtonClicked(playableCharacters[index], ImgactionButtons[index]));
                     ImgactionButtons[i].gameObject.SetActive(true); // 버튼 활성화
                 }
                 else
@@ -175,19 +190,31 @@ public class InfomationPenel : MonoBehaviour
 
     private void ShowDefaultCharacterInfo()
     {
-        if (playableCharacters.Count > 0)
+        if (playableCharacters.Count > 0 && ImgactionButtons.Length > 0)
         {
             var defaultCharacter = playableCharacters[0]; // 기본 캐릭터 (첫 번째 캐릭터)
-            OnCharacterButtonClicked(defaultCharacter); // 버튼 클릭 시 기본 캐릭터 정보 표시
+            OnCharacterButtonClicked(defaultCharacter, ImgactionButtons[0]); // 버튼 클릭 시 기본 캐릭터 정보 표시
+
+            
         }
     }
 
     // 버튼 클릭 시 호출되는 메서드
-    public void OnCharacterButtonClicked(PlayerController character)
+    public void OnCharacterButtonClicked(PlayerController character, Image buttonImage)
     {
+        if (buttonImage == null)
+        {
+            Debug.LogError("Button image is null");
+            return;
+        }
+
+      
         var info = character.GetComponent<Entity>().GetCharacterInfo();
         UpdateCharacterInfoUI(info);
         UpdateRenderTextureCamera(character.transform); // 렌더 카메라 업데이트
+        UpdateHpBar(info.curhp, info.maxhp); // 체력바 업데이트
+
+
 
         // 모든 스킨 비활성화
         foreach (var player in playableCharacters)
@@ -203,6 +230,26 @@ public class InfomationPenel : MonoBehaviour
         {
             skin.enabled = true;
         }
+
+        // 버튼 클릭 시 이미지 변경
+        changeInFoImg.sprite = buttonImage.sprite; // 버튼 이미지로 변경
+
+    }
+
+    // 체력바 업데이트 메서드
+    private void UpdateHpBar(float currentHp, float maxHp)
+    {
+        if (hpBarUi != null)
+        {
+            // 체력 비율 계산
+            float hpPercentage = currentHp / maxHp;
+            // 체력바의 fillAmount를 비율로 설정
+            hpBarUi.fillAmount = hpPercentage;
+        }
+        else
+        {
+            Debug.LogWarning("hpBarUi is not assigned!");
+        }
     }
 
     // UI 업데이트
@@ -214,9 +261,9 @@ public class InfomationPenel : MonoBehaviour
         defendText.text = info.def.ToString();
         energeText.text = info.cureng.ToString() + " / " + info.maxeng.ToString();
         crtText.text = info.curCrt.ToString()+"%";
-        //crtPwText.text = info.criticalPower.ToString();
         crtPwText.text = (info.criticalPower * 100).ToString() +"%";
         spdPwText.text = info.finalSpeed.ToString();
         attackText.text = info.atk.ToString();
+        
     }
 }

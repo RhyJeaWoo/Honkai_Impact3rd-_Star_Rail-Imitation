@@ -13,9 +13,7 @@ public class PlayerIdleState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        //Debug.Log(player.name + "idle 상태가 실행되었음");
-        //player.skin[1].enabled = false;
-        //player.skin[0].enabled = false;
+     
 
 
 
@@ -65,25 +63,3 @@ public class PlayerIdleState : PlayerState
 
 }
 
-
-/*
-     if (TurnManager.Instance.playerUltimate[0] == null)
-      {
-          throw new ArgumentOutOfRangeException("궁극기가 삽입되지 않았음");
-
-
-     }
-     else
-     {
-          Debug.Log("널에서 통과됨");
-          if (TurnManager.Instance.playerUltimate[0].name == player.transform.gameObject.name)
-          {
-              player.stateMachine.ChangeState(player.isMyUltimateTurnState);
-              //만약 이상태로 넘어가면 루미네나 다른 몬스터의 행동은 즉시 정지되어야함.
-              Debug.Log("통과됨");
-          }
-          else
-          {
-              Debug.Log("궁극기 리스트에 들어온게 없음");
-          }
-     }*/

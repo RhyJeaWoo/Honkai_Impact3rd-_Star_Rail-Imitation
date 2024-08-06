@@ -249,7 +249,7 @@ public class Entity : MonoBehaviour
 
         currentTurnSpeed = baseTurnSpeed;
 
-        curhp = maxhp;
+        //curhp = maxhp;
 
         //크리티컬 증가량 계산
 

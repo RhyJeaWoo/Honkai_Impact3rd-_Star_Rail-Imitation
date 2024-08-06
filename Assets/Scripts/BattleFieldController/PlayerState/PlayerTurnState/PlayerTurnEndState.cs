@@ -42,7 +42,7 @@ public class PlayerTurnEndState : PlayerState
     public override void Update()
     {
         //base.Update();
-        if(player.time < 0.66f)
+        if(player.time < 0.98f)
         {
             player.isMyTurn = false;
             TurnManager.Instance.TurnEnd();

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttackWaitState : PlayerState
 {
 
+
     //턴을 받으면 가장 먼저 시작할 상태임
     public PlayerAttackWaitState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {

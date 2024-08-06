@@ -9,7 +9,6 @@ public class TurnManager : MonoBehaviour
 {
     public PlayerSkillStrategy currentSkill; //전략 인터페이스 할당
 
-
     public GameObject Enemy_target_simbol; //적 타겟 심볼
 
     public GameObject Player_target_simbol;//아군 타겟 심볼
@@ -20,20 +19,18 @@ public class TurnManager : MonoBehaviour
 
     public Camera uiCamera;
 
-
-    private static TurnManager instance = null; //싱글턴으로 쓰려고 정적변수로 선언
+    private static TurnManager instance = null; //싱글톤 패턴으로 쓰려고 정적변수로 선언
 
     public int SkillStack = 3; //스킬 스텍
 
-    public GameObject[] StackFullUi = null;
+    public GameObject[] StackFullUi = null; 
     public GameObject SkillStackCheckimg = null;
 
     public TextMeshProUGUI text;
 
     public CinemachineVirtualCamera startCam;//게임시작 카메라 초기 위치
 
-    private StrategyAssigner strategyAssigner;
-
+    private StrategyAssigner strategyAssigner; //전략 인스턴스
 
     public string targetPlayerName;
 
@@ -45,13 +42,9 @@ public class TurnManager : MonoBehaviour
 
     public bool IsTurn;//누군가가 턴 실행 중이다 true
 
-    // 10/24일
     public bool isUltimateActivate; //궁극기가 실행 되는중이라면 true  -> (현재는 이 의미로 사용) 궁극기를 누른 플레이어가 있는가?
 
     public bool ultimateReserved = false;//궁극기가 예약 되었다면 true
-
-    // 현재 턴을 가진 플레이어를 추적하는 변수
-    private PlayerController currentTurnPlayer;
 
 
     [SerializeField] private bool isInputEnabled = true; //입력을 막으려고 쓰는 함수
@@ -137,8 +130,6 @@ public class TurnManager : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-
-       
     }
 
 
@@ -154,43 +145,48 @@ public class TurnManager : MonoBehaviour
 
         PlayerHealPos();
 
-        //SetStrategy();
-
         EnemyInitialPos(); //게임 시작시 적들의 초기 위치를 저장(다시 되돌아 가기 위함임)
 
         TurnUiSet();//패널에 게임에 참여한 오브젝트의 턴 슬롯을 추가
 
-        Enemy_target_simbol.transform.position = new Vector3(enemys[0].transform.position.x, Enemy_target_simbol.transform.position.y, Enemy_target_simbol.transform.position.z);
+        EnemySimbolTargetSet();
 
-        ResetTargetRot = Enemy_target_simbol.transform.eulerAngles;
-
-        for (int i = 0; i < playable.Count; i++)
-        {
-            playable[i].skin[0].enabled = false;
-            playable[i].skin[1].enabled = false;
-        }
+        PlayerSkinSet();
 
         //전략 패턴 할당
 
+        Strategy();
+
+    }
+
+    private void Strategy()
+    {
         strategyAssigner = new StrategyAssigner();
 
         foreach (PlayerController player in playable)
         {
             strategyAssigner.AssignStrategies(player);
         }
-
-
-        if (characterPanel == null)
-        {
-            Debug.LogError("Character panel is not assigned in the inspector.");
-        }
-
-
-
-
     }
 
-   
+    private void PlayerSkinSet()
+    {
+        for (int i = 0; i < playable.Count; i++)
+        {
+            playable[i].skin[0].enabled = false;
+            playable[i].skin[1].enabled = false;
+        }
+    }
+
+    private void EnemySimbolTargetSet()
+    {
+        Enemy_target_simbol.transform.position = new Vector3(enemys[0].transform.position.x, 
+            Enemy_target_simbol.transform.position.y, 
+            Enemy_target_simbol.transform.position.z);
+
+        ResetTargetRot = Enemy_target_simbol.transform.eulerAngles;
+    }
+
 
     private void Update()
     {
@@ -361,29 +357,15 @@ public class TurnManager : MonoBehaviour
                 {
 
                     all_obj[i].currentTurnSpeed = 0; //0보다 작아지면 0밑으로 안떨어지게
-
-                    //일단 이대로
+  
                     StopTurn = true; //매니저가 턴 종료한다고 선언
 
                     all_obj[i].isMyTurn = true; //그리고 이 플레이어의 턴이 실행
 
-                    // 턴이 잡힌 플레이어를 큐에 추가
-                    //ReserveNextTurnPlayer(all_obj[i]);
 
-
-
-                    // "궁극기 예약 중" 상태인 플레이어의 플래그 해제
-                    if (all_obj[i].IsReservingUltimate)
-                    {
-                        //all_obj[i].IsReservingUltimate = false;
-
-
-                    }
 
                     Debug.Log("플레이어 턴 잡힘 " + all_obj[i].name);
 
-                    //all_obj[i].currentTurnSpeed = all_obj[i].baseTurnSpeed; //이부분을 따로 해야됨.
-                    //상태 패턴에서 넘기는게 맞아보임.
                 }
             }
         }
